@@ -1,0 +1,25 @@
+configuration = Konfiguration
+configuration_test = Konfigurations Test
+help = Hilfe
+config_legend = Einstellungen
+
+cookiedingsbums_color_scheme = Designs
+custom = Benutzerdefiniert
+
+cookiedingsbums_theme = Theme
+cookiedingsbums_color_background = Hintergrundfarbe
+cookiedingsbums_color_main_content = Schriftfarbe des Hinweis
+cookiedingsbums_color_button_background = Hintergrundfarbe Button
+cookiedingsbums_color_button_content = Schriftfarbe im Button
+
+cookiedingsbums_position = Position
+top = Oben
+bottom = Unten
+bottom-left = Unten links
+bottom-right = Unten rechts
+
+cookiedingsbums_main_message = Text für den Cookie Hinweis
+cookiedingsbums_button_content = Text für den Button
+cookiedingsbums_link_content = Text für den Datenschutzbestimmungs-Link
+cookiedingsbums_link = Interner Link für Datenschutzbestimmungen
+

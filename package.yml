@@ -1,0 +1,27 @@
+package: cookie_consent
+version: '0.1.0-beta'
+author: Friends Of REDAXO
+supportpage: https://github.com/FriendsOfREDAXO/cookie_consent
+
+# Seiten
+page:
+    title: 'Cookie Consent'
+    icon: rex-icon fa-empire
+    perm: cookie_consent[]
+    subpages:
+        configuration:
+            title: 'translate:configuration'
+            icon: rex-icon fa-cogs
+        configuration_test:
+            title: 'translate:configuration_test'
+            icon: rex-icon fa-eercast
+        help:
+            title: 'translate:help'
+            icon: rex-icon fa-wrench
+        
+
+requires:
+    redaxo: '^5.1'
+    packages:
+          mform: '>=5.0'
+          ui_tools/jquery-minicolors: '>=2.2.6'
