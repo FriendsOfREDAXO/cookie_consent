@@ -26,8 +26,7 @@ Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent
 
 ## Requirements
 
-Cookie Consent bedient sich einiger FOR-AddOns und benötigt diese, um zu funktionieren.
-* [MForm](https://github.com/FriendsOfREDAXO/mform) von [Joachim Dörr](https://github.com/joachimdoerr)
+Cookie Consent bedient sich eines FOR-AddOns und benötigt dieses um zu funktionieren.
 * [UI Tools](https://github.com/FriendsOfREDAXO/ui_tools) von [Tim Filler](https://github.com/elricco)
 
 ## Bugtracker

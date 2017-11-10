@@ -23,5 +23,4 @@ page:
 requires:
     redaxo: '^5.1'
     packages:
-          mform: '>=5.0'
           ui_tools/jquery-minicolors: '>=2.2.6'
