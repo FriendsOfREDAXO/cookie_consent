@@ -1,2 +1,0 @@
-# cookiedingsbums
-EU Cookie-Law
