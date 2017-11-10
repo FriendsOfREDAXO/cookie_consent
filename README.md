@@ -26,7 +26,7 @@ Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent
 
 ## Requirements
 
-Cookiedingsbums bedient sich einiger FOR-AddOns und benötigt diese, um zu funktionieren.
+Cookie Consent bedient sich einiger FOR-AddOns und benötigt diese, um zu funktionieren.
 * [MForm](https://github.com/FriendsOfREDAXO/mform) von [Joachim Dörr](https://github.com/joachimdoerr)
 * [UI Tools](https://github.com/FriendsOfREDAXO/ui_tools) von [Tim Filler](https://github.com/elricco)
 
@@ -34,14 +34,9 @@ Cookiedingsbums bedient sich einiger FOR-AddOns und benötigt diese, um zu funkt
 
 Du hast einen Fehler gefunden oder ein nettes Feature was du gerne hättest? [Lege ein Issue an](https://github.com/FriendsOfREDAXO/cookie_consent/issues)
 
-
-## Changelog
-
-siehe [CHANGELOG.md](https://github.com/FriendsOfREDAXO/cookie_consent/blob/master/CHANGELOG.md)
-
 ## Lizenz
 
-siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/cookie_consent/blob/master/LICENSE.md)
+siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/cookie_consent/blob/master/LICENSE)
 
 "Cookie Consent" von Insites steht unter MIT Lizenz.
 
