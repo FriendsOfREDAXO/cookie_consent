@@ -1,8 +1,8 @@
-#Cookie Consent
+# Cookie Consent
 
 Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent.insites.com) zur Verfügung und generiert einen Code um die EU Cookie-Richtlinie zu erfüllen.
 
-![Screenshot]()
+![Screenshot](https://github.com/FriendsOfREDAXO/cookie_consent/blob/assets/cookie%20consent.png?raw=true)
 
 ## Features
 
