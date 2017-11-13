@@ -53,11 +53,13 @@ $button_content = rex_config::get('cookie_consent', 'button_content');
 $link_content = rex_config::get('cookie_consent', 'link_content');
 $link = rex_config::get('cookie_consent', 'link');
 $link = rex_getUrl($link);
+$mode = rex_config::get('cookie_consent', 'mode');
+$deny_content = rex_config::get('cookie_consent', 'deny_content');
+$allow_content = rex_config::get('cookie_consent', 'allow_content');
 
-
-$main_color_scheme = 'style="background:'.$color_background.'; color: '.$color_main_content.';"';
-$link_color_scheme = 'style="color: '.$color_main_content.';"';
-$button_color_scheme = 'style="background:'.$color_button_background.'; color:'.$color_button_content.';"';
+$main_color_scheme = 'style="background:'.rex_escape($color_background).'; color: '.rex_escape($color_main_content).';"';
+$link_color_scheme = 'style="color: '.rex_escape($color_main_content).';"';
+$button_color_scheme = 'style="background:'.rex_escape($color_button_background).'; color:'.rex_escape($color_button_content).';"';
 
 echo '<h2>Cookie Consent Test</h2>';
 echo '<p>Das hier gezeigte Beispiel stellt nur deine angegebenen Werte zur Hintergrundfarbe, Button-Farbe und die jeweilige Textfarbe dar. Um die anderen Effekte zu sehen, probier einfach mal ein bisschen rum und schau es dir im Front-End an :-)</p>';
@@ -88,9 +90,12 @@ window.cookieconsent.initialise({
   "content": {
     "message": "'.rex_escape($main_message).'",
     "dismiss": "'.rex_escape($button_content).'",
+    "deny": "'.rex_escape($deny_content).'",
+    "allow": "'.rex_escape($allow_content).'",
     "link": "'.rex_escape($link_content).'",
     "href": "'.rex_escape($link).'"
-  }
+  },
+  "type": "'.$mode.'"
 })});
 
 </code></pre>';

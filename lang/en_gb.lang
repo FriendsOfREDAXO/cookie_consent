@@ -1,0 +1,37 @@
+configuration = Configuration
+configuration_test = Configuration test
+help = Help
+config_legend = Settings
+config_save = Save
+config = Configuration
+config_saved_cookie = The settings have been saved
+
+cookiedingsbums_mode = Mode
+info = Inform users that cookies are stored
+opt-in =  Opt-in Method
+opt-out = Opt-out Method
+mode_notice = Please note that the opt-in and opt-out methods only provide callbacks for not storing cookies. You must write your own function and customize your website so that no cookies are stored. See: 
+disable_cookies = Disable Cookies
+
+cookiedingsbums_color_scheme = Designs
+custom = custom
+
+cookiedingsbums_theme = Theme
+cookiedingsbums_color_background = Background-color
+cookiedingsbums_color_main_content = Font color of the note
+cookiedingsbums_color_button_background = Background-color button
+cookiedingsbums_color_button_content =  Font color of the button
+cookiedingsbums_deny_content = Deny-Button-Text (Opt-Out)
+cookiedingsbums_allow_content = Allow-Button-Text (Opt-In)
+
+cookiedingsbums_position = Position
+top = top
+bottom = bottom
+bottom-left = bottom left
+bottom-right = bottom right
+
+cookiedingsbums_main_message =  Text for the cookie note
+cookiedingsbums_button_content = Text for the button
+cookiedingsbums_link_content = Text for the privacy policy link
+cookiedingsbums_link = Internal link for privacy policy
+

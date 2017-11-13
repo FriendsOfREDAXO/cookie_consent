@@ -12,6 +12,9 @@ if (!$this->hasConfig()) {
     $this->setConfig('link', '');
     $this->setConfig('theme', 'classic');
     $this->setConfig('color_scheme', 'custom');
+    $this->setConfig('mode', 'info');
+    $this->setConfig('allow_content', 'Allow cookies');
+    $this->setConfig('deny_content', 'Decline');
 }
 
 $somethingIsWrong = false;

@@ -1,5 +1,4 @@
 <?php
-
 $content = '';
 $buttons = '';
 
@@ -17,9 +16,12 @@ if (rex_post('formsubmit', 'string') == '1') {
         ['link', 'string'],
         ['theme', 'string'],
         ['color_scheme', 'string'],
+        ['mode', 'string'],
+        ['deny_content', 'string'],
+        ['allow_content', 'string'],
     ]));
 
-    echo rex_view::success($this->i18n('config_saved'));
+    echo rex_view::success($this->i18n('config_saved_cookie'));
 }
 
 
@@ -27,6 +29,25 @@ if (rex_post('formsubmit', 'string') == '1') {
 // Einfaches Textfeld
 
 $content .= '<fieldset><legend>' . $this->i18n('config_legend') . '</legend>';
+
+$formElements = [];
+$n = [];
+$n['label'] = '<label for="cookiedingsbums_mode">' . $this->i18n('cookiedingsbums_mode') . '</label>';
+$select = new rex_select();
+$select->setId('cookiedingsbums_mode');
+$select->setAttribute('class', 'form-control selectpicker');
+$select->setAttribute('id', 'cookiedingsbums_mode');
+$select->setName('config[mode]');
+$select->addOption($this->i18n('info'), 'info');
+$select->addOption($this->i18n('opt-in'), 'opt-in');
+$select->addOption($this->i18n('opt-out'), 'opt-out');
+$select->setSelected($this->getConfig('mode'));
+$n['field'] = $select->get().'<i class="mode_notice">'.$this->i18n('mode_notice').' <a href="https://cookieconsent.insites.com/documentation/disabling-cookies/">'.$this->i18n("disable_cookies").'</a></i>';
+$formElements[] = $n;
+
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
@@ -103,6 +124,26 @@ $formElements = [];
 $n = [];
 $n['label'] = '<label for="cookiedingsbums_button_content">' . $this->i18n('cookiedingsbums_button_content') . '</label>';
 $n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_button_content" name="config[button_content]" value="' . $this->getConfig('button_content') . '"/>';
+$formElements[] = $n;
+
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$content .= $fragment->parse('core/form/container.php');
+
+$formElements = [];
+$n = [];
+$n['label'] = '<label for="cookiedingsbums_deny_content">' . $this->i18n('cookiedingsbums_deny_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_deny_content" name="config[deny_content]" value="' . $this->getConfig('deny_content') . '"/>';
+$formElements[] = $n;
+
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$content .= $fragment->parse('core/form/container.php');
+
+$formElements = [];
+$n = [];
+$n['label'] = '<label for="cookiedingsbums_allow_content">' . $this->i18n('cookiedingsbums_allow_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_allow_content" name="config[allow_content]" value="' . $this->getConfig('allow_content') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -227,9 +268,35 @@ $output = '
 
 echo $output;
 ?>
-
+<style>
+	#cookiedingsbums_deny_content {
+		visibility: hidden;
+	}
+	#cookiedingsbums_allow_content {
+		visibility: hidden;
+	}
+	.mode_notice {
+		display: none;
+	}
+</style>
 <script>
-	$('#color_scheme').change(function() {
+$(document).on('rex:ready', function() {
+	var e = document.getElementById("cookiedingsbums_mode");
+	var strUser = e.options[e.selectedIndex].value;
+	if(strUser == 'opt-in') {
+		$('#cookiedingsbums_allow_content').css('visibility', 'visible');
+		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
+	}
+	if(strUser == 'opt-out') {
+		$('#cookiedingsbums_deny_content').css('visibility', 'visible');
+		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
+	}
+	if(strUser == 'info') {
+		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
+		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
+	}
+})
+$('#color_scheme').change(function() {
 	var e = document.getElementById("color_scheme");
 	var strUser = e.options[e.selectedIndex].value;
 	if(strUser == 'girly') {
@@ -269,8 +336,27 @@ echo $output;
 		$('#cookiedingsbums_color_button_content').val('#000');
 	}
 });	
+$('#cookiedingsbums_mode').change(function() { 
+	var e = document.getElementById("cookiedingsbums_mode");
+	var strUser = e.options[e.selectedIndex].value;
+	if(strUser == 'opt-in') {
+		$('#cookiedingsbums_allow_content').css('visibility', 'visible');
+		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
+		$('.mode_notice').css('display', 'inline');
+	}
+	if(strUser == 'opt-out') {
+		$('#cookiedingsbums_deny_content').css('visibility', 'visible');
+		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
+		$('.mode_notice').css('display', 'inline');
+	}
+	if(strUser == 'info') {
+		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
+		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
+		$('.mode_notice').css('display', 'none');
+	}
+});
 $('#cookiedingsbums_color_background').change(function() {
-		$("#color_scheme option[value='0']").prop("selected","selected");
+	$("#color_scheme option[value='0']").prop("selected","selected");
 });
 $('#cookiedingsbums_color_main_content').change(function() {
 	var val = 'custom'

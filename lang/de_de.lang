@@ -2,6 +2,16 @@ configuration = Konfiguration
 configuration_test = Konfigurations Test
 help = Hilfe
 config_legend = Einstellungen
+config_save = Speichern
+config = Konfiguration
+config_saved_cookie = Die Einstellungen wurden gespeichert
+
+cookiedingsbums_mode = Modus
+info = Nutzer informieren, dass Cookies gespeichert werden
+opt-in =  Opt-in Methode
+opt-out = Opt-out Methode
+mode_notice = Bitte beachte das die Opt-in und Opt-out Methoden nur die Callbacks zum nicht speichern der Cookies liefern. Du musst selbst die Funktion verfassen und deine Webseite anpassen, sodass keine Cookies gespeichert werden. Siehe: 
+disable_cookies = Cookies deaktivieren
 
 cookiedingsbums_color_scheme = Designs
 custom = Benutzerdefiniert
@@ -11,6 +21,8 @@ cookiedingsbums_color_background = Hintergrundfarbe
 cookiedingsbums_color_main_content = Schriftfarbe des Hinweis
 cookiedingsbums_color_button_background = Hintergrundfarbe Button
 cookiedingsbums_color_button_content = Schriftfarbe im Button
+cookiedingsbums_deny_content = Verweigern-Button-Text (Opt-Out)
+cookiedingsbums_allow_content = Zustimmen-Button-Text (Opt-In)
 
 cookiedingsbums_position = Position
 top = Oben

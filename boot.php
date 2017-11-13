@@ -21,6 +21,4 @@ if (rex::isBackend() && rex::getUser()) {
 		$this->setConfig('color_scheme', 'custom');
 	}
 */	
-    rex_view::addCssFile($this->getAssetsUrl('code/code_highlighting.css'));
-    rex_view::addJsFile($this->getAssetsUrl('code/code_highlighting.js'));
     }

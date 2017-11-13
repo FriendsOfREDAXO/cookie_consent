@@ -24,6 +24,17 @@ Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent
 5. Im Reiter 'Konfigurations Test' den ausgegeben Code kopieren und in einem `<script></script>`-Block vor dem schließenden `</head>`-Tag einfügen
 6. Ausprobieren! :-)
 
+## Modus
+
+- Information:
+ - dem Nutzer wird mitgeteilt, dass die Webseite Cookies verwendet und der Nutzer diese aktzeptiert, wenn er weiterhin die Webseite nutzt
+- Opt-Out:
+ - dem Nutzer wird mitgeteilt, dass die Webseite Cookies verwendet. Es wird ihm aber eine Schaltfläche zum Deaktivieren der Cookies bereitgestellt 
+- Opt-In:
+ - dem Nutzer wird mitgeteilt, dass die Webseite Cookies verwenden möchte. Dem Nutzer wird eine Schaltfläche bereitgestellt, wo er die Cookies aktzeptieren oder ablehnen kann
+ 
+**Achtung:** Die Opt-In und Opt-Out Methode stellt **nur** die Callbacks zu dem Ablehnen oder Aktzeptieren der Cookies bereit. [Callbacks](https://cookieconsent.insites.com/documentation/disabling-cookies/)
+
 ## Requirements
 
 Cookie Consent bedient sich eines FOR-AddOns und benötigt dieses um zu funktionieren.
