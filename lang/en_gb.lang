@@ -1,5 +1,5 @@
 configuration = Configuration
-configuration_test = Configuration test
+configuration_test = Generated Code
 help = Help
 config_legend = Settings
 config_save = Save
