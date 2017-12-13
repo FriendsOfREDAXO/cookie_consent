@@ -1,5 +1,5 @@
 configuration = Konfiguration
-configuration_test = Generierter Code
+configuration_test = Konfigurations Test
 help = Hilfe
 config_legend = Einstellungen
 config_save = Speichern
@@ -33,5 +33,9 @@ bottom-right = Unten rechts
 cookiedingsbums_main_message = Text für den Cookie Hinweis
 cookiedingsbums_button_content = Text für den Button
 cookiedingsbums_link_content = Text für den Datenschutzbestimmungs-Link
-cookiedingsbums_link = Interner Link für Datenschutzbestimmungen
+cookiedingsbums_link_intern = Interner Link für Datenschutzbestimmungen
+cookiedingsbums_link_extern = Externer Link für Datenschutzbestimmungen
+cookiedingsbums_select_link = Art des Link
+eLink = Externer Link
+iLink = Interner Link
 

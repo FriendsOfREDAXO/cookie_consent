@@ -1,7 +1,8 @@
 <?php
 $content = '';
 $buttons = '';
-
+$cookie_consent = rex_addon::get('cookie_consent');
+$cookie_consent_functions = new cookie_consent_functions();
 // Einstellungen speichern
 if (rex_post('formsubmit', 'string') == '1') {
     $this->setConfig(rex_post('config', [
@@ -13,8 +14,10 @@ if (rex_post('formsubmit', 'string') == '1') {
         ['main_message', 'string'],
         ['button_content', 'string'],
         ['link_content', 'string'],
-        ['link', 'string'],
+        ['iLink', 'string'],
+        ['eLink', 'string'],
         ['theme', 'string'],
+        ['cookiedingsbums_select_link', 'string'],
         ['color_scheme', 'string'],
         ['mode', 'string'],
         ['deny_content', 'string'],
@@ -24,6 +27,16 @@ if (rex_post('formsubmit', 'string') == '1') {
     echo rex_view::success($this->i18n('config_saved_cookie'));
 }
 
+	if($cookie_consent_functions->checkUrl($this->getConfig('eLink')) === false) {
+		$content .=	rex_view::warning('Falscher Link');
+		$cookie_consent->setConfig('eLink', '');
+	}
+	if($this->getConfig('cookiedingsbums_select_link') == 'eLink') {
+			$cookie_consent->setConfig('iLink', '');
+	}
+	if($this->getConfig('cookiedingsbums_select_link') == 'iLink') {
+			$cookie_consent->setConfig('eLink', '');
+	}
 
 
 // Einfaches Textfeld
@@ -200,32 +213,53 @@ $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
 
-/*$formElements = [];
+$formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_link">' . $this->i18n('cookiedingsbums_link') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_link" name="config[link]" value="' . $this->getConfig('link') . '"/>';
+$n['label'] = '<label for="cookiedingsbums_select_link">' . $this->i18n('cookiedingsbums_select_link') . '</label>';
+$select = new rex_select();
+$select->setId('cookiedingsbums_select_link');
+$select->setAttribute('class', 'form-control selectpicker');
+$select->setAttribute('id', 'cookiedingsbums_select_link');
+$select->setName('config[cookiedingsbums_select_link]');
+$select->addOption($this->i18n('eLink'), 'eLink');
+$select->addOption($this->i18n('iLink'), 'iLink');
+$select->setSelected($this->getConfig('cookiedingsbums_select_link'));
+$n['field'] = $select->get();
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
-*/
+
+/* EXTERNER LINK */
+$formElements = [];
+$n = [];
+$n['label'] = '<label for="cookiedingsbums_link_extern">' . $this->i18n('cookiedingsbums_link_extern') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_link_extern" name="config[eLink]" value="' . $this->getConfig('eLink') . '"/>';
+$formElements[] = $n;
+
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$content .= $fragment->parse('core/form/container.php');
+
+
+/* INTERNER LINK */
 $formElements = [];
 $artname = '';
-$art = rex_article::get($this->getConfig('link'));
+$art = rex_article::get($this->getConfig('iLink'));
 if ($art) {
     $artname = $art->getValue('name');
 }
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_link">' . $this->i18n('cookiedingsbums_link') . '</label>';
+$n['label'] = '<label for="cookiedingsbums_link">' . $this->i18n('cookiedingsbums_link_intern') . '</label>';
 $n['field'] = '
 <div class="rex-js-widget rex-js-widget-link">
 	<div class="input-group">	
 			<input class="form-control" type="text" name="REX_LINK_NAME[1]" value="'.$artname.'" id="REX_LINK_1_NAME" readonly="readonly" />
-			<input type="hidden" name="config[link]" id="REX_LINK_1" value="' . $this->getConfig('link') . '" />
+			<input type="hidden" name="config[iLink]" id="REX_LINK_1" value="' . $this->getConfig('iLink') . '" />
 			<span class="input-group-btn">
-				<a href="#" class="btn btn-popup" onclick="openLinkMap(\'REX_LINK_1\', \'&clang=1&category_id=1\');return false;" title="' . $this->i18n('var_link_open') . '"><i class="rex-icon rex-icon-open-linkmap"></i></a>
-				<a href="#" class="btn btn-popup" onclick="deleteREXLink(1);return false;" title="' . $this->i18n('var_link_delete') . '"><i class="rex-icon rex-icon-delete-link"></i></a>
+				<a href="#" class="btn btn-popup cookie_dingsbums_button" onclick="openLinkMap(\'REX_LINK_1\', \'&clang=1&category_id=1\');return false;" title="' . $this->i18n('var_link_open') . '"><i class="rex-icon rex-icon-open-linkmap"></i></a>
+				<a href="#" class="btn btn-popup cookie_dingsbums_button" onclick="deleteREXLink(1);return false;" title="' . $this->i18n('var_link_delete') . '"><i class="rex-icon rex-icon-delete-link"></i></a>
 			</span>
     </div>
 </div>
@@ -269,6 +303,12 @@ $output = '
 echo $output;
 ?>
 <style>
+	.cookie_dingsbums_button {
+		visibility: hidden;
+	}
+	#REX_LINK_1_NAME {
+		visibility: hidden;
+	}
 	#cookiedingsbums_deny_content {
 		visibility: hidden;
 	}
@@ -294,6 +334,19 @@ $(document).on('rex:ready', function() {
 	if(strUser == 'info') {
 		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
 		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
+	}
+	var f = document.getElementById("cookiedingsbums_select_link");
+	var strUser = f.options[f.selectedIndex].value;
+	if(strUser == 'eLink') {
+		$('#cookiedingsbums_link_extern').css('visibility', 'visible');
+		$('#REX_LINK_1_NAME').css('visibility', 'hidden');
+		$('.cookie_dingsbums_button').css('visibility', 'hidden');
+
+	}
+	if(strUser == 'iLink') {
+		$('#REX_LINK_1_NAME').css('visibility', 'visible');
+		$('.cookie_dingsbums_button').css('visibility', 'visible');
+		$('#cookiedingsbums_link_extern').css('visibility', 'hidden');
 	}
 })
 $('#color_scheme').change(function() {
@@ -336,6 +389,23 @@ $('#color_scheme').change(function() {
 		$('#cookiedingsbums_color_button_content').val('#000');
 	}
 });	
+
+$('#cookiedingsbums_select_link').change(function() { 
+	var e = document.getElementById("cookiedingsbums_select_link");
+	var strUser = e.options[e.selectedIndex].value;
+	if(strUser == 'eLink') {
+		$('#cookiedingsbums_link_extern').css('visibility', 'visible');
+		$('#REX_LINK_1_NAME').css('visibility', 'hidden');
+		$('.cookie_dingsbums_button').css('visibility', 'hidden');
+
+	}
+	if(strUser == 'iLink') {
+		$('#REX_LINK_1_NAME').css('visibility', 'visible');
+		$('.cookie_dingsbums_button').css('visibility', 'visible');
+		$('#cookiedingsbums_link_extern').css('visibility', 'hidden');
+	}
+});
+
 $('#cookiedingsbums_mode').change(function() { 
 	var e = document.getElementById("cookiedingsbums_mode");
 	var strUser = e.options[e.selectedIndex].value;

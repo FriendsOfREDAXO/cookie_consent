@@ -1,5 +1,5 @@
 configuration = Configuration
-configuration_test = Generated Code
+configuration_test = Configuration test
 help = Help
 config_legend = Settings
 config_save = Save
@@ -34,4 +34,8 @@ cookiedingsbums_main_message =  Text for the cookie note
 cookiedingsbums_button_content = Text for the button
 cookiedingsbums_link_content = Text for the privacy policy link
 cookiedingsbums_link = Internal link for privacy policy
-
+cookiedingsbums_link_intern = Internal link for privacy policy
+cookiedingsbums_link_extern = External link for privacy policy
+cookiedingsbums_select_link = Type of link
+eLink = External Link
+iLink = Internal Link

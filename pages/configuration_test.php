@@ -51,8 +51,12 @@ $position = rex_config::get('cookie_consent', 'position');
 $main_message = rex_config::get('cookie_consent', 'main_message');
 $button_content = rex_config::get('cookie_consent', 'button_content');
 $link_content = rex_config::get('cookie_consent', 'link_content');
-$link = rex_config::get('cookie_consent', 'link');
-$link = rex_getUrl($link);
+$link = rex_config::get('cookie_consent', 'iLink');
+$interner_link = '';
+if($link != '') {
+	$interner_link = rex_getUrl($link);
+}
+$externer_link = rex_config::get('cookie_consent', 'eLink');
 $mode = rex_config::get('cookie_consent', 'mode');
 $deny_content = rex_config::get('cookie_consent', 'deny_content');
 $allow_content = rex_config::get('cookie_consent', 'allow_content');
@@ -93,7 +97,7 @@ window.cookieconsent.initialise({
     "deny": "'.rex_escape($deny_content).'",
     "allow": "'.rex_escape($allow_content).'",
     "link": "'.rex_escape($link_content).'",
-    "href": "'.rex_escape($link).'"
+    "href": "'.rex_escape($externer_link).''.rex_escape($interner_link).'"
   },
   "type": "'.$mode.'"
 })});
