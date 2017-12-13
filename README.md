@@ -9,7 +9,7 @@ Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent
 - Individuelle Darstellung des Cookie-Hinweis Banner
  - Auswahl der Textfarbe und des Textinhaltes
  - Auswahl der Hintergrundfarbe
- - Setzen der Datenschutzerklärung (interner Link)
+ - Setzen der Datenschutzerklärung (interner oder externer Link)
  - Position des Cookie-Hinweis Banner
 - Vorgefertigte Designs als Auswahl
 - Konfigurationstest der gesetzten Farben
