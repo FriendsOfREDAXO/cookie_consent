@@ -23,7 +23,7 @@ Vor Verwendung des AddOns sollte die aktuelle Rechtslage (gerade in Deutschland)
 
 1. Über Installer laden oder ZIP-Datei im AddOn-Ordner entpacken, der Ordner muss „cookie_consent“ heißen.
 2. AddOn installieren und aktivieren
-3. Die mitgelieferten Javascript `cookie_consent_insites.js` und CSS `cookie_consent_insites.css` Dateien im Front-End vor dem schließenden `</head>`-Tag einbinden oder das Häkchen bei `CSS und JS automatisch einbinden` setzen
+3. Die mitgelieferten Javascript `cookie_consent_insites.js` und CSS `cookie_consent_insites.css` Dateien im Front-End vor dem schließenden `</head>`-Tag einbinden oder das Häkchen bei `CSS und JS automatisch einbinden` setzen (funktioniert nur in Verwendung mit Schritt 5)
 4. Bevorzugtes Farbschema wählen oder ein eigenes erstellen
 5. Den Hinweis mittels `echo cookie_consent::cookie_consent_output();` vor dem schließenden `</head>` Tag aufrufen
 6. ODER Alternativ: Im Reiter 'Konfigurations Test' den ausgegeben Code kopieren und in einem `<script></script>`-Block vor dem schließenden `</head>`-Tag einfügen
