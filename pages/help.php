@@ -5,4 +5,3 @@ $fragment = new rex_fragment();
 $fragment->setVar('body', $body, false);
 $content = $fragment->parse('core/page/section.php');
 echo $content;
-?>
