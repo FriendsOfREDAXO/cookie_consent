@@ -9,7 +9,9 @@ if (!$this->hasConfig()) {
     $this->setConfig('main_message', 'This website uses cookies to ensure you get the best experience on our website ');
     $this->setConfig('button_content', 'Accept');
     $this->setConfig('link_content', 'Privacy Policy');
-    $this->setConfig('link', '');
+    $this->setConfig('eLink', '');
+    $this->setConfig('iLink', '');
+    $this->setConfig('script_checkbox', '');
     $this->setConfig('theme', 'classic');
     $this->setConfig('color_scheme', 'custom');
     $this->setConfig('mode', 'info');

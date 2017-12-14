@@ -39,3 +39,4 @@ cookiedingsbums_link_extern = External link for privacy policy
 cookiedingsbums_select_link = Type of link
 eLink = External Link
 iLink = Internal Link
+script-checkbox = Automatic integration of CSS and JS

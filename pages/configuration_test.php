@@ -67,7 +67,7 @@ $button_color_scheme = 'style="background:'.rex_escape($color_button_background)
 
 echo '<h2>Cookie Consent Test</h2>';
 echo '<p>Das hier gezeigte Beispiel stellt nur deine angegebenen Werte zur Hintergrundfarbe, Button-Farbe und die jeweilige Textfarbe dar. Um die anderen Effekte zu sehen, probier einfach mal ein bisschen rum und schau es dir im Front-End an :-)</p>';
-echo '</br></br>
+echo '</br>
 		<div id="cookiedingsbums_wrapper">
 			<div class="cookiedingsbums_content" '.$main_color_scheme.'>
 			<p class="cookiedingsbums_text"> This website uses cookies to ensure you get the best experience on our website <a class="cookiedingsbums_link" '.$link_color_scheme.' href="'.$link.'">'.$link_content.'</a> </p> 
@@ -75,35 +75,9 @@ echo '</br></br>
 			<button class="cookiedingsbums_button" '.$button_color_scheme.'>Bestätige</button>
 			</form>
 			</div>
-	</div></br></br>';
-echo '<p>Der folgende Code muss noch vor deinem schließenden head-Tag in einen script-Block gesetzt werden. Bitte nimm dir Zeit und lies dir vorher die Hilfe durch, damit auch alles reibungslos klappt</p>';
-$test = '<pre><code>window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "'.rex_escape($color_background).'",
-      "text": "'.rex_escape($color_main_content).'"
-    },
-    "button": {
-      "background": "'.rex_escape($color_button_background).'",
-      "text": "'.rex_escape($color_button_content).'"
-    }
-  },
-  "theme": "'.$theme.'",
-  "position": "'.$position.'",
-  "content": {
-    "message": "'.rex_escape($main_message).'",
-    "dismiss": "'.rex_escape($button_content).'",
-    "deny": "'.rex_escape($deny_content).'",
-    "allow": "'.rex_escape($allow_content).'",
-    "link": "'.rex_escape($link_content).'",
-    "href": "'.rex_escape($externer_link).''.rex_escape($interner_link).'"
-  },
-  "type": "'.$mode.'"
-})});
-
-</code></pre>';
-
-echo $test;
+	</div></br>';
+echo '<p>Um den Cookie Hinweis im Frontend darzustellen, nutze bitte die Funktion: <code><pre>echo cookie_consent::cookie_consent_output();</code></pre></p>';
+echo '<p>Alternative muss der folgende Code noch vor deinem schließenden head-Tag in einen script-Block gesetzt werden. Bitte nimm dir Zeit und lies dir vorher die Hilfe durch, damit auch alles reibungslos klappt</p>';
+	echo cookie_consent::cookie_consent_backend();
 ?>
 

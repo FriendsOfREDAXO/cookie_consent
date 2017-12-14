@@ -13,7 +13,7 @@ Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent
  - Position des Cookie-Hinweis Banner
 - Vorgefertigte Designs als Auswahl
 - Konfigurationstest der gesetzten Farben
-- Ausgabe-Code zum kopieren
+- Ausgabe-Code zum kopieren oder Funktion zum automatischen einfügen
 
 ## Rechtliches
 Verwendung auf eigene Gefahr. 
@@ -23,10 +23,11 @@ Vor Verwendung des AddOns sollte die aktuelle Rechtslage (gerade in Deutschland)
 
 1. Über Installer laden oder ZIP-Datei im AddOn-Ordner entpacken, der Ordner muss „cookie_consent“ heißen.
 2. AddOn installieren und aktivieren
-3. Die mitgelieferten Javascript `cookie_consent_insites.js` und CSS `cookie_consent_insites.css` Dateien im Front-End einbinden 
+3. Die mitgelieferten Javascript `cookie_consent_insites.js` und CSS `cookie_consent_insites.css` Dateien im Front-End vor dem schließenden `</head>`-Tag einbinden oder das Häkchen bei `CSS und JS automatisch einbinden` setzen
 4. Bevorzugtes Farbschema wählen oder ein eigenes erstellen
-5. Im Reiter 'Konfigurations Test' den ausgegeben Code kopieren und in einem `<script></script>`-Block vor dem schließenden `</head>`-Tag einfügen
-6. Ausprobieren! :-)
+5. Den Hinweis mittels `echo cookie_consent_functions::cookie_consent_output();` vor dem schließenden `</head>` Tag aufrufen
+6. ODER Alternativ: Im Reiter 'Konfigurations Test' den ausgegeben Code kopieren und in einem `<script></script>`-Block vor dem schließenden `</head>`-Tag einfügen
+7. Ausprobieren! :-)
 
 ## Modus
 

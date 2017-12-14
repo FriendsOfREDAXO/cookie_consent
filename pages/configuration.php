@@ -2,7 +2,7 @@
 $content = '';
 $buttons = '';
 $cookie_consent = rex_addon::get('cookie_consent');
-$cookie_consent_functions = new cookie_consent_functions();
+$cookie_consent_functions = new cookie_consent();
 // Einstellungen speichern
 if (rex_post('formsubmit', 'string') == '1') {
     $this->setConfig(rex_post('config', [
@@ -22,6 +22,7 @@ if (rex_post('formsubmit', 'string') == '1') {
         ['mode', 'string'],
         ['deny_content', 'string'],
         ['allow_content', 'string'],
+        ['script_checkbox', 'string'],
     ]));
 
     echo rex_view::success($this->i18n('config_saved_cookie'));
@@ -268,6 +269,17 @@ $formElements[] = $n;
 $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
+
+/* CSS UND JS AUTOMATISCH EINBINDEN */
+
+$formElements = [];
+$n = [];
+$n['label'] = '<label for="script-checkbox">' . $this->i18n('script-checkbox') . '</label>';
+$n['field'] = '<input type="checkbox" id="script-checkbox" name="config[script_checkbox]"' . (!empty($this->getConfig('script_checkbox')) && $this->getConfig('script_checkbox') == '1' ? ' checked="checked"' : '') . ' value="1" />';
+$formElements[] = $n;
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$content .= $fragment->parse('core/form/checkbox.php');
 
 
 // Save-Button
