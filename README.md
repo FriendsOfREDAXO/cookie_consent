@@ -15,6 +15,10 @@ Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent
 - Konfigurationstest der gesetzten Farben
 - Ausgabe-Code zum kopieren
 
+## Rechtliches
+Verwendung auf eigene Gefahr. 
+Vor Verwendung des AddOns sollte die aktuelle Rechtslage (gerade in Deutschland) recherchiert werden. Das AddOn liefert nur das Skript. Eine Gewähr auf Rechtssicherheit ist nicht geggeben und wird auch nicht geleistet. 
+
 ## Installation
 
 1. Über Installer laden oder ZIP-Datei im AddOn-Ordner entpacken, der Ordner muss „cookie_consent“ heißen.
