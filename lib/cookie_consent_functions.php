@@ -142,3 +142,4 @@ class cookie_consent {
 	}
 
 }
+

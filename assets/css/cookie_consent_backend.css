@@ -1,0 +1,9 @@
+	.cookie_consent_display_none {
+		display: none;
+	}
+	.cookie_consent_display {
+		display: inline-block;
+	}
+	.mode_notice {
+		display: none;
+	}

@@ -146,7 +146,7 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_deny_content">' . $this->i18n('cookiedingsbums_deny_content') . '</label>';
+$n['label'] = '<label class="cookiedingsbums_deny_content" for="cookiedingsbums_deny_content">' . $this->i18n('cookiedingsbums_deny_content') . '</label>';
 $n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_deny_content" name="config[deny_content]" value="' . $this->getConfig('deny_content') . '"/>';
 $formElements[] = $n;
 
@@ -156,7 +156,7 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_allow_content">' . $this->i18n('cookiedingsbums_allow_content') . '</label>';
+$n['label'] = '<label class="cookiedingsbums_allow_content" for="cookiedingsbums_allow_content">' . $this->i18n('cookiedingsbums_allow_content') . '</label>';
 $n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_allow_content" name="config[allow_content]" value="' . $this->getConfig('allow_content') . '"/>';
 $formElements[] = $n;
 
@@ -235,7 +235,7 @@ $content .= $fragment->parse('core/form/container.php');
 /* EXTERNER LINK */
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_link_extern">' . $this->i18n('cookiedingsbums_link_extern') . '</label>';
+$n['label'] = '<label class="cookiedingsbums_eLink" for="cookiedingsbums_link_extern">' . $this->i18n('cookiedingsbums_link_extern') . '</label>';
 $n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_link_extern" name="config[eLink]" value="' . $this->getConfig('eLink') . '"/>';
 $formElements[] = $n;
 
@@ -252,7 +252,7 @@ if ($art) {
     $artname = $art->getValue('name');
 }
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_link">' . $this->i18n('cookiedingsbums_link_intern') . '</label>';
+$n['label'] = '<label class="cookiedingsbums_iLink" for="cookiedingsbums_link">' . $this->i18n('cookiedingsbums_link_intern') . '</label>';
 $n['field'] = '
 <div class="rex-js-widget rex-js-widget-link">
 	<div class="input-group">	
@@ -313,141 +313,5 @@ $output = '
 ';
 
 echo $output;
-?>
-<style>
-	.cookie_dingsbums_button {
-		visibility: hidden;
-	}
-	#REX_LINK_1_NAME {
-		visibility: hidden;
-	}
-	#cookiedingsbums_deny_content {
-		visibility: hidden;
-	}
-	#cookiedingsbums_allow_content {
-		visibility: hidden;
-	}
-	.mode_notice {
-		display: none;
-	}
-</style>
-<script>
-$(document).on('rex:ready', function() {
-	var e = document.getElementById("cookiedingsbums_mode");
-	var strUser = e.options[e.selectedIndex].value;
-	if(strUser == 'opt-in') {
-		$('#cookiedingsbums_allow_content').css('visibility', 'visible');
-		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
-	}
-	if(strUser == 'opt-out') {
-		$('#cookiedingsbums_deny_content').css('visibility', 'visible');
-		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
-	}
-	if(strUser == 'info') {
-		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
-		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
-	}
-	var f = document.getElementById("cookiedingsbums_select_link");
-	var strUser = f.options[f.selectedIndex].value;
-	if(strUser == 'eLink') {
-		$('#cookiedingsbums_link_extern').css('visibility', 'visible');
-		$('#REX_LINK_1_NAME').css('visibility', 'hidden');
-		$('.cookie_dingsbums_button').css('visibility', 'hidden');
 
-	}
-	if(strUser == 'iLink') {
-		$('#REX_LINK_1_NAME').css('visibility', 'visible');
-		$('.cookie_dingsbums_button').css('visibility', 'visible');
-		$('#cookiedingsbums_link_extern').css('visibility', 'hidden');
-	}
-})
-$('#color_scheme').change(function() {
-	var e = document.getElementById("color_scheme");
-	var strUser = e.options[e.selectedIndex].value;
-	if(strUser == 'girly') {
-		$('#cookiedingsbums_color_background').val('#64386b');
-		$('#cookiedingsbums_color_main_content').val('#ffcdfd');
-		$('#cookiedingsbums_color_button_background').val('#f8a8ff');
-		$('#cookiedingsbums_color_button_content').val('#3f0045');
-	}
-	if(strUser == 'fancyred') {
-		$('#cookiedingsbums_color_background').val('#aa0000');
-		$('#cookiedingsbums_color_main_content').val('#ffdddd');
-		$('#cookiedingsbums_color_button_background').val('#ff0000');
-		$('#cookiedingsbums_color_button_content').val('#ffdddd');
-	}
-	if(strUser == 'icyblue') {
-		$('#cookiedingsbums_color_background').val('#eaf7f7');
-		$('#cookiedingsbums_color_main_content').val('#5c7291');
-		$('#cookiedingsbums_color_button_background').val('#56cbdb');
-		$('#cookiedingsbums_color_button_content').val('#ffffff');
-	}
-	if(strUser == 'polarlights') {
-		$('#cookiedingsbums_color_background').val('#3c404d');
-		$('#cookiedingsbums_color_main_content').val('#d6d6d6');
-		$('#cookiedingsbums_color_button_background').val('#8bed4f');
-		$('#cookiedingsbums_color_button_content').val('#000');
-	}
-	if(strUser == 'bubblegum') {
-		$('#cookiedingsbums_color_background').val('#343c66');
-		$('#cookiedingsbums_color_main_content').val('#cfcfe8');
-		$('#cookiedingsbums_color_button_background').val('#f71559');
-		$('#cookiedingsbums_color_button_content').val('#cfcfe8');
-	}
-	if(strUser == 'honeybee') {
-		$('#cookiedingsbums_color_background').val('#000');
-		$('#cookiedingsbums_color_main_content').val('#EEE');
-		$('#cookiedingsbums_color_button_background').val('#f1d600');
-		$('#cookiedingsbums_color_button_content').val('#000');
-	}
-});	
 
-$('#cookiedingsbums_select_link').change(function() { 
-	var e = document.getElementById("cookiedingsbums_select_link");
-	var strUser = e.options[e.selectedIndex].value;
-	if(strUser == 'eLink') {
-		$('#cookiedingsbums_link_extern').css('visibility', 'visible');
-		$('#REX_LINK_1_NAME').css('visibility', 'hidden');
-		$('.cookie_dingsbums_button').css('visibility', 'hidden');
-
-	}
-	if(strUser == 'iLink') {
-		$('#REX_LINK_1_NAME').css('visibility', 'visible');
-		$('.cookie_dingsbums_button').css('visibility', 'visible');
-		$('#cookiedingsbums_link_extern').css('visibility', 'hidden');
-	}
-});
-
-$('#cookiedingsbums_mode').change(function() { 
-	var e = document.getElementById("cookiedingsbums_mode");
-	var strUser = e.options[e.selectedIndex].value;
-	if(strUser == 'opt-in') {
-		$('#cookiedingsbums_allow_content').css('visibility', 'visible');
-		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
-		$('.mode_notice').css('display', 'inline');
-	}
-	if(strUser == 'opt-out') {
-		$('#cookiedingsbums_deny_content').css('visibility', 'visible');
-		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
-		$('.mode_notice').css('display', 'inline');
-	}
-	if(strUser == 'info') {
-		$('#cookiedingsbums_allow_content').css('visibility', 'hidden');
-		$('#cookiedingsbums_deny_content').css('visibility', 'hidden');
-		$('.mode_notice').css('display', 'none');
-	}
-});
-$('#cookiedingsbums_color_background').change(function() {
-	$("#color_scheme option[value='0']").prop("selected","selected");
-});
-$('#cookiedingsbums_color_main_content').change(function() {
-	var val = 'custom'
-	$('#color_scheme').val(val);
-});
-$('#cookiedingsbums_color_button_background').keyup(function() {
-	$('#color_scheme').val('custom');
-});
-$('#cookiedingsbums_color_button_content').keyup(function() {
-	$('#color_scheme').val('custom');
-});
-</script>
