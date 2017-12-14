@@ -79,5 +79,4 @@ echo '</br>
 echo '<p>Um den Cookie Hinweis im Frontend darzustellen, nutze bitte die Funktion: <code><pre>echo cookie_consent::cookie_consent_output();</code></pre></p>';
 echo '<p>Alternative muss der folgende Code noch vor deinem schließenden head-Tag in einen script-Block gesetzt werden. Bitte nimm dir Zeit und lies dir vorher die Hilfe durch, damit auch alles reibungslos klappt</p>';
 	echo cookie_consent::cookie_consent_backend();
-?>
 
