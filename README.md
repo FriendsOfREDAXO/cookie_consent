@@ -25,9 +25,10 @@ Vor Verwendung des AddOns sollte die aktuelle Rechtslage (gerade in Deutschland)
 2. AddOn installieren und aktivieren
 3. Die mitgelieferten Javascript `cookie_consent_insites.js` und CSS `cookie_consent_insites.css` Dateien im Front-End vor dem schließenden `</head>`-Tag einbinden oder das Häkchen bei `CSS und JS automatisch einbinden` setzen (funktioniert nur in Verwendung mit Schritt 5)
 4. Bevorzugtes Farbschema wählen oder ein eigenes erstellen
-5. Den Hinweis mittels `echo cookie_consent::cookie_consent_output();` vor dem schließenden `</head>` Tag aufrufen
-6. ODER Alternativ: Im Reiter 'Konfigurations Test' den ausgegeben Code kopieren und in einem `<script></script>`-Block vor dem schließenden `</head>`-Tag einfügen
-7. Ausprobieren! :-)
+5. Den Hinweis mittels `echo cookie_consent::cookie_consent_output();` vor dem schließenden `</head>`- oder `</body>`-Tag aufrufen
+6. Ausprobieren! :-)
+
+> Alternativ: Im Reiter 'Konfigurations Test' den ausgegeben Code kopieren und in einem `<script></script>`-Block vor dem schließenden `</head>`- oder `</body>`-Tag einfügen oder in einer externen Datei verwenden.
 
 ## Modus
 
