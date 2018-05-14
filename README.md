@@ -65,7 +65,7 @@ siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/cookie_consent/blob/master
 
 **Projekt-Lead**
 
-[KLXM Crossmedia / Christian Gehrke](https://klxm.de)
+Christian Gehrke
 
 
 ## Credits:
