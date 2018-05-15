@@ -65,7 +65,7 @@ siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/cookie_consent/blob/master
 
 **Projekt-Lead**
 
-Christian Gehrke
+[Marcel Kuhmann](https://github.com/bloep)
 
 
 ## Credits:
