@@ -9,6 +9,14 @@ class cookie_consent {
 			return true;
 		}
 	}
+
+	public function checkJson($data) {
+	    if($data) {
+            json_decode($data);
+            return json_last_error() === JSON_ERROR_NONE;
+        }
+    }
+
 	protected function cookie_consent_get_css() {
 		$getFile = rex_url::base('assets/addons/cookie_consent/css/cookie_consent_insites.css');
 		$makeCssLink =  '<link rel="stylesheet" href="'.$getFile.'">';
@@ -43,31 +51,41 @@ class cookie_consent {
 		$main_color_scheme = 'style="background:'.rex_escape($color_background).'; color: '.rex_escape($color_main_content).';"';
 		$link_color_scheme = 'style="color: '.rex_escape($color_main_content).';"';
 		$button_color_scheme = 'style="background:'.rex_escape($color_button_background).'; color:'.rex_escape($color_button_content).';"';
-		
-		$code = '<pre><code>window.addEventListener("load", function(){
-		window.cookieconsent.initialise({
-		  "palette": {
-		    "popup": {
-		      "background": "'.rex_escape($color_background).'",
-		      "text": "'.rex_escape($color_main_content).'"
-		    },
-		    "button": {
-		      "background": "'.rex_escape($color_button_background).'",
-		      "text": "'.rex_escape($color_button_content).'"
-		    }
-		  },
-		  "theme": "'.$theme.'",
-		  "position": "'.$position.'",
-		  "content": {
-		    "message": "'.rex_escape($main_message).'",
-		    "dismiss": "'.rex_escape($button_content).'",
-		    "deny": "'.rex_escape($deny_content).'",
-		    "allow": "'.rex_escape($allow_content).'",
-		    "link": "'.rex_escape($link_content).'",
-		    "href": "'.rex_escape($externer_link).''.rex_escape($interner_link).'"
-		  },
-		  "type": "'.$mode.'"
-		})});
+
+        $object = [
+            "palette"  => [
+                "popup"  => [
+                    "background" => rex_escape($color_background),
+                    "text"       => rex_escape($color_main_content)
+                ],
+                "button" => [
+                    "background" => rex_escape($color_button_background),
+                    "text"       => rex_escape($color_button_content)
+                ]
+            ],
+            "theme"    => $theme,
+            "position" => $position,
+            "content"  => [
+                "message" => rex_escape($main_message),
+                "dismiss" => rex_escape($button_content),
+                "deny"    => rex_escape($deny_content),
+                "allow"   => rex_escape($allow_content),
+                "link"    => rex_escape($link_content),
+                "href"    => rex_escape($externer_link) . '' . rex_escape($interner_link)
+            ],
+            "type"     => $mode
+        ];
+
+        $custom_options = rex_config::get('cookie_consent', 'custom_options');
+        $custom_options = json_decode($custom_options);
+        if($custom_options) {
+            $object += (array) $custom_options;
+        }
+
+
+        $code = '<pre><code>window.addEventListener("load", function() {
+		    window.cookieconsent.initialise('.json_encode($object, JSON_PRETTY_PRINT).');
+		});
 		
 		</code></pre>';
 		
@@ -107,34 +125,41 @@ class cookie_consent {
 		$main_color_scheme = 'style="background:'.rex_escape($color_background).'; color: '.rex_escape($color_main_content).';"';
 		$link_color_scheme = 'style="color: '.rex_escape($color_main_content).';"';
 		$button_color_scheme = 'style="background:'.rex_escape($color_button_background).'; color:'.rex_escape($color_button_content).';"';
-		
-	
-		
-		$code = 		$cookie_consent_css. '' . $cookie_consent_js .'<script>
-		window.addEventListener("load", function(){
-		window.cookieconsent.initialise({
-		  "palette": {
-		    "popup": {
-		      "background": "'.rex_escape($color_background).'",
-		      "text": "'.rex_escape($color_main_content).'"
-		    },
-		    "button": {
-		      "background": "'.rex_escape($color_button_background).'",
-		      "text": "'.rex_escape($color_button_content).'"
-		    }
-		  },
-		  "theme": "'.$theme.'",
-		  "position": "'.$position.'",
-		  "content": {
-		    "message": "'.rex_escape($main_message).'",
-		    "dismiss": "'.rex_escape($button_content).'",
-		    "deny": "'.rex_escape($deny_content).'",
-		    "allow": "'.rex_escape($allow_content).'",
-		    "link": "'.rex_escape($link_content).'",
-		    "href": "'.rex_escape($externer_link).''.rex_escape($interner_link).'"
-		  },
-		  "type": "'.$mode.'"
-		})});
+
+        $object = [
+            "palette"  => [
+                "popup"  => [
+                    "background" => rex_escape($color_background),
+                    "text"       => rex_escape($color_main_content)
+                ],
+                "button" => [
+                    "background" => rex_escape($color_button_background),
+                    "text"       => rex_escape($color_button_content)
+                ]
+            ],
+            "theme"    => $theme,
+            "position" => $position,
+            "content"  => [
+                "message" => rex_escape($main_message),
+                "dismiss" => rex_escape($button_content),
+                "deny"    => rex_escape($deny_content),
+                "allow"   => rex_escape($allow_content),
+                "link"    => rex_escape($link_content),
+                "href"    => rex_escape($externer_link) . '' . rex_escape($interner_link)
+            ],
+            "type"     => $mode
+        ];
+
+        $custom_options = rex_config::get('cookie_consent', 'custom_options');
+        $custom_options = json_decode($custom_options);
+        if($custom_options) {
+            $object += (array) $custom_options;
+        }
+
+        $code = $cookie_consent_css. '' . $cookie_consent_js .'<script>
+            window.addEventListener("load", function() {
+            window.cookieconsent.initialise('.json_encode($object, JSON_PRETTY_PRINT).');
+		});
 		
 		</script>';
 		
