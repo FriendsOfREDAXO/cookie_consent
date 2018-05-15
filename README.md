@@ -71,3 +71,5 @@ Christian Gehrke
 ## Credits:
 
 First Release: [Christian Gehrke](https://github.com/chrison94)
+
+Version 1.1.0 [Marcel Kuhmann](https://github.com/bloep)
