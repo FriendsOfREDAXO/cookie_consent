@@ -42,3 +42,10 @@ script-checkbox = CSS und JS automatisch einbinden
 custom_options = Benutzerdefinierte Optionen
 custom_options_notice = Hier können zusätzliche Optionen eingetragen werden. Für mögliche Optionen siehe
 json_not_valid = Die gegebenen Optionen liegen nicht im gültigen JSON-Format vor
+
+targetSelf = gleicher Tab oder Seite (_self)
+targetBlank = Neuer Tab oder Fenster (_blank)
+targetParent = Elternfenster (_parent)
+targetTop = ganzes Fenster (_top)
+
+link_target_type = Zielfensterbasis

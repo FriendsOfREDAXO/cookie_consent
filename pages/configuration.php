@@ -20,6 +20,7 @@ if (rex_post('formsubmit', 'string') == '1') {
         ['link_content', 'string'],
         ['iLink', 'string'],
         ['eLink', 'string'],
+        ['link_target_type', 'string'],
         ['theme', 'string'],
         ['cookiedingsbums_select_link', 'string'],
         ['color_scheme', 'string'],
@@ -275,6 +276,27 @@ $n['field'] = '
 </div>
 ';
 $formElements[] = $n;
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$content .= $fragment->parse('core/form/container.php');
+
+/* LINK-TARGET-TYPE */
+$formElements = [];
+$n = [];
+$n['label'] = '<label for="link_target_type">' . $this->i18n('link_target_type') . '</label>';
+$select = new rex_select();
+$select->setId('link_target_type');
+$select->setAttribute('class', 'form-control selectpicker');
+$select->setAttribute('id', 'link_target_type');
+$select->setName('config[link_target_type]');
+$select->addOption($this->i18n('targetSelf'), '_self');
+$select->addOption($this->i18n('targetBlank'), '_blank');
+$select->addOption($this->i18n('targetParent'), '_parent');
+$select->addOption($this->i18n('targetTop'), '_top');
+$select->setSelected($this->getConfig('link_target_type'));
+$n['field'] = $select->get();
+$formElements[] = $n;
+
 $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
