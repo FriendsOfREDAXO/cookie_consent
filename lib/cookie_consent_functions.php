@@ -39,6 +39,10 @@ class cookie_consent {
 		$button_content = rex_config::get('cookie_consent', 'button_content');
 		$link_content = rex_config::get('cookie_consent', 'link_content');
 		$link = rex_config::get('cookie_consent', 'iLink');
+		$link_target_type = rex_config::get('cookie_consent', 'link_target_type');
+
+		if($link_target_type == '') $link_target_type = '_blank';
+
 		$interner_link = '';
 		if($link != '') {
 			$interner_link = rex_getUrl($link);
@@ -73,7 +77,10 @@ class cookie_consent {
                 "link"    => rex_escape($link_content),
                 "href"    => rex_escape($externer_link) . '' . rex_escape($interner_link)
             ],
-            "type"     => $mode
+            "type"     => $mode,
+			"elements" => [
+				"messagelink" =>'<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="'.$link_target_type.'">{{link}}</a></span>'
+			]
         ];
 
         $custom_options = rex_config::get('cookie_consent', 'custom_options');
@@ -116,6 +123,10 @@ class cookie_consent {
 		$button_content = rex_config::get('cookie_consent', 'button_content');
 		$link_content = rex_config::get('cookie_consent', 'link_content');
 		$link = rex_config::get('cookie_consent', 'iLink');
+		$link_target_type = rex_config::get('cookie_consent', 'link_target_type');
+
+		if($link_target_type == '') $link_target_type = '_blank';
+
 		$interner_link = '';
 		if($link != '') {
 			$interner_link = rex_getUrl($link);
@@ -157,7 +168,10 @@ class cookie_consent {
                 "link"    => rex_escape($link_content),
                 "href"    => rex_escape($externer_link) . '' . rex_escape($interner_link)
             ],
-            "type"     => $mode
+            "type"     => $mode,
+			"elements" => [
+				"messagelink" =>'<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="'.$link_target_type.'">{{link}}</a></span>'
+			]
         ];
 
         $custom_options = rex_config::get('cookie_consent', 'custom_options');
