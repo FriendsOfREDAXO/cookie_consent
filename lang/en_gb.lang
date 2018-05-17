@@ -43,3 +43,11 @@ script-checkbox = Automatic integration of CSS and JS
 custom_options = Custom Options
 custom_options_notice = You can specify additional Options. For possible Options see
 json_not_valid = The given Options aren't valid JSON
+
+
+targetSelf = same tab or window (_self)
+targetBlank = new tab or window (_blank)
+targetParent = parent window (_parent)
+targetTop = complete window (_top)
+
+link_target_type = target
