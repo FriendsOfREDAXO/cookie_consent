@@ -91,6 +91,16 @@ class cookie_consent {
 		
 		return $code;
 	}
+
+	public static function ep_call($rex_ep) {
+		$subject = $rex_ep->getSubject();
+
+		$s = self::cookie_consent_output();
+
+		$subject = str_replace('</head>', $s.PHP_EOL.'</head>', $subject);
+		$rex_ep->setSubject($subject);
+	}
+
 	public static function cookie_consent_output() {
 		$cookie = new cookie_consent();
 		$cookie_consent_css = $cookie->cookie_consent_get_css();
