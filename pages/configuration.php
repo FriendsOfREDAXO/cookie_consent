@@ -34,21 +34,20 @@ if (rex_post('formsubmit', 'string') == '1') {
     echo rex_view::success($this->i18n('config_saved_cookie'));
 }
 
-	if($cookie_consent_functions->checkUrl($this->getConfig('eLink')) === false) {
-		$content .=	rex_view::warning('Falscher Link');
-		$cookie_consent->setConfig('eLink', '');
-	}
-	if($this->getConfig('cookiedingsbums_select_link') == 'eLink') {
-			$cookie_consent->setConfig('iLink', '');
-	}
-	if($this->getConfig('cookiedingsbums_select_link') == 'iLink') {
-			$cookie_consent->setConfig('eLink', '');
-	}
-	if($cookie_consent_functions->checkJson($this->getConfig('custom_options')) === false) {
-        $content .= rex_view::warning($this->i18n('json_not_valid'));
-        $cookie_consent->setConfig('custom_options','');
-    }
-
+if ($cookie_consent_functions->checkUrl($this->getConfig('eLink')) === false) {
+    $content .= rex_view::warning('Falscher Link');
+    $cookie_consent->setConfig('eLink', '');
+}
+if ($this->getConfig('cookiedingsbums_select_link') == 'eLink') {
+    $cookie_consent->setConfig('iLink', '');
+}
+if ($this->getConfig('cookiedingsbums_select_link') == 'iLink') {
+    $cookie_consent->setConfig('eLink', '');
+}
+if ($cookie_consent_functions->checkJson($this->getConfig('custom_options')) === false) {
+    $content .= rex_view::warning($this->i18n('json_not_valid'));
+    $cookie_consent->setConfig('custom_options', '');
+}
 
 // Einfaches Textfeld
 
@@ -66,7 +65,7 @@ $select->addOption($this->i18n('info'), 'info');
 $select->addOption($this->i18n('opt-in'), 'opt-in');
 $select->addOption($this->i18n('opt-out'), 'opt-out');
 $select->setSelected($this->getConfig('mode'));
-$n['field'] = $select->get().'<i class="mode_notice">'.$this->i18n('mode_notice').' <a href="https://cookieconsent.insites.com/documentation/disabling-cookies/">'.$this->i18n("disable_cookies").'</a></i>';
+$n['field'] = $select->get().'<i class="mode_notice">'.$this->i18n('mode_notice').' <a href="https://cookieconsent.insites.com/documentation/disabling-cookies/">'.$this->i18n('disable_cookies').'</a></i>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -184,7 +183,6 @@ $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
 
-
 $formElements = [];
 $n = [];
 $n['label'] = '<label for="cookiedingsbums_color_button_background">' . $this->i18n('cookiedingsbums_color_button_background') . '</label>';
@@ -253,7 +251,6 @@ $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
 
-
 /* INTERNER LINK */
 $formElements = [];
 $artname = '';
@@ -312,7 +309,6 @@ $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/checkbox.php');
 
-
 /* Custom Options */
 $formElements = [];
 $n = [];
@@ -322,7 +318,6 @@ $formElements[] = $n;
 $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
-
 
 // Save-Button
 $formElements = [];
@@ -355,5 +350,3 @@ $output = '
 ';
 
 echo $output;
-
-

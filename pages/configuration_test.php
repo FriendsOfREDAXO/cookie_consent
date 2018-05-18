@@ -53,8 +53,8 @@ $button_content = rex_config::get('cookie_consent', 'button_content');
 $link_content = rex_config::get('cookie_consent', 'link_content');
 $link = rex_config::get('cookie_consent', 'iLink');
 $interner_link = '';
-if($link != '') {
-	$interner_link = rex_getUrl($link);
+if ($link != '') {
+    $interner_link = rex_getUrl($link);
 }
 $externer_link = rex_config::get('cookie_consent', 'eLink');
 $mode = rex_config::get('cookie_consent', 'mode');
@@ -78,6 +78,4 @@ echo '</br>
 	</div></br>';
 echo '<p>Um den Cookie Hinweis im Frontend darzustellen, nutze bitte die Funktion: <code><pre>echo cookie_consent::cookie_consent_output();</code></pre></p>';
 echo '<p>Alternative muss der folgende Code noch vor deinem schließenden head-Tag in einen script-Block gesetzt werden. Bitte nimm dir Zeit und lies dir vorher die Hilfe durch, damit auch alles reibungslos klappt</p>';
-	echo cookie_consent::cookie_consent_backend();
-
-
+echo cookie_consent::cookie_consent_backend();
