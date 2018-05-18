@@ -39,6 +39,7 @@ cookiedingsbums_select_link = Art des Link
 eLink = Externer Link
 iLink = Interner Link
 script-checkbox = CSS und JS automatisch einbinden
+script-checkbox-notice = Fügt CSS, JS Dateien sowie die Cookie-Consent Konfiguration automatisch vor dem <i></head></i> Tag ein.
 custom_options = Benutzerdefinierte Optionen
 custom_options_notice = Hier können zusätzliche Optionen eingetragen werden. Für mögliche Optionen siehe
 json_not_valid = Die gegebenen Optionen liegen nicht im gültigen JSON-Format vor

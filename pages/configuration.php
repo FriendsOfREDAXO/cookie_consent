@@ -304,6 +304,7 @@ $formElements = [];
 $n = [];
 $n['label'] = '<label for="script-checkbox">' . $this->i18n('script-checkbox') . '</label>';
 $n['field'] = '<input type="checkbox" id="script-checkbox" name="config[script_checkbox]"' . (!empty($this->getConfig('script_checkbox')) && $this->getConfig('script_checkbox') == '1' ? ' checked="checked"' : '') . ' value="1" />';
+$n['note'] = '<small>'.$this->i18n('script-checkbox-notice').'</small>';
 $formElements[] = $n;
 $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);

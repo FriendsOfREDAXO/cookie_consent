@@ -81,16 +81,10 @@ class cookie_consent
         $mode = rex_config::get('cookie_consent', 'mode');
         $deny_content = rex_config::get('cookie_consent', 'deny_content');
         $allow_content = rex_config::get('cookie_consent', 'allow_content');
-        $script_checkbox = rex_config::get('cookie_consent', 'script_checkbox');
 
         $cookie = new self();
         $cookie_consent_css = $cookie->cookie_consent_get_css();
         $cookie_consent_js = $cookie->cookie_consent_get_js();
-
-        if ($script_checkbox != '1') {
-            $cookie_consent_css = '';
-            $cookie_consent_js = '';
-        }
 
         $object = [
             'palette' => [
