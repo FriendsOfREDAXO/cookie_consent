@@ -65,7 +65,8 @@ $select->addOption($this->i18n('info'), 'info');
 $select->addOption($this->i18n('opt-in'), 'opt-in');
 $select->addOption($this->i18n('opt-out'), 'opt-out');
 $select->setSelected($this->getConfig('mode'));
-$n['field'] = $select->get().'<i class="mode_notice">'.$this->i18n('mode_notice').' <a href="https://cookieconsent.insites.com/documentation/disabling-cookies/">'.$this->i18n('disable_cookies').'</a></i>';
+$n['field'] = $select->get().'<i class="mode_optin_notice">'.$this->i18n('mode_optin_notice').'</i>';
+$n['field'] .= '<i class="mode_notice">'.$this->i18n('mode_notice').' <a href="https://cookieconsent.insites.com/documentation/disabling-cookies/">'.$this->i18n('disable_cookies').'</a></i>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();

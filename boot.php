@@ -14,3 +14,7 @@ if (rex::isBackend() && rex_be_controller::getCurrentPage() == 'cookie_consent/c
 if (!rex::isBackend() && rex_config::get('cookie_consent', 'script_checkbox') == '1') {
     rex_extension::register('OUTPUT_FILTER', 'cookie_consent::ep_call', rex_extension::LATE);
 }
+
+if (!rex::isBackend() && cookie_consent::getMode() === cookie_consent::MODE_OPT_IN) {
+    rex_extension::register('OUTPUT_FILTER', 'cookie_consent::ep_optin', rex_extension::LATE);
+}
