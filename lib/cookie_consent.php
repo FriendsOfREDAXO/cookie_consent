@@ -66,17 +66,24 @@ class cookie_consent
 
     public static function cookie_consent_output($codepreview = false)
     {
-        $theme = rex_config::get('cookie_consent', 'theme');
-        $color_background = rex_config::get('cookie_consent', 'color_background');
-        $color_main_content = rex_config::get('cookie_consent', 'color_main_content');
-        $color_button_background = rex_config::get('cookie_consent', 'color_button_background');
-        $color_button_content = rex_config::get('cookie_consent', 'color_button_content');
-        $position = rex_config::get('cookie_consent', 'position');
-        $main_message = rex_config::get('cookie_consent', 'main_message');
-        $button_content = rex_config::get('cookie_consent', 'button_content');
-        $link_content = rex_config::get('cookie_consent', 'link_content');
-        $link = rex_config::get('cookie_consent', 'iLink');
-        $link_target_type = rex_config::get('cookie_consent', 'link_target_type');
+        $clang_prefix = rex_clang::getCurrent()->getCode().'_';
+
+        $status = rex_config::get('cookie_consent', $clang_prefix. 'status');
+        if ($status != '1') {
+            return '';
+        }
+
+        $theme = rex_config::get('cookie_consent', $clang_prefix.'theme');
+        $color_background = rex_config::get('cookie_consent', $clang_prefix.'color_background');
+        $color_main_content = rex_config::get('cookie_consent', $clang_prefix.'color_main_content');
+        $color_button_background = rex_config::get('cookie_consent', $clang_prefix.'color_button_background');
+        $color_button_content = rex_config::get('cookie_consent', $clang_prefix.'color_button_content');
+        $position = rex_config::get('cookie_consent', $clang_prefix.'position');
+        $main_message = rex_config::get('cookie_consent', $clang_prefix.'main_message');
+        $button_content = rex_config::get('cookie_consent', $clang_prefix.'button_content');
+        $link_content = rex_config::get('cookie_consent', $clang_prefix.'link_content');
+        $link = rex_config::get('cookie_consent', $clang_prefix.'iLink');
+        $link_target_type = rex_config::get('cookie_consent', $clang_prefix.'link_target_type');
 
         if ($link_target_type == '') {
             $link_target_type = '_blank';
@@ -86,10 +93,10 @@ class cookie_consent
         if ($link != '') {
             $interner_link = rex_getUrl($link);
         }
-        $externer_link = rex_config::get('cookie_consent', 'eLink');
-        $mode = rex_config::get('cookie_consent', 'mode');
-        $deny_content = rex_config::get('cookie_consent', 'deny_content');
-        $allow_content = rex_config::get('cookie_consent', 'allow_content');
+        $externer_link = rex_config::get('cookie_consent', $clang_prefix.'eLink');
+        $mode = rex_config::get('cookie_consent', $clang_prefix.'mode');
+        $deny_content = rex_config::get('cookie_consent', $clang_prefix.'deny_content');
+        $allow_content = rex_config::get('cookie_consent', $clang_prefix.'allow_content');
 
         $cookie = new self();
         $cookie_consent_css = $cookie->cookie_consent_get_css();
@@ -122,7 +129,7 @@ class cookie_consent
             ],
         ];
 
-        $custom_options = rex_config::get('cookie_consent', 'custom_options');
+        $custom_options = rex_config::get('cookie_consent', $clang_prefix.'custom_options');
         $custom_options = json_decode($custom_options);
         if ($custom_options) {
             $object += (array) $custom_options;

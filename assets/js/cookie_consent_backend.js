@@ -23,7 +23,7 @@ $(document).on('rex:ready', function() {
         $('.cookiedingsbums_deny_content').addClass('cookie_consent_display_none');
         $('.mode_notice').css('display', 'none');
     }
-    var f = document.getElementById("cookiedingsbums_select_link");
+    var f = document.getElementById("select_link");
     var strUser = f.options[f.selectedIndex].value;
     if(strUser == 'eLink') {
         $('.cookiedingsbums_eLink').removeClass('cookie_consent_display_none');
@@ -82,8 +82,8 @@ $(document).ready(function() {
         }
     });
 
-    $('#cookiedingsbums_select_link').change(function() {
-        var e = document.getElementById("cookiedingsbums_select_link");
+    $('#select_link').change(function() {
+        var e = document.getElementById("select_link");
         var strUser = e.options[e.selectedIndex].value;
         if(strUser == 'eLink') {
             $('#cookiedingsbums_link_extern').removeClass('cookie_consent_display_none');
