@@ -5,12 +5,93 @@
 
 $context = rex_context::restore();
 if (!$context->getParam('clang')) {
+    $context->setParam('clang', rex_clang::getCurrentId());
+}
+if (!$context->getParam('domain')) {
+    $context->setParam('domain', rex_yrewrite::getCurrentDomain()->getId());
+}
+
+$clangId = $context->getParam('clang');
+$domainId = $context->getParam('domain');
+
+$formElements = [];
+
+$button_label = '';
+$items = [];
+foreach (rex_yrewrite::getDomains() as $id => $domain) {
+    $item = [];
+    $item['title'] = $domain->getName();
+    $item['href'] = $context->getUrl(['domain' => $domain->getId()]);
+    if ($domain->getId() == $context->getParam('domain')) {
+        $item['active'] = true;
+        $button_label = $domain->getName();
+    }
+    $items[] = $item;
+}
+
+$fragment = new rex_fragment();
+$fragment->setVar('class', 'rex-language');
+$fragment->setVar('button_label', $button_label);
+$fragment->setVar('header', $this->i18n('select_domain'));
+$fragment->setVar('items', $items, false);
+
+$formElements[] = [
+    'label' => '<label>'.$this->i18n('select_domain').'</label>',
+    'field' => $fragment->parse('core/dropdowns/dropdown.php'),
+];
+
+
+
+
+
+
+
+$n = [
+    'label' => '<label>'.$this->i18n('select_language').'</label>',
+    'field' => rex_view::clangSwitchAsDropdown($context),
+];
+
+$formElements[] = $n;
+
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$filterContent = $fragment->parse('core/form/container.php');
+
+$fragment = new rex_fragment();
+$fragment->setVar('title', $this->i18n('filter'));
+$fragment->setVar('body', $filterContent, false);
+$fragment->setVar('buttons', $buttons, false);
+echo $fragment->parse('core/page/section.php');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$context = rex_context::restore();
+if (!$context->getParam('clang')) {
     $clangId = rex_clang::getCurrentId();
 } else {
     $clangId = $context->getParam('clang');
 }
 
 $clang_prefix = rex_clang::get($clangId)->getCode().'_';
+
+if(rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+    $domain = rex_yrewrite::getDomainById($domainId);
+    if(!$domain)
+        $domain = rex_yrewrite::getDefaultDomain();
+    $clang_prefix .= $domain->getId().'_';
+}
 
 $content = '';
 $buttons = '';
@@ -360,7 +441,7 @@ $buttons = '
 // Ausgabe Formular
 $fragment = new rex_fragment();
 $fragment->setVar('class', 'edit');
-$fragment->setVar('title', $this->i18n('config_for', rex_clang::getCurrent()->getCode(), rex_clang::getCurrent()->getName()));
+$fragment->setVar('title', $this->i18n('config_lang_domain', rex_clang::get($clangId)->getName(), ($domainId != 0 ? rex_yrewrite::getDomainById($domainId) : rex_yrewrite::getDefaultDomain())->getName()), false);
 $fragment->setVar('body', $content, false);
 $fragment->setVar('buttons', $buttons, false);
 $output = $fragment->parse('core/page/section.php');
