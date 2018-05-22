@@ -3,7 +3,8 @@ configuration_test = Konfigurations Test
 help = Hilfe
 config_legend = Einstellungen
 config_save = Speichern
-config = Konfiguration
+config_for = Konfiguration für {0} - {1}
+activate_for_clang = Aktiviere für Sprache <b>{0}</b>
 config_saved_cookie = Die Einstellungen wurden gespeichert
 
 cookiedingsbums_mode = Modus
