@@ -6,14 +6,15 @@ $(document).on('rex:ready', function() {
         $('#cookiedingsbums_deny_content').addClass('cookie_consent_display_none');
         $('.cookiedingsbums_allow_content').removeClass('cookie_consent_display_none');
         $('.cookiedingsbums_deny_content').addClass('cookie_consent_display_none');
-        $('.mode_notice').css('display', 'inline');
+        $('.mode_optin_notice').css('display', 'block');
+        $('.mode_notice').css('display', 'block');
     }
     if(strUser == 'opt-out') {
         $('#cookiedingsbums_deny_content').removeClass('cookie_consent_display_none');
         $('#cookiedingsbums_allow_content').addClass('cookie_consent_display_none');
         $('.cookiedingsbums_deny_content').removeClass('cookie_consent_display_none');
         $('.cookiedingsbums_allow_content').addClass('cookie_consent_display_none');
-        $('.mode_notice').css('display', 'inline');
+        $('.mode_notice').css('display', 'block');
     }
     if(strUser == 'info') {
         $('#cookiedingsbums_allow_content').addClass('cookie_consent_display_none');
@@ -108,20 +109,23 @@ $(document).ready(function() {
             $('#cookiedingsbums_deny_content').addClass('cookie_consent_display_none');
             $('.cookiedingsbums_allow_content').removeClass('cookie_consent_display_none');
             $('.cookiedingsbums_deny_content').addClass('cookie_consent_display_none');
-            $('.mode_notice').css('display', 'inline');
+            $('.mode_optin_notice').css('display', 'block');
+            $('.mode_notice').css('display', 'block');
         }
         if(strUser == 'opt-out') {
             $('#cookiedingsbums_deny_content').removeClass('cookie_consent_display_none');
             $('#cookiedingsbums_allow_content').addClass('cookie_consent_display_none');
             $('.cookiedingsbums_deny_content').removeClass('cookie_consent_display_none');
             $('.cookiedingsbums_allow_content').addClass('cookie_consent_display_none');
-            $('.mode_notice').css('display', 'inline');
+            $('.mode_optin_notice').css('display', 'none');
+            $('.mode_notice').css('display', 'block');
         }
         if(strUser == 'info') {
             $('#cookiedingsbums_allow_content').addClass('cookie_consent_display_none');
             $('#cookiedingsbums_deny_content').addClass('cookie_consent_display_none');
             $('.cookiedingsbums_allow_content').addClass('cookie_consent_display_none');
             $('.cookiedingsbums_deny_content').addClass('cookie_consent_display_none');
+            $('.mode_optin_notice').css('display', 'none');
             $('.mode_notice').css('display', 'none');
         }
     });
