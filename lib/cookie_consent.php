@@ -31,7 +31,14 @@ class cookie_consent
 
     protected function cookie_consent_get_css()
     {
-        $getFile = rex_url::base('assets/addons/cookie_consent/css/cookie_consent_insites.css');
+        $theme = rex_config::get('cookie_consent', 'theme');
+
+        if ($theme == 'clean') {
+            $cssFile = 'css/cookie_consent_insites_clean.css';
+        } else {
+            $cssFile = 'css/cookie_consent_insites.css';
+        }
+        $getFile = rex_url::addonAssets('cookie_consent', $cssFile);
         $makeCssLink = '<link rel="stylesheet" href="'.$getFile.'">';
         return $makeCssLink;
     }
@@ -96,16 +103,6 @@ class cookie_consent
         $cookie_consent_js = $cookie->cookie_consent_get_js();
 
         $object = [
-            'palette' => [
-                'popup' => [
-                    'background' => rex_escape($color_background),
-                    'text' => rex_escape($color_main_content),
-                ],
-                'button' => [
-                    'background' => rex_escape($color_button_background),
-                    'text' => rex_escape($color_button_content),
-                ],
-            ],
             'theme' => $theme,
             'position' => $position,
             'content' => [
@@ -121,6 +118,19 @@ class cookie_consent
                 'messagelink' => '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="'.$link_target_type.'">{{link}}</a></span>',
             ],
         ];
+
+        if ($theme != 'clean') {
+            $object['palette'] = [
+                'popup' => [
+                    'background' => rex_escape($color_background),
+                    'text' => rex_escape($color_main_content),
+                ],
+                'button' => [
+                    'background' => rex_escape($color_button_background),
+                    'text' => rex_escape($color_button_content),
+                ],
+            ];
+        }
 
         $custom_options = rex_config::get('cookie_consent', 'custom_options');
         $custom_options = json_decode($custom_options);
