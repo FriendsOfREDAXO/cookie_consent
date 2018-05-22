@@ -10,7 +10,8 @@ cookiedingsbums_mode = Modus
 info = Nutzer informieren, dass Cookies gespeichert werden
 opt-in =  Opt-in Methode
 opt-out = Opt-out Methode
-mode_notice = Bitte beachte das die Opt-in und Opt-out Methoden nur die Callbacks zum nicht speichern der Cookies liefern. Du musst selbst die Funktion verfassen und deine Webseite anpassen, sodass keine Cookies gespeichert werden. Siehe: 
+mode_optin_notice = Bei dieser Option werden serverseitig alle gesetzten und neuen Cookies entfernt. Das sorgt dafür, dass keine Cookies vom Server gesetzt werden können, bis durch den Cookie-Consent die Erlaubnis vom Benutzer eingeholt wurde. <b>Dieses verhindert aber nicht das Setzen von Cookies durch Javascripte, wie z.B. Google Analytics.</b>.
+mode_notice = Bitte beachte das die Opt-in und Opt-out Methoden nur die Callbacks zum nicht speichern der Cookies liefern. Du musst selbst die Funktion verfassen und deine Webseite anpassen, sodass keine Cookies gespeichert werden. Siehe:
 disable_cookies = Cookies deaktivieren
 
 cookiedingsbums_color_scheme = Designs

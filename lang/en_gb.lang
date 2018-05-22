@@ -10,7 +10,8 @@ cookiedingsbums_mode = Mode
 info = Inform users that cookies are stored
 opt-in =  Opt-in Method
 opt-out = Opt-out Method
-mode_notice = Please note that the opt-in and opt-out methods only provide callbacks for not storing cookies. You must write your own function and customize your website so that no cookies are stored. See: 
+mode_optin_notice = Removes all existing and new cookies on the server side. It also blocks the creation of new cookies by the server until the user allowed cookies via cookie-consent. <b>Please note that the script cannot block the creation of cookies by javascript e.g. Google Analytics</b>.
+mode_notice = Please note that the opt-in and opt-out methods only provide callbacks for not storing cookies. You must write your own function and customize your website so that no cookies are stored. See:
 disable_cookies = Disable Cookies
 
 cookiedingsbums_color_scheme = Designs

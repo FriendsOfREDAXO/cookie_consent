@@ -2,6 +2,15 @@
 
 class cookie_consent
 {
+    const MODE_INFO = 'info';
+    const MODE_OPT_IN = 'opt-in';
+    const MODE_OPT_OUT = 'opt-out';
+
+    const COOKIE_NAME = 'cookieconsent_status';
+    const COOKIE_DISMISS = 'dismiss';
+    const COOKIE_ALLOW = 'allow';
+    const COOKIE_DENY = 'deny';
+
     public function checkUrl($url)
     {
         if ($url) {
@@ -126,5 +135,42 @@ class cookie_consent
 		'.($codepreview == true ? '</code></pre>' : '</script>');
 
         return $code;
+    }
+
+    public static function getMode()
+    {
+        return rex_config::get('cookie_consent', 'mode', self::MODE_INFO);
+    }
+
+    /**
+     * Extension Point Callback
+     * Removes all Cookies if the cookie-consent cookie isn't set by the user.
+     *
+     * @param rex_extension_point $ep
+     */
+    public static function ep_optin($ep)
+    {
+        if (!isset($_COOKIE[self::COOKIE_NAME]) || (isset($_COOKIE[self::COOKIE_NAME]) && $_COOKIE[self::COOKIE_NAME] != self::COOKIE_ALLOW)) {
+            self::removeCookies();
+        }
+    }
+
+    public static function removeCookies()
+    {
+        // unset new/updated cookies
+        header_remove('Set-Cookie');
+
+        // mark all existing cookies as expired
+        $headers = getallheaders();
+        if (array_key_exists('Cookie', $headers)) {
+            // unset cookies
+            $cookies = explode(';', $headers['Cookie']);
+            foreach ($cookies as $cookie) {
+                $parts = explode('=', $cookie);
+                $name = trim($parts[0]);
+                setcookie($name, '', time() - 1000);
+                setcookie($name, '', time() - 1000, '/');
+            }
+        }
     }
 }
