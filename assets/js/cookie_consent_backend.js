@@ -39,6 +39,19 @@ $(document).on('rex:ready', function() {
         $('.cookiedingsbums_eLink').addClass('cookie_consent_display_none');
         $('#cookiedingsbums_link_extern').addClass('cookie_consent_display_none');
     }
+    var theme = document.getElementById('cookiedingsbums_theme');
+    var selTheme = theme.options[theme.selectedIndex].value;
+    if(selTheme == 'clean') {
+        $('#cookiedingsbums_color_background').attr('disabled', 'disabled');
+        $('#cookiedingsbums_color_main_content').attr('disabled', 'disabled');
+        $('#cookiedingsbums_color_button_content').attr('disabled', 'disabled');
+        $('#cookiedingsbums_color_button_background').attr('disabled', 'disabled');
+    } else {
+        $('#cookiedingsbums_color_background').removeAttr('disabled');
+        $('#cookiedingsbums_color_main_content').removeAttr('disabled');
+        $('#cookiedingsbums_color_button_content').removeAttr('disabled');
+        $('#cookiedingsbums_color_button_background').removeAttr('disabled');
+    }
 });
 $(document).ready(function() {
     $('#color_scheme').change(function() {
@@ -129,12 +142,26 @@ $(document).ready(function() {
             $('.mode_notice').css('display', 'none');
         }
     });
+    $('#cookiedingsbums_theme').change(function() {
+        var theme = document.getElementById('cookiedingsbums_theme');
+        var selTheme = theme.options[theme.selectedIndex].value;
+        if(selTheme == 'clean') {
+            $('#cookiedingsbums_color_background').attr('disabled', 'disabled');
+            $('#cookiedingsbums_color_main_content').attr('disabled', 'disabled');
+            $('#cookiedingsbums_color_button_content').attr('disabled', 'disabled');
+            $('#cookiedingsbums_color_button_background').attr('disabled', 'disabled');
+        } else {
+            $('#cookiedingsbums_color_background').removeAttr('disabled');
+            $('#cookiedingsbums_color_main_content').removeAttr('disabled');
+            $('#cookiedingsbums_color_button_content').removeAttr('disabled');
+            $('#cookiedingsbums_color_button_background').removeAttr('disabled');
+        }
+    });
     $('#cookiedingsbums_color_background').change(function() {
         $("#color_scheme option[value='0']").prop("selected","selected");
     });
     $('#cookiedingsbums_color_main_content').change(function() {
-        var val = 'custom'
-        $('#color_scheme').val(val);
+        $('#color_scheme').val('custom');
     });
     $('#cookiedingsbums_color_button_background').keyup(function() {
         $('#color_scheme').val('custom');

@@ -123,6 +123,7 @@ $select = new rex_select();
 $select->setId('cookiedingsbums_theme');
 $select->setAttribute('class', 'form-control selectpicker');
 $select->setName('config['.$clang_prefix.'theme]');
+$select->addOption('Clean', 'clean');
 $select->addOption('Classic', 'classic');
 $select->addOption('Edgeless', 'edgeless');
 $select->addOption('Block', 'block');
