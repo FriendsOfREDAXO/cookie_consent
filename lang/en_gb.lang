@@ -5,8 +5,12 @@ config_legend = Settings
 config_save = Save
 config_lang_domain = Configuration for <b>{0}</b> @ <b>{1}</b>
 config_lang = Configuration for <b>{0}</b>
-activate_for_clang = Activate for language <b>{0}</b>
+activate_for_lang_domain = Activate for language <b>{0}</b> on domain <b>{1}</b>
+activate_for_lang = Activate for language <b>{0}</b>
 config_saved_cookie = The settings have been saved
+settings_for = Settings for
+select_language = Language
+select_domain = Domain
 
 cookiedingsbums_mode = Mode
 info = Inform users that cookies are stored
