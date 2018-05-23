@@ -5,7 +5,7 @@
  * @var rex_addon $this
  */
 
-$clang_prefix = rex_clang::get(rex_clang::getStartId())->getCode().'_';
+$clang_prefix = cookie_consent::getKeyPrefix();
 
 $configs = $this->getConfig();
 foreach ($configs as $key => $value) {

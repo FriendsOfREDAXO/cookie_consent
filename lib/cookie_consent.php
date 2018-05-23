@@ -73,7 +73,11 @@ class cookie_consent
 
     public static function cookie_consent_output($codepreview = false)
     {
-        $clang_prefix = rex_clang::getCurrent()->getCode().'_';
+        if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+            rex_yrewrite::init();
+        }
+
+        $clang_prefix = self::getKeyPrefix();
 
         $status = rex_config::get('cookie_consent', $clang_prefix. 'status');
         if ($status != '1') {
@@ -156,7 +160,7 @@ class cookie_consent
 
     public static function getMode()
     {
-        return rex_config::get('cookie_consent', 'mode', self::MODE_INFO);
+        return rex_config::get('cookie_consent', self::getKeyPrefix().'mode', self::MODE_INFO);
     }
 
     /**
@@ -189,5 +193,20 @@ class cookie_consent
                 setcookie($name, '', time() - 1000, '/');
             }
         }
+    }
+
+    public static function getKeyPrefix()
+    {
+        $prefix = rex_clang::getCurrent()->getCode().'_';
+        if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+            rex_yrewrite::init();
+            $domain = rex_yrewrite::getCurrentDomain();
+            if (!$domain) {
+                $domain = rex_yrewrite::getDefaultDomain();
+            }
+            $prefix .= $domain->getId();
+        }
+        $prefix .= '_';
+        return $prefix;
     }
 }

@@ -3,6 +3,69 @@
  * @var rex_addon $this
  */
 
+$context = new rex_context();
+$context->setParam('page', rex_request('page', 'string', null));
+$context->setParam('clang', rex_request('clang', 'string', null));
+$context->setParam('domain', rex_request('domain', 'string', null));
+if (!$context->getParam('clang')) {
+    $context->setParam('clang', rex_clang::getCurrentId());
+}
+if (!$context->getParam('domain')) {
+    if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+        $domainId = rex_yrewrite::getCurrentDomain()->getId();
+    } else {
+        $domainId = '';
+    }
+    $context->setParam('domain', $domainId);
+}
+
+$clangId = $context->getParam('clang');
+$domainId = $context->getParam('domain');
+
+if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+    $formElements = [];
+
+    $button_label = '';
+    $items = [];
+    foreach (rex_yrewrite::getDomains() as $id => $domain) {
+        $item = [];
+        $item['title'] = $domain->getName();
+        $item['href'] = $context->getUrl(['domain' => $domain->getId()]);
+        if ($domain->getId() == $context->getParam('domain')) {
+            $item['active'] = true;
+            $button_label = $domain->getName();
+        }
+        $items[] = $item;
+    }
+    $fragment = new rex_fragment();
+    $fragment->setVar('class', 'rex-language');
+    $fragment->setVar('button_label', $button_label);
+    $fragment->setVar('header', $this->i18n('select_domain'));
+    $fragment->setVar('items', $items, false);
+
+    $formElements[] = [
+        'label' => '<label>'.$this->i18n('select_domain').'</label>',
+        'field' => $fragment->parse('core/dropdowns/dropdown.php'),
+    ];
+}
+
+$n = [
+    'label' => '<label>'.$this->i18n('select_language').'</label>',
+    'field' => rex_view::clangSwitchAsDropdown($context),
+];
+
+$formElements[] = $n;
+
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$filterContent = $fragment->parse('core/form/container.php');
+
+$fragment = new rex_fragment();
+$fragment->setVar('title', $this->i18n('settings_for'));
+$fragment->setVar('body', $filterContent, false);
+$fragment->setVar('buttons', $buttons, false);
+echo $fragment->parse('core/page/section.php');
+
 $context = rex_context::restore();
 if (!$context->getParam('clang')) {
     $clangId = rex_clang::getCurrentId();
@@ -11,6 +74,20 @@ if (!$context->getParam('clang')) {
 }
 
 $clang_prefix = rex_clang::get($clangId)->getCode().'_';
+
+if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+    $domain = rex_yrewrite::getDomainById($domainId);
+    if (!$domain) {
+        $domain = rex_yrewrite::getDefaultDomain();
+    }
+    $clang_prefix .= $domain->getId();
+    $domainName = $domain->getName();
+} else {
+    $domain = null;
+    $domainName = '';
+}
+$clang_prefix .= '_';
+$domainEnabled = $domain != null;
 
 $content = '';
 $buttons = '';
@@ -63,7 +140,7 @@ $content .= '<fieldset><legend>'.$this->i18n('status').'</legend>';
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookie_consent_status">'.$this->i18n('activate_for_clang', rex_clang::get($clangId)->getCode()).'</label>';
+$n['label'] = '<label for="cookie_consent_status">'.$this->i18n('activate_for_lang'.($domainEnabled ? '_domain' : ''), rex_clang::get($clangId)->getCode(), $domainName).'</label>';
 $n['field'] = '<input type="checkbox" id="cookie_consent_status" name="config['.$clang_prefix.'status]"' . (!empty($this->getConfig($clang_prefix.'status')) && $this->getConfig($clang_prefix.'status') == '1' ? ' checked="checked"' : '') . ' value="1" />';
 $formElements[] = $n;
 
@@ -360,7 +437,7 @@ $buttons = '
 // Ausgabe Formular
 $fragment = new rex_fragment();
 $fragment->setVar('class', 'edit');
-$fragment->setVar('title', $this->i18n('config_for', rex_clang::getCurrent()->getCode(), rex_clang::getCurrent()->getName()));
+$fragment->setVar('title', $this->i18n('config_lang'.($domainEnabled ? '_domain' : ''), rex_clang::get($clangId)->getName(), $domainName), false);
 $fragment->setVar('body', $content, false);
 $fragment->setVar('buttons', $buttons, false);
 $output = $fragment->parse('core/page/section.php');
@@ -368,6 +445,7 @@ $output = $fragment->parse('core/page/section.php');
 $output = '
 <form action="' . rex_url::currentBackendPage() . '" method="post">
 <input type="hidden" name="clang" value="'.$clangId.'">
+<input type="hidden" name="domain" value="'.$domainId.'">
 <input type="hidden" name="formsubmit" value="1" />
     ' . $output . '
 </form>
