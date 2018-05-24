@@ -181,8 +181,19 @@ class cookie_consent
         // unset new/updated cookies
         header_remove('Set-Cookie');
 
+        $headers = [];
+
         // mark all existing cookies as expired
-        $headers = getallheaders();
+        if (function_exists('getallheaders')) {
+            $headers = getallheaders();
+        } else {
+            foreach ($_SERVER as $name => $value) {
+                if (substr($name, 0, 5) == 'HTTP_') {
+                    $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+                }
+            }
+        }
+
         if (array_key_exists('Cookie', $headers)) {
             // unset cookies
             $cookies = explode(';', $headers['Cookie']);
