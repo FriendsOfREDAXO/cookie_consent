@@ -181,8 +181,12 @@ class cookie_consent
         // unset new/updated cookies
         header_remove('Set-Cookie');
 
+        $headers = [];
+
         // mark all existing cookies as expired
-        $headers = getallheaders();
+		if (function_exists('getallheaders'))
+			$headers = getallheaders();
+
         if (array_key_exists('Cookie', $headers)) {
             // unset cookies
             $cookies = explode(';', $headers['Cookie']);
