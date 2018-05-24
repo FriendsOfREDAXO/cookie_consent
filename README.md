@@ -7,10 +7,10 @@ Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent
 ## Features
 
 - Individuelle Darstellung des Cookie-Hinweis Banner
- - Auswahl der Textfarbe und des Textinhaltes
- - Auswahl der Hintergrundfarbe
- - Setzen der Datenschutzerklärung (interner oder externer Link)
- - Position des Cookie-Hinweis Banner
+- Auswahl der Textfarbe und des Textinhaltes
+- Auswahl der Hintergrundfarbe
+- Setzen der Datenschutzerklärung (interner oder externer Link)
+- Position des Cookie-Hinweis Banner
 - Vorgefertigte Designs als Auswahl
 - Konfigurationstest der gesetzten Farben
 - Ausgabe-Code zum kopieren oder Funktion zum automatischen einfügen
@@ -23,12 +23,20 @@ Vor Verwendung des AddOns sollte die aktuelle Rechtslage (gerade in Deutschland)
 
 1. Über Installer laden oder ZIP-Datei im AddOn-Ordner entpacken, der Ordner muss „cookie_consent“ heißen.
 2. AddOn installieren und aktivieren
-3. Die mitgelieferten Javascript `cookie_consent_insites.js` und CSS `cookie_consent_insites.css` Dateien im Front-End vor dem schließenden `</head>`-Tag einbinden oder das Häkchen bei `CSS und JS automatisch einbinden` setzen (funktioniert nur in Verwendung mit Schritt 5)
-4. Bevorzugtes Farbschema wählen oder ein eigenes erstellen
-5. Den Hinweis mittels `echo cookie_consent::cookie_consent_output();` vor dem schließenden `</head>`- oder `</body>`-Tag aufrufen
-6. Ausprobieren! :-)
 
-> Alternativ: Im Reiter 'Konfigurations Test' den ausgegeben Code kopieren und in einem `<script></script>`-Block vor dem schließenden `</head>`- oder `</body>`-Tag einfügen oder in einer externen Datei verwenden.
+## Verwendung
+### Automatisches Einbinden
+Für ein automatisches Einbinden muss das Häkchen `CSS und JS automatisch einbinden` gesetzt werden.
+
+Dann wird automatisch vor dem `</head>`-Tag im Frontend die nötigen CSS- und JS-Dateien sowie die Konfiguration für Cookie-Consent eingefügt.
+### Manuelles Einbinden
+Alternativ kann das Einbinden manuell erfolgen.
+
+Hierfür ist es notwendig `echo cookie_consent::cookie_consent_output();` im Quelltext aufgerufen werden. An der gewählten Stelle werden alle notwendigen CSS und JS-Dateien sowie die Konfiguration für Cookie-Consent eingefügt.
+
+
+
+> Alternativ: Im Reiter 'Konfigurations Test' den ausgegeben Code kopieren und in einem `<script></script>`-Block vor dem schließenden `</head>`- oder `</body>`-Tag einfügen oder in einer externen Datei verwenden. 
 
 ## Modus
 
@@ -43,7 +51,8 @@ Vor Verwendung des AddOns sollte die aktuelle Rechtslage (gerade in Deutschland)
 
 ## Requirements
 
-Cookie Consent bedient sich eines FOR-AddOns und benötigt dieses um zu funktionieren.
+##### Optional
+Das FOR-AddOn fügt einen Farbauswahldialog hinzu, um eine bessere Bneutzererfahrung zu bieten. 
 * [UI Tools](https://github.com/FriendsOfREDAXO/ui_tools) von [Tim Filler](https://github.com/elricco)
 
 ## Bugtracker
