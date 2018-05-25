@@ -11,7 +11,7 @@ class cookie_consent
     const COOKIE_ALLOW = 'allow';
     const COOKIE_DENY = 'deny';
 
-    const YREWRITE_VERSION_MIN = '2.0';
+    const YREWRITE_VERSION_MIN = '2.3';
 
     public function checkUrl($url)
     {
