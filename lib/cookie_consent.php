@@ -178,6 +178,11 @@ class cookie_consent
 
     public static function removeCookies()
     {
+        // If user is logged in, skip
+        if (!is_object(rex::getUser())) {
+            return;
+        }
+
         // unset new/updated cookies
         header_remove('Set-Cookie');
 
