@@ -11,6 +11,9 @@ class cookie_consent
     const COOKIE_ALLOW = 'allow';
     const COOKIE_DENY = 'deny';
 
+    const LINK_EXT = 'eLink';
+    const LINK_INT = 'iLink';
+
     const YREWRITE_VERSION_MIN = '2.3';
 
     public function checkUrl($url)
@@ -98,6 +101,8 @@ class cookie_consent
         $link = rex_config::get('cookie_consent', $clang_prefix.'iLink');
         $link_target_type = rex_config::get('cookie_consent', $clang_prefix.'link_target_type');
 
+        $select_link = rex_config::get('cookie_consent', $clang_prefix.'select_link');
+
         if ($link_target_type == '') {
             $link_target_type = '_blank';
         }
@@ -124,7 +129,7 @@ class cookie_consent
                 'deny' => rex_escape($deny_content),
                 'allow' => rex_escape($allow_content),
                 'link' => rex_escape($link_content),
-                'href' => rex_escape($externer_link) . '' . rex_escape($interner_link),
+                'href' => ($select_link === self::LINK_EXT ? rex_escape($externer_link) : rex_escape($interner_link)),
             ],
             'type' => $mode,
             'elements' => [
