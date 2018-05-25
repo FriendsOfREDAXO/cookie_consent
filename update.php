@@ -6,7 +6,7 @@
  */
 
 $prefix = rex_clang::getCurrent()->getCode().'_';
-if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+if (cookie_consent::checkYrewrite()) {
     rex_yrewrite::init();
     $domain = rex_yrewrite::getCurrentDomain();
     if (!$domain) {

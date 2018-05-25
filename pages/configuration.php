@@ -11,7 +11,7 @@ if (!$context->getParam('clang')) {
     $context->setParam('clang', rex_clang::getCurrentId());
 }
 if (!$context->getParam('domain')) {
-    if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+    if (cookie_consent::checkYrewrite()) {
         $domainId = rex_yrewrite::getCurrentDomain()->getId();
     } else {
         $domainId = '';
@@ -22,7 +22,7 @@ if (!$context->getParam('domain')) {
 $clangId = $context->getParam('clang');
 $domainId = $context->getParam('domain');
 
-if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+if (cookie_consent::checkYrewrite()) {
     $formElements = [];
 
     $button_label = '';
@@ -75,7 +75,7 @@ if (!$context->getParam('clang')) {
 
 $clang_prefix = rex_clang::get($clangId)->getCode().'_';
 
-if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+if (cookie_consent::checkYrewrite()) {
     $domain = rex_yrewrite::getDomainById($domainId);
     if (!$domain) {
         $domain = rex_yrewrite::getDefaultDomain();

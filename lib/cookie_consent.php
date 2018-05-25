@@ -11,6 +11,8 @@ class cookie_consent
     const COOKIE_ALLOW = 'allow';
     const COOKIE_DENY = 'deny';
 
+    const YREWRITE_VERSION_MIN = '2.0';
+
     public function checkUrl($url)
     {
         if ($url) {
@@ -73,7 +75,7 @@ class cookie_consent
 
     public static function cookie_consent_output($codepreview = false)
     {
-        if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+        if (self::checkYrewrite()) {
             rex_yrewrite::init();
         }
 
@@ -214,7 +216,7 @@ class cookie_consent
     public static function getKeyPrefix()
     {
         $prefix = rex_clang::getCurrent()->getCode().'_';
-        if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+        if (self::checkYrewrite()) {
             rex_yrewrite::init();
             $domain = rex_yrewrite::getCurrentDomain();
             if (!$domain) {
@@ -224,5 +226,11 @@ class cookie_consent
         }
         $prefix .= '_';
         return $prefix;
+    }
+
+    public static function checkYrewrite()
+    {
+        $yrewrite = rex_addon::get('yrewrite');
+        return rex_addon::exists('yrewrite') && $yrewrite->isInstalled() && rex_string::versionCompare($yrewrite->getVersion(), self::YREWRITE_VERSION_MIN, '>=');
     }
 }
