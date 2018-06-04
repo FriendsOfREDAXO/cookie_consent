@@ -44,14 +44,14 @@ class cookie_consent
             $cssFile = 'css/cookie_consent_insites.css';
         }
         $getFile = rex_url::addonAssets('cookie_consent', $cssFile);
-        $makeCssLink = '<link rel="stylesheet" href="'.$getFile.'">';
+        $makeCssLink = '<link rel="stylesheet" href="'.$getFile.'" async>';
         return $makeCssLink;
     }
 
     protected function cookie_consent_get_js()
     {
         $getFile = rex_url::base('assets/addons/cookie_consent/js/cookie_consent_insites.js');
-        $makeJsLink = '<script type="text/javascript" src="'.$getFile.'"></script>';
+        $makeJsLink = '<script type="text/javascript" src="'.$getFile.'" async></script>';
         return $makeJsLink;
     }
 
