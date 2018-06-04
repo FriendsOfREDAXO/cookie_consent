@@ -11,6 +11,11 @@ class cookie_consent
     const COOKIE_ALLOW = 'allow';
     const COOKIE_DENY = 'deny';
 
+    const LINK_EXT = 'eLink';
+    const LINK_INT = 'iLink';
+
+    const YREWRITE_VERSION_MIN = '2.3';
+
     public function checkUrl($url)
     {
         if ($url) {
@@ -73,7 +78,7 @@ class cookie_consent
 
     public static function cookie_consent_output($codepreview = false)
     {
-        if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+        if (self::checkYrewrite()) {
             rex_yrewrite::init();
         }
 
@@ -95,6 +100,8 @@ class cookie_consent
         $link_content = rex_config::get('cookie_consent', $clang_prefix.'link_content');
         $link = rex_config::get('cookie_consent', $clang_prefix.'iLink');
         $link_target_type = rex_config::get('cookie_consent', $clang_prefix.'link_target_type');
+
+        $select_link = rex_config::get('cookie_consent', $clang_prefix.'select_link');
 
         if ($link_target_type == '') {
             $link_target_type = '_blank';
@@ -122,7 +129,7 @@ class cookie_consent
                 'deny' => rex_escape($deny_content),
                 'allow' => rex_escape($allow_content),
                 'link' => rex_escape($link_content),
-                'href' => rex_escape($externer_link) . '' . rex_escape($interner_link),
+                'href' => ($select_link === self::LINK_EXT ? rex_escape($externer_link) : rex_escape($interner_link)),
             ],
             'type' => $mode,
             'elements' => [
@@ -178,11 +185,27 @@ class cookie_consent
 
     public static function removeCookies()
     {
+        // If user is logged in, skip
+        if (!is_object(rex::getUser())) {
+            return;
+        }
+
         // unset new/updated cookies
         header_remove('Set-Cookie');
 
+        $headers = [];
+
         // mark all existing cookies as expired
-        $headers = getallheaders();
+        if (function_exists('getallheaders')) {
+            $headers = getallheaders();
+        } else {
+            foreach ($_SERVER as $name => $value) {
+                if (substr($name, 0, 5) == 'HTTP_') {
+                    $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+                }
+            }
+        }
+
         if (array_key_exists('Cookie', $headers)) {
             // unset cookies
             $cookies = explode(';', $headers['Cookie']);
@@ -198,7 +221,7 @@ class cookie_consent
     public static function getKeyPrefix()
     {
         $prefix = rex_clang::getCurrent()->getCode().'_';
-        if (rex_addon::exists('yrewrite') && rex_addon::get('yrewrite')->isInstalled()) {
+        if (self::checkYrewrite()) {
             rex_yrewrite::init();
             $domain = rex_yrewrite::getCurrentDomain();
             if (!$domain) {
@@ -208,5 +231,11 @@ class cookie_consent
         }
         $prefix .= '_';
         return $prefix;
+    }
+
+    public static function checkYrewrite()
+    {
+        $yrewrite = rex_addon::get('yrewrite');
+        return rex_addon::exists('yrewrite') && $yrewrite->isInstalled() && rex_string::versionCompare($yrewrite->getVersion(), self::YREWRITE_VERSION_MIN, '>=');
     }
 }
