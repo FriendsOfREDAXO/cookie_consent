@@ -1,0 +1,59 @@
+configuration = Konfiguration
+configuration_test = Konfiguration test
+help = Hjälp
+config_legend = Inställningar
+config_save = Spara
+config_lang_domain = Konfiguration för <b>{0}</b> @ <b>{1}</b>
+config_lang = Konfiguration för <b>{0}</b>
+activate_for_lang_domain = Aktivera för språk <b>{0}</b> på domänen <b>{1}</b>
+activate_for_lang = Aktivera för språk <b>{0}</b>
+config_saved_cookie = Inställningarna sparades
+settings_for = Inställningar för
+select_language = Språk
+select_domain = Domän
+
+cookiedingsbums_mode = Modus
+info = Informera användare om att cookies lagras
+opt-in =  Opt-in metod
+opt-out = Opt-out metod
+mode_optin_notice = Det här alternativet tar bort alla inställda och nya cookies på serverns sida. Detta säkerställer att inga cookies kan ställas in av servern tills tillståndet har erhållits från användaren med hjälp av kaket. <b> Detta förhindrar dock inte att cookies ställs in av javascripts, t.ex. Google Analytics. </ B>.
+mode_notice = Observera att inloggnings- och bortkopplingsmetoderna endast ger återuppringningar för att inte lagra cookies. Du måste själv skriva funktionen och anpassa din webbplats så att inga cookies lagras. Se:
+disable_cookies = Deaktivera cookien
+
+cookiedingsbums_color_scheme = Designs
+custom = anpassad
+
+cookiedingsbums_theme = Tema
+cookiedingsbums_color_background = Bakgrundsfärg
+cookiedingsbums_color_main_content = Teckensnittsfärg på noten
+cookiedingsbums_color_button_background = Knappens bakgrundsfärg
+cookiedingsbums_color_button_content = Teckensnittsfärg på knappen
+cookiedingsbums_deny_content = Avvisa-knappens text (Opt-Out)
+cookiedingsbums_allow_content = Godkänn-knappens  (Opt-In)
+
+cookiedingsbums_position = Position
+top = Top
+bottom = Nere
+bottom-left = Nere vänster
+bottom-right = Nere höger
+
+cookiedingsbums_main_message = Text till cookie-info
+cookiedingsbums_button_content = Text till knappen
+cookiedingsbums_link_content = Text till
+cookiedingsbums_link_intern = Text för länken till integritetspolicyn
+cookiedingsbums_link_extern = Extern länk för integritetspolicyn
+cookiedingsbums_select_link = Länkens art
+eLink = Extern länk
+iLink = Intern länk
+script-checkbox = Integrera automatiskt CSS och JS
+script-checkbox-notice = Infogar automatiskt CSS, JS-filer och Cookie Consent-konfiguration före <i> </ head> </ i> -taggen.
+custom_options = Anpassade alternativ
+custom_options_notice = Här kan du lägga till ytterligare alternativ. För möjliga alternativ se
+json_not_valid = De angivna alternativen är inte tillgängliga i det giltiga JSON-formatet
+
+targetSelf = samma flik eller sida (_self)
+targetBlank = Ny flik eller fönster (_blank)
+targetParent = Överordnad fönster (_parent)
+targetTop = hela fönstret (_top)
+
+link_target_type = Målfönstrets bas
