@@ -186,7 +186,7 @@ class cookie_consent
     public static function removeCookies()
     {
         // If user is logged in, skip
-        if (!is_object(rex::getUser())) {
+        if (is_object(rex::getUser())) {
             return;
         }
 
