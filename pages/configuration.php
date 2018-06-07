@@ -120,10 +120,10 @@ if ($cookie_consent_functions->checkUrl($this->getConfig($clang_prefix.'eLink'))
     $content .= rex_view::warning($this->i18n('url_not_valid'));
     $cookie_consent->setConfig($clang_prefix.'eLink', '');
 }
-if ($this->getConfig('cookie_consent_select_link') == 'eLink') {
+if ($this->getConfig($clang_prefix.'select_link') == 'eLink') {
     $cookie_consent->setConfig($clang_prefix.'iLink', '');
 }
-if ($this->getConfig('cookie_consent_select_link') == 'iLink') {
+if ($this->getConfig($clang_prefix.'select_link') == 'iLink') {
     $cookie_consent->setConfig($clang_prefix.'eLink', '');
 }
 if ($cookie_consent_functions->checkJson($this->getConfig($clang_prefix.'custom_options')) === false) {
