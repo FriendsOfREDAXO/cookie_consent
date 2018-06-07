@@ -59,7 +59,6 @@ $filterContent = $fragment->parse('core/form/container.php');
 $fragment = new rex_fragment();
 $fragment->setVar('title', $this->i18n('settings_for'));
 $fragment->setVar('body', $filterContent, false);
-$fragment->setVar('buttons', $buttons, false);
 echo $fragment->parse('core/page/section.php');
 
 $context = rex_context::restore();
