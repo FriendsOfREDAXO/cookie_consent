@@ -223,7 +223,11 @@ class cookie_consent
         $prefix = rex_clang::getCurrent()->getCode().'_';
         if (self::checkYrewrite()) {
             rex_yrewrite::init();
-            $domain = rex_yrewrite::getCurrentDomain();
+            if (rex_article::getCurrent()) {
+                $domain = rex_yrewrite::getCurrentDomain();
+            } else {
+                $domain = null;
+            }
             if (!$domain) {
                 $domain = rex_yrewrite::getDefaultDomain();
             }

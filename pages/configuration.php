@@ -11,11 +11,7 @@ if (!$context->getParam('clang')) {
     $context->setParam('clang', rex_clang::getCurrentId());
 }
 if (!$context->getParam('domain')) {
-    if (cookie_consent::checkYrewrite()) {
-        $domainId = rex_yrewrite::getCurrentDomain()->getId();
-    } else {
-        $domainId = '';
-    }
+    $domainId = '';
     $context->setParam('domain', $domainId);
 }
 
