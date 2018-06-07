@@ -117,13 +117,13 @@ if (rex_post('formsubmit', 'string') == '1') {
 }
 
 if ($cookie_consent_functions->checkUrl($this->getConfig($clang_prefix.'eLink')) === false) {
-    $content .= rex_view::warning('Falscher Link');
+    $content .= rex_view::warning($this->i18n('url_not_valid'));
     $cookie_consent->setConfig($clang_prefix.'eLink', '');
 }
-if ($this->getConfig('cookiedingsbums_select_link') == 'eLink') {
+if ($this->getConfig('cookie_consent_select_link') == 'eLink') {
     $cookie_consent->setConfig($clang_prefix.'iLink', '');
 }
-if ($this->getConfig('cookiedingsbums_select_link') == 'iLink') {
+if ($this->getConfig('cookie_consent_select_link') == 'iLink') {
     $cookie_consent->setConfig($clang_prefix.'eLink', '');
 }
 if ($cookie_consent_functions->checkJson($this->getConfig($clang_prefix.'custom_options')) === false) {
@@ -147,11 +147,11 @@ $content .= '</fieldset><fieldset><legend>' . $this->i18n('config_legend') . '</
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_mode">' . $this->i18n('cookiedingsbums_mode') . '</label>';
+$n['label'] = '<label for="cookie_consent_mode">' . $this->i18n('mode') . '</label>';
 $select = new rex_select();
-$select->setId('cookiedingsbums_mode');
+$select->setId('cookie_consent_mode');
 $select->setAttribute('class', 'form-control selectpicker');
-$select->setAttribute('id', 'cookiedingsbums_mode');
+$select->setAttribute('id', 'cookie_consent_mode');
 $select->setName('config['.$clang_prefix.'mode]');
 $select->addOption($this->i18n('info'), 'info');
 $select->addOption($this->i18n('opt-in'), 'opt-in');
@@ -167,9 +167,9 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_color_scheme">' . $this->i18n('cookiedingsbums_color_scheme') . '</label>';
+$n['label'] = '<label for="cookie_consent_color_scheme">' . $this->i18n('color_scheme') . '</label>';
 $select = new rex_select();
-$select->setId('cookiedingsbums_color_scheme');
+$select->setId('cookie_consent_color_scheme');
 $select->setAttribute('class', 'form-control selectpicker');
 $select->setAttribute('id', 'color_scheme');
 $select->setName('config['.$clang_prefix.'color_scheme]');
@@ -190,9 +190,9 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_theme">' . $this->i18n('cookiedingsbums_theme') . '</label>';
+$n['label'] = '<label for="cookie_consent_theme">' . $this->i18n('theme') . '</label>';
 $select = new rex_select();
-$select->setId('cookiedingsbums_theme');
+$select->setId('cookie_consent_theme');
 $select->setAttribute('class', 'form-control selectpicker');
 $select->setName('config['.$clang_prefix.'theme]');
 $select->addOption('Clean', 'clean');
@@ -209,8 +209,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_color_background">' . $this->i18n('cookiedingsbums_color_background') . '</label>';
-$n['field'] = '<input class="form-control minicolors" type="text" id="cookiedingsbums_color_background" name="config['.$clang_prefix.'color_background]" value="' . $this->getConfig($clang_prefix.'color_background') . '"/>';
+$n['label'] = '<label for="cookie_consent_color_background">' . $this->i18n('color_background') . '</label>';
+$n['field'] = '<input class="form-control minicolors" type="text" id="cookie_consent_color_background" name="config['.$clang_prefix.'color_background]" value="' . $this->getConfig($clang_prefix.'color_background') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -219,8 +219,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_color_main_content">' . $this->i18n('cookiedingsbums_color_main_content') . '</label>';
-$n['field'] = '<input class="form-control minicolors" type="text" id="cookiedingsbums_color_main_content" name="config['.$clang_prefix.'color_main_content]" value="' . $this->getConfig($clang_prefix.'color_main_content') . '"/>';
+$n['label'] = '<label for="cookie_consent_color_main_content">' . $this->i18n('color_main_content') . '</label>';
+$n['field'] = '<input class="form-control minicolors" type="text" id="cookie_consent_color_main_content" name="config['.$clang_prefix.'color_main_content]" value="' . $this->getConfig($clang_prefix.'color_main_content') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -229,8 +229,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_main_message">' . $this->i18n('cookiedingsbums_main_message') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_main_message" name="config['.$clang_prefix.'main_message]" value="' . $this->getConfig($clang_prefix.'main_message') . '"/>';
+$n['label'] = '<label for="cookie_consent_main_message">' . $this->i18n('main_message') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_main_message" name="config['.$clang_prefix.'main_message]" value="' . $this->getConfig($clang_prefix.'main_message') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -239,8 +239,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_button_content">' . $this->i18n('cookiedingsbums_button_content') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_button_content" name="config['.$clang_prefix.'button_content]" value="' . $this->getConfig($clang_prefix.'button_content') . '"/>';
+$n['label'] = '<label for="cookie_consent_button_content">' . $this->i18n('button_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_button_content" name="config['.$clang_prefix.'button_content]" value="' . $this->getConfig($clang_prefix.'button_content') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -249,8 +249,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label class="cookiedingsbums_deny_content" for="cookiedingsbums_deny_content">' . $this->i18n('cookiedingsbums_deny_content') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_deny_content" name="config['.$clang_prefix.'deny_content]" value="' . $this->getConfig($clang_prefix.'deny_content') . '"/>';
+$n['label'] = '<label class="cookie_consent_deny_content" for="cookie_consent_deny_content">' . $this->i18n('deny_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_deny_content" name="config['.$clang_prefix.'deny_content]" value="' . $this->getConfig($clang_prefix.'deny_content') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -259,8 +259,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label class="cookiedingsbums_allow_content" for="cookiedingsbums_allow_content">' . $this->i18n('cookiedingsbums_allow_content') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_allow_content" name="config['.$clang_prefix.'allow_content]" value="' . $this->getConfig($clang_prefix.'allow_content') . '"/>';
+$n['label'] = '<label class="cookie_consent_allow_content" for="cookie_consent_allow_content">' . $this->i18n('allow_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_allow_content" name="config['.$clang_prefix.'allow_content]" value="' . $this->getConfig($clang_prefix.'allow_content') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -269,8 +269,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_color_button_content">' . $this->i18n('cookiedingsbums_color_button_content') . '</label>';
-$n['field'] = '<input class="form-control minicolors" type="text" id="cookiedingsbums_color_button_content" name="config['.$clang_prefix.'color_button_content]" value="' . $this->getConfig($clang_prefix.'color_button_content') . '"/>';
+$n['label'] = '<label for="cookie_consent_color_button_content">' . $this->i18n('color_button_content') . '</label>';
+$n['field'] = '<input class="form-control minicolors" type="text" id="cookie_consent_color_button_content" name="config['.$clang_prefix.'color_button_content]" value="' . $this->getConfig($clang_prefix.'color_button_content') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -279,8 +279,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_color_button_background">' . $this->i18n('cookiedingsbums_color_button_background') . '</label>';
-$n['field'] = '<input class="form-control minicolors" type="text" id="cookiedingsbums_color_button_background" name="config['.$clang_prefix.'color_button_background]" value="' . $this->getConfig($clang_prefix.'color_button_background') . '"/>';
+$n['label'] = '<label for="cookie_consent_color_button_background">' . $this->i18n('color_button_background') . '</label>';
+$n['field'] = '<input class="form-control minicolors" type="text" id="cookie_consent_color_button_background" name="config['.$clang_prefix.'color_button_background]" value="' . $this->getConfig($clang_prefix.'color_button_background') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -289,9 +289,9 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_position">' . $this->i18n('cookiedingsbums_position') . '</label>';
+$n['label'] = '<label for="cookie_consent_position">' . $this->i18n('position') . '</label>';
 $select = new rex_select();
-$select->setId('cookiedingsbums_position');
+$select->setId('cookie_consent_position');
 $select->setAttribute('class', 'form-control selectpicker');
 $select->setName('config['.$clang_prefix.'position]');
 $select->addOption($this->i18n('top'), 'top');
@@ -308,8 +308,8 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_link_content">' . $this->i18n('cookiedingsbums_link_content') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_link_content" name="config['.$clang_prefix.'link_content]" value="' . $this->getConfig($clang_prefix.'link_content') . '"/>';
+$n['label'] = '<label for="cookie_consent_link_content">' . $this->i18n('link_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_link_content" name="config['.$clang_prefix.'link_content]" value="' . $this->getConfig($clang_prefix.'link_content') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -318,7 +318,7 @@ $content .= $fragment->parse('core/form/container.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="cookiedingsbums_select_link">' . $this->i18n('cookiedingsbums_select_link') . '</label>';
+$n['label'] = '<label for="cookie_consent_select_link">' . $this->i18n('select_link') . '</label>';
 $select = new rex_select();
 $select->setId('select_link');
 $select->setAttribute('class', 'form-control selectpicker');
@@ -337,8 +337,8 @@ $content .= $fragment->parse('core/form/container.php');
 /* EXTERNER LINK */
 $formElements = [];
 $n = [];
-$n['label'] = '<label class="cookiedingsbums_eLink" for="cookiedingsbums_link_extern">' . $this->i18n('cookiedingsbums_link_extern') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookiedingsbums_link_extern" name="config['.$clang_prefix.'eLink]" value="' . $this->getConfig($clang_prefix.'eLink') . '"/>';
+$n['label'] = '<label class="cookie_consent_eLink" for="cookie_consent_link_extern">' . $this->i18n('link_extern') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_link_extern" name="config['.$clang_prefix.'eLink]" value="' . $this->getConfig($clang_prefix.'eLink') . '"/>';
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -353,7 +353,7 @@ if ($art) {
     $artname = $art->getValue('name');
 }
 $n = [];
-$n['label'] = '<label class="cookiedingsbums_iLink" for="cookiedingsbums_link">' . $this->i18n('cookiedingsbums_link_intern') . '</label>';
+$n['label'] = '<label class="cookie_consent_iLink" for="cookie_consent_link">' . $this->i18n('link_intern') . '</label>';
 $n['field'] = '
 <div class="rex-js-widget rex-js-widget-link">
 	<div class="input-group">	
