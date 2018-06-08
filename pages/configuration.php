@@ -26,9 +26,9 @@ if ($context->getParam('domain') === null) {
 $clangId = $context->getParam('clang');
 $domainId = $context->getParam('domain');
 
-if (cookie_consent::checkYrewrite()) {
-    $formElements = [];
+$formElements = [];
 
+if (cookie_consent::checkYrewrite()) {
     $button_label = '';
     $items = [];
     foreach (rex_yrewrite::getDomains() as $id => $domain) {
@@ -53,21 +53,23 @@ if (cookie_consent::checkYrewrite()) {
     ];
 }
 
-$n = [
-    'label' => '<label>'.$this->i18n('select_language').'</label>',
-    'field' => rex_view::clangSwitchAsDropdown($context),
-];
+if (rex_clang::count() > 1) {
+    $formElements[] = [
+        'label' => '<label>'.$this->i18n('select_language').'</label>',
+        'field' => rex_view::clangSwitchAsDropdown($context),
+    ];
+}
 
-$formElements[] = $n;
+if (count($formElements) > 0) {
+    $fragment = new rex_fragment();
+    $fragment->setVar('elements', $formElements, false);
+    $filterContent = $fragment->parse('core/form/container.php');
 
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$filterContent = $fragment->parse('core/form/container.php');
-
-$fragment = new rex_fragment();
-$fragment->setVar('title', $this->i18n('settings_for'));
-$fragment->setVar('body', $filterContent, false);
-echo $fragment->parse('core/page/section.php');
+    $fragment = new rex_fragment();
+    $fragment->setVar('title', $this->i18n('settings_for'));
+    $fragment->setVar('body', $filterContent, false);
+    echo $fragment->parse('core/page/section.php');
+}
 
 $context = rex_context::restore();
 if (!$context->getParam('clang')) {
