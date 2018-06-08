@@ -10,8 +10,16 @@ $context->setParam('domain', rex_request('domain', 'string', null));
 if (!$context->getParam('clang')) {
     $context->setParam('clang', rex_clang::getCurrentId());
 }
-if (!$context->getParam('domain')) {
+if ($context->getParam('domain') === null) {
     $domainId = '';
+    if (cookie_consent::checkYrewrite()) {
+        $allDomains = rex_yrewrite::getDomains();
+        unset($allDomains['default']);
+        if (count($allDomains) > 0) {
+            $curDomain = reset($allDomains);
+            $domainId = $curDomain->getId();
+        }
+    }
     $context->setParam('domain', $domainId);
 }
 
