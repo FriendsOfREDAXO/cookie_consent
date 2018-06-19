@@ -50,6 +50,7 @@ cookie_consent_script-checkbox-notice = Infogar automatiskt CSS, JS-filer och Co
 cookie_consent_custom_options = Anpassade alternativ
 cookie_consent_custom_options_notice = Här kan du lägga till ytterligare alternativ. För möjliga alternativ se
 cookie_consent_json_not_valid = De angivna alternativen är inte tillgängliga i det giltiga JSON-formatet
+cookie_consent_url_not_valid = Den angivna webbadressen är inte i giltigt webbadressformat
 
 cookie_consent_targetSelf = samma flik eller sida (_self)
 cookie_consent_targetBlank = Ny flik eller fönster (_blank)
