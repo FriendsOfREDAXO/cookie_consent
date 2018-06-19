@@ -156,13 +156,12 @@ class cookie_consent
             $object += (array) $custom_options;
         }
 
-        $code = ($codepreview == true ? '<pre><code>' : $cookie_consent_css. '' . $cookie_consent_js .'<script>').'
-            window.addEventListener("load", function() {
-            window.cookieconsent.initialise('.json_encode($object, JSON_PRETTY_PRINT).');
-		});		
-		'.($codepreview == true ? '</code></pre>' : '</script>');
+        $jsConfigCode = 'window.cookieconsent.initialise('.json_encode($object, JSON_PRETTY_PRINT).');';
 
-        return $code;
+        if ($codepreview === true) {
+            return $jsConfigCode;
+        }
+        return $cookie_consent_css.$cookie_consent_js.'<script>window.addEventListener("load", function() {'.$jsConfigCode.'});</script>';
     }
 
     public static function getMode()

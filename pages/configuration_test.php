@@ -47,7 +47,6 @@
 
 
 
-
 <?php
 $context = new rex_context();
 $context->setParam('page', rex_request('page', 'string', null));
@@ -139,55 +138,60 @@ if (cookie_consent::checkYrewrite()) {
 }
 $clang_prefix .= '_';
 
-
-
-$theme = rex_config::get('cookie_consent', 'theme');
-$color_background = rex_config::get('cookie_consent', 'color_background');
-$color_main_content = rex_config::get('cookie_consent', 'color_main_content');
-$color_button_background = rex_config::get('cookie_consent', 'color_button_background');
-$color_button_content = rex_config::get('cookie_consent', 'color_button_content');
-$position = rex_config::get('cookie_consent', 'position');
-$main_message = rex_config::get('cookie_consent', 'main_message');
-$button_content = rex_config::get('cookie_consent', 'button_content');
-$link_content = rex_config::get('cookie_consent', 'link_content');
-$link = rex_config::get('cookie_consent', 'iLink');
-$interner_link = '';
-if ($link != '') {
-    $interner_link = rex_getUrl($link);
+if (rex_config::get('cookie_consent', cookie_consent::getKeyPrefix().'theme', '') == 'clean') {
+    $cssFile = 'css/cookie_consent_insites_clean.css';
+} else {
+    $cssFile = 'css/cookie_consent_insites.css';
 }
-$externer_link = rex_config::get('cookie_consent', 'eLink');
-$mode = rex_config::get('cookie_consent', 'mode');
-$deny_content = rex_config::get('cookie_consent', 'deny_content');
-$allow_content = rex_config::get('cookie_consent', 'allow_content');
+$jsFile = 'js/cookie_consent_insites.js';
+$cssFileUrl = $this->getAssetsUrl($cssFile);
+$jsFileUrl = $this->getAssetsUrl($jsFile);
+?>
+    <link rel="stylesheet" href="<?php echo $cssFileUrl; ?>">
+    <script type="text/javascript" src="<?php echo $jsFileUrl; ?>"></script>
+    <script>
+      function showPreviewConsent() {
+        document.cookie = "<?php echo cookie_consent::COOKIE_NAME; ?>=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        <?php echo cookie_consent::cookie_consent_backend(); ?>
+      }
+    </script>
+<?php
 
-$main_color_scheme = 'style="background:'.rex_escape($color_background).'; color: '.rex_escape($color_main_content).';"';
-$link_color_scheme = 'style="color: '.rex_escape($color_main_content).';"';
-$button_color_scheme = 'style="background:'.rex_escape($color_button_background).'; color:'.rex_escape($color_button_content).';"';
-
+// ----------------- FILTER SECTION
 
 $button = [
     [
         'label' => $this->i18n('preview'),
-        'icon'  => 'view',
+        'icon' => 'view',
         'attributes' => [
-            'class' => ['btn-lg', 'btn-primary']
-        ]
-    ]
+            'class' => ['btn-lg', 'btn-primary'],
+            'onclick' => 'showPreviewConsent()',
+        ],
+    ],
 ];
 $fragment = new rex_fragment();
 $fragment->setVar('buttons', $button, false);
 $previewSection = $fragment->parse('core/buttons/button.php');
 
+// ----------------- PREVIEW SECTION
+
+$notice = rex_view::info($this->i18n('test_preview_notice'));
 $fragment = new rex_fragment();
 $fragment->setVar('title', $this->i18n('preview_section'), true);
-$fragment->setVar('body', $previewSection, false);
+$fragment->setVar('body', $notice.$previewSection, false);
 echo $fragment->parse('core/page/section.php');
 
+// ----------------- EMBED SECTION
 
+$frontendPathProvider = new rex_path_default_provider($REX['HTDOCS_PATH'], $REX['BACKEND_FOLDER'], false);
+$cssFileUrl = $frontendPathProvider->addonAssets($this->getName(), $cssFile);
+$jsFileUrl = $frontendPathProvider->addonAssets($this->getName(), $jsFile);
 
-$copyPasteCode = cookie_consent::cookie_consent_backend();
+$notice = rex_view::info($this->i18n('test_embed_notice'));
+$notice .= '<pre><code>'.$cssFileUrl.PHP_EOL.$jsFileUrl.'</code></pre>';
+$copyPasteCode = '<pre><code>'.htmlspecialchars(cookie_consent::cookie_consent_backend()).'</code></pre>';
 
 $fragment = new rex_fragment();
-$fragment->setVar('title', $this->i18n('embed_code'), true);
-$fragment->setVar('body', $copyPasteCode, false);
+$fragment->setVar('title', $this->i18n('config_code'), true);
+$fragment->setVar('body', $notice.$copyPasteCode, false);
 echo $fragment->parse('core/page/section.php');
