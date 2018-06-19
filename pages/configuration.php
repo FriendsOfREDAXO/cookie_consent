@@ -136,10 +136,6 @@ if ($this->getConfig($clang_prefix.'select_link') == 'eLink') {
 if ($this->getConfig($clang_prefix.'select_link') == 'iLink') {
     $cookie_consent->setConfig($clang_prefix.'eLink', '');
 }
-if ($cookie_consent_functions->checkJson($this->getConfig($clang_prefix.'custom_options')) === false) {
-    $content .= rex_view::warning($this->i18n('json_not_valid'));
-    $cookie_consent->setConfig($clang_prefix.'custom_options', '');
-}
 
 $content .= '<fieldset><legend>'.$this->i18n('status').'</legend>';
 
@@ -418,7 +414,10 @@ $content .= $fragment->parse('core/form/checkbox.php');
 $formElements = [];
 $n = [];
 $n['label'] = '<label for="custom-options">' . $this->i18n('custom_options') . '</label>';
-$n['field'] = '<textarea class="form-control" id="custom-options" name="config['.$clang_prefix.'custom_options]">' . $this->getConfig($clang_prefix.'custom_options') . '</textarea><i class="custom_options_notice">'.$this->i18n('custom_options_notice').' <a href="https://cookieconsent.insites.com/documentation/javascript-api/" target="_blank">JavaScript API</a></i>';
+$n['field'] = '<div class="input-group"><div class="input-group-addon">{</div>';
+$n['field'] .= '<textarea class="form-control" id="custom-options" name="config['.$clang_prefix.'custom_options]">' . $this->getConfig($clang_prefix.'custom_options') . '</textarea>';
+$n['field'] .= '<div class="input-group-addon">}</div></div>';
+$n['field'] .= '<i class="custom_options_notice">'.$this->i18n('custom_options_notice').' <a href="https://cookieconsent.insites.com/documentation/javascript-api/" target="_blank">JavaScript API</a></i>';
 $formElements[] = $n;
 $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
