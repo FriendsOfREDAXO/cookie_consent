@@ -149,14 +149,14 @@ class cookie_consent
                 ],
             ];
         }
+        $jsonConfig = json_encode($object, JSON_PRETTY_PRINT);
 
         $custom_options = rex_config::get('cookie_consent', $clang_prefix.'custom_options');
-        $custom_options = json_decode($custom_options);
-        if ($custom_options) {
-            $object += (array) $custom_options;
+        if ($custom_options && $custom_options != '') {
+            $jsonConfig = substr($jsonConfig, 0, strlen($jsonConfig) - 2) . ','.PHP_EOL.$custom_options.PHP_EOL . '}';
         }
 
-        $jsConfigCode = 'window.cookieconsent.initialise('.json_encode($object, JSON_PRETTY_PRINT).');';
+        $jsConfigCode = 'window.cookieconsent.initialise('.$jsonConfig.');';
 
         if ($codepreview === true) {
             return $jsConfigCode;

@@ -28,6 +28,15 @@ foreach ($configs as $key => $value) {
         }
         $this->setConfig($prefix.$key, $value);
     }
+    if ($key == $prefix.'custom_options' && $value != '') {
+        if (substr($value, 0, 1) === '{') {
+            $value = substr($value, 1);
+        }
+        if (substr($value, strlen($value) - 1, 1) === '}') {
+            $value = substr($value, 0, strlen($value) - 1);
+        }
+        $this->setConfig($key, $value);
+    }
 }
 if (!$this->hasConfig($prefix.'status')) {
     $this->setConfig($prefix.'status', '1');
