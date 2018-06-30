@@ -11,7 +11,7 @@ if (rex::isBackend() && rex_be_controller::getCurrentPage() == 'cookie_consent/c
     rex_view::addJsFile($this->getAssetsUrl('js/cookie_consent_backend.js'));
 }
 
-if (!rex::isBackend() && rex_config::get('cookie_consent', cookie_consent::getKeyPrefix().'script_checkbox') == '1') {
+if (!rex::isBackend() && rex_config::get('cookie_consent', cookie_consent::getKeyPrefix().'embed_auto') == '1') {
     rex_extension::register('OUTPUT_FILTER', 'cookie_consent::ep_call', rex_extension::LATE);
 }
 

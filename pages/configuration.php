@@ -118,7 +118,10 @@ if (rex_post('formsubmit', 'string') == '1') {
         [$clang_prefix.'mode', 'string'],
         [$clang_prefix.'deny_content', 'string'],
         [$clang_prefix.'allow_content', 'string'],
-        [$clang_prefix.'script_checkbox', 'string'],
+        [$clang_prefix.'embed_auto', 'string'],
+        [$clang_prefix.'embed_config', 'string'],
+        [$clang_prefix.'embed_js', 'string'],
+        [$clang_prefix.'embed_css', 'string'],
         [$clang_prefix.'custom_options', 'string'],
         [$clang_prefix.'status', 'string'],
     ]));
@@ -312,6 +315,9 @@ $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
 
+/* Datenschutzlinks Einstellungen */
+$content .= '<fieldset><legend>'.$this->i18n('privacy_policy_link_settings').'</legend>';
+
 $formElements = [];
 $n = [];
 $n['label'] = '<label for="cookie_consent_link_content">' . $this->i18n('link_content') . '</label>';
@@ -398,20 +404,48 @@ $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
 
+/* Ausgabe Einstellungen */
+$content .= '<fieldset><legend>'.$this->i18n('output_settings').'</legend>';
+
 /* CSS UND JS AUTOMATISCH EINBINDEN */
+$formElements = [];
+$n = [];
+$n['label'] = '<label for="embed_config">' . $this->i18n('embed_config') . '</label>';
+$n['field'] = '<input type="checkbox" id="embed_config" name="config['.$clang_prefix.'embed_config]"' . (!empty($this->getConfig($clang_prefix.'embed_config')) && $this->getConfig($clang_prefix.'embed_config') == '1' ? ' checked="checked"' : '') . ' value="1" />';
+$formElements[] = $n;
+
+/* Embed JS File */
+$n = [];
+$n['label'] = '<label for="embed_js">' . $this->i18n('embed_js') . '</label>';
+$n['field'] = '<input type="checkbox" id="embed_js" name="config['.$clang_prefix.'embed_js]"' . (!empty($this->getConfig($clang_prefix.'embed_js')) && $this->getConfig($clang_prefix.'embed_js') == '1' ? ' checked="checked"' : '') . ' value="1" />';
+$formElements[] = $n;
+
+/* Embed CSS File */
+$n = [];
+$n['label'] = '<label for="embed_css">' . $this->i18n('embed_css') . '</label>';
+$n['field'] = '<input type="checkbox" id="embed_css" name="config['.$clang_prefix.'embed_css]"' . (!empty($this->getConfig($clang_prefix.'embed_css')) && $this->getConfig($clang_prefix.'embed_css') == '1' ? ' checked="checked"' : '') . ' value="1" />';
+$formElements[] = $n;
+
+/* Auto Embed Settings */
+$n = [];
+$n['label'] = '<label for="embed_auto">' . $this->i18n('embed_auto') . '</label>';
+$n['field'] = '<input type="checkbox" id="embed_auto" name="config['.$clang_prefix.'embed_auto]"' . (!empty($this->getConfig($clang_prefix.'embed_auto')) && $this->getConfig($clang_prefix.'embed_auto') == '1' ? ' checked="checked"' : '') . ' value="1" />';
+$n['note'] = '<small>'.$this->i18n('embed_notice').'</small>';
+$formElements[] = $n;
+
+/* Output checkboxes */
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$fragment->setVar('grouped', true, false);
+$containerContent = $fragment->parse('core/form/checkbox.php');
 
 $formElements = [];
 $n = [];
-$n['label'] = '<label for="script-checkbox">' . $this->i18n('script-checkbox') . '</label>';
-$n['field'] = '<input type="checkbox" id="script-checkbox" name="config['.$clang_prefix.'script_checkbox]"' . (!empty($this->getConfig($clang_prefix.'script_checkbox')) && $this->getConfig($clang_prefix.'script_checkbox') == '1' ? ' checked="checked"' : '') . ' value="1" />';
-$n['note'] = '<small>'.$this->i18n('script-checkbox-notice').'</small>';
+$n['field'] = $containerContent;
+$n['label'] = $this->i18n('output_options');
 $formElements[] = $n;
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/checkbox.php');
 
 /* Custom Options */
-$formElements = [];
 $n = [];
 $n['label'] = '<label for="custom-options">' . $this->i18n('custom_options') . '</label>';
 $n['field'] = '<div class="input-group"><div class="input-group-addon">{</div>';
