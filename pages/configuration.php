@@ -304,6 +304,7 @@ $select->setId('cookie_consent_position');
 $select->setAttribute('class', 'form-control selectpicker');
 $select->setName('config['.$clang_prefix.'position]');
 $select->addOption($this->i18n('top'), 'top');
+$select->addOption($this->i18n('top_pushdown'), 'top-pushdown');
 $select->addOption($this->i18n('bottom'), 'bottom');
 $select->addOption($this->i18n('bottom-left'), 'bottom-left');
 $select->addOption($this->i18n('bottom-right'), 'bottom-right');

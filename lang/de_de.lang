@@ -33,6 +33,7 @@ cookie_consent_allow_content = Zustimmen-Button-Text (Opt-In)
 
 cookie_consent_position = Position
 cookie_consent_top = Oben
+cookie_consent_top_pushdown = Von oben reinfahren (pushdown)
 cookie_consent_bottom = Unten
 cookie_consent_bottom-left = Unten links
 cookie_consent_bottom-right = Unten rechts

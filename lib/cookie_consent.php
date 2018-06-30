@@ -133,6 +133,11 @@ class cookie_consent
             ],
         ];
 
+        if (($pos = strpos($position, '-pushdown')) !== false) {
+            $object['position'] = substr($position, 0, $pos);
+            $object['static'] = true;
+        }
+
         if ($theme != 'clean') {
             $object['palette'] = [
                 'popup' => [
