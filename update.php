@@ -37,6 +37,13 @@ foreach ($configs as $key => $value) {
         }
         $this->setConfig($key, $value);
     }
+    if ($key == $prefix.'script_checkbox') {
+        $this->setConfig($prefix.'embed_auto', $value);
+        $this->setConfig($prefix.'embed_config', $value);
+        $this->setConfig($prefix.'embed_js', $value);
+        $this->setConfig($prefix.'embed_css', $value);
+        $this->removeConfig($prefix.'script_checkbox');
+    }
 }
 if (!$this->hasConfig($prefix.'status')) {
     $this->setConfig($prefix.'status', '1');
