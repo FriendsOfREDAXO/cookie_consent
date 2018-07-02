@@ -169,4 +169,17 @@ $(document).ready(function() {
     $('#cookie_consent_color_button_content').keyup(function() {
         $('#color_scheme').val('custom');
     });
+
+    var $fieldsetConfig = $('#cookie_consent_fieldset_config');
+
+    var $inheritSel = $('#cookie_consent_inherit');
+    var inheritSel = $inheritSel.get(0);
+    $inheritSel.change(function() {
+        if(inheritSel.options[inheritSel.selectedIndex].value === '') {
+          $fieldsetConfig.show();
+        } else {
+          $fieldsetConfig.hide();
+        }
+    });
+    $inheritSel.trigger('change');
 });
