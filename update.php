@@ -19,7 +19,7 @@ $prefix .= '_';
 
 $configs = $this->getConfig();
 foreach ($configs as $key => $value) {
-    if (strpos($key, $prefix) !== 0) {
+    if (strpos($key, $prefix) !== 0 && strpos($key, 'global_') === false) {
         // multilanguage update needed
 
         $this->removeConfig($key);

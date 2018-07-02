@@ -157,7 +157,11 @@ class cookie_consent
             $jsonConfig = substr($jsonConfig, 0, strlen($jsonConfig) - 2) . ','.PHP_EOL.$custom_options.PHP_EOL . '}';
         }
 
-        $jsConfigCode = 'window.cookieconsent.initialise('.$jsonConfig.');';
+        if (self::getGlobalConfig('testmode') === '1') {
+            $jsConfigCode = 'window.cookieconsent.initialise('.$jsonConfig.', function(idx) {idx.clearStatus();idx.open();});';
+        } else {
+            $jsConfigCode = 'window.cookieconsent.initialise('.$jsonConfig.');';
+        }
 
         if ($codepreview === true) {
             return $jsConfigCode;
@@ -253,6 +257,11 @@ class cookie_consent
     {
         $prefix = self::getKeyPrefix();
         return rex_config::get('cookie_consent', $prefix.$key, $default);
+    }
+
+    public static function getGlobalConfig($key, $default = null)
+    {
+        return rex_config::get('cookie_consent', 'global_'.$key, $default);
     }
 
     public static function checkYrewrite()
