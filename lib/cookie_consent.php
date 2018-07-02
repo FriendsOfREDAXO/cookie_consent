@@ -85,7 +85,7 @@ class cookie_consent
         }
 
         $status = self::getConfig('status');
-        if ($status != '1') {
+        if ($status != '1' || (self::getGlobalConfig('hide_on_cookie') === '1' && isset($_COOKIE[self::COOKIE_NAME]))) {
             return '';
         }
 
