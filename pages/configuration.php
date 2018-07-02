@@ -124,6 +124,7 @@ if (rex_post('formsubmit', 'string') == '1') {
         [$clang_prefix.'embed_css', 'string'],
         [$clang_prefix.'custom_options', 'string'],
         [$clang_prefix.'status', 'string'],
+        [$clang_prefix.'inherit', 'string'],
     ]));
 
     echo rex_view::success($this->i18n('config_saved_cookie'));
@@ -152,7 +153,41 @@ $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/checkbox.php');
 
-$content .= '</fieldset><fieldset><legend>' . $this->i18n('config_legend') . '</legend>';
+// Inherit Config
+$inheritSelect = new rex_select();
+$inheritSelect->setId('cookie_consent_inherit');
+$inheritSelect->setAttribute('class', 'form-control selectpicker');
+$inheritSelect->setName('config['.$clang_prefix.'inherit]');
+$inheritSelect->setSelected($this->getConfig($clang_prefix.'inherit'));
+$inheritSelect->addOption('-', '');
+if (isset($allDomains) && count($allDomains) > 1) {
+    foreach ($allDomains as $d) {
+        foreach (rex_clang::getAll() as $lang) {
+            $value = $lang->getCode().'_'.$d->getId().'_';
+            if ($clang_prefix != $value) {
+                $inheritSelect->addOption($d->getName() . ' - ' . $lang->getName(), $value);
+            }
+        }
+    }
+} else {
+    foreach (rex_clang::getAll() as $lang) {
+        $value = $lang->getCode().'__';
+        if ($clang_prefix != $value) {
+            $inheritSelect->addOption($lang->getName(), $lang->getCode().'__');
+        }
+    }
+}
+$n = [
+    'label' => '<label for="cookie_consent_inherit">'.$this->i18n('inherit').'</label>',
+    'field' => $inheritSelect->get(),
+];
+$formElements = [$n];
+
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$content .= $fragment->parse('core/form/container.php');
+
+$content .= '</fieldset><fieldset id="cookie_consent_fieldset_config"><legend>' . $this->i18n('config_legend') . '</legend>';
 
 $formElements = [];
 $n = [];

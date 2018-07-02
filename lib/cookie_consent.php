@@ -16,6 +16,8 @@ class cookie_consent
 
     const YREWRITE_VERSION_MIN = '2.3';
 
+    private static $overridePrefix;
+
     public function checkUrl($url)
     {
         if ($url) {
@@ -82,6 +84,11 @@ class cookie_consent
     {
         if (self::checkYrewrite()) {
             rex_yrewrite::init();
+        }
+
+        $inherit = self::getConfig('inherit');
+        if ($inherit != '') {
+            self::$overridePrefix = $inherit;
         }
 
         $status = self::getConfig('status');
@@ -236,6 +243,10 @@ class cookie_consent
 
     public static function getKeyPrefix()
     {
+        if (self::$overridePrefix) {
+            return self::$overridePrefix;
+        }
+
         $prefix = rex_clang::getCurrent()->getCode().'_';
         if (self::checkYrewrite()) {
             rex_yrewrite::init();

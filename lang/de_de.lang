@@ -78,3 +78,5 @@ cookie_consent_testmode = Testmodus aktivieren
 cookie_consent_testmode_notice = Wenn der Testmodus aktiv ist, setzt der Cookie-Banner kein Cookie. Dies erlaubt einfacheres Testen des Banners im Frontend.
 cookie_consent_hide_on_cookie = Banner CSS und JS nach Bestätigung nicht laden
 cookie_consent_hide_on_cookie_notice = Wenn der Banner-Cookie gesetzt wurde, wird der Banner CSS- und JS-Code im Frontend nicht mehr ausgegeben.
+
+cookie_consent_inherit = Konfiguration erben von
