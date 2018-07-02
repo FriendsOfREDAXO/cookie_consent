@@ -12,6 +12,9 @@ page:
         configuration:
             title: 'translate:configuration'
             icon: rex-icon fa-cogs
+        global_configuration:
+            title: 'translate:global_configuration'
+            icon: rex-icon fa-cog
         configuration_test:
             title: 'translate:configuration_test'
             icon: rex-icon fa-eercast

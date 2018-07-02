@@ -72,3 +72,7 @@ cookie_consent_preview = Vorschau anzeigen
 cookie_consent_config_code = Konfiguration
 cookie_consent_test_preview_notice = Mit diesem Button kann die Konfiguration getestet werden. Es gilt hierbei zu beachten, dass die Ansicht im Backend von der im Frontend abweichen kann. Aus diesem Grund empfiehlt es sich abschließend die Konfiguration im Frontend zu testen.
 cookie_consent_test_embed_notice = Der folgende Code kann verwendet werden um die Konfiguration manuell einzubinden. Zusätzlich sollten die CSS- und JS-Datei eingebunden werden. Alternativ können diese Dateien auch in eigene JS/CSS-Workflows aufgenommen werden.
+
+cookie_consent_global_configuration = Globale Einstellungen
+cookie_consent_testmode = Testmodus aktivieren
+cookie_consent_testmode_notice = Wenn der Testmodus aktiv ist, setzt der Cookie-Banner kein Cookie. Dies erlaubt einfacheres Testen des Banners im Frontend.
