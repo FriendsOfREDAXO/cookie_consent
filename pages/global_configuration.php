@@ -10,6 +10,7 @@ $context = rex_context::restore();
 if ($context->getParam('save')) {
     $this->setConfig(rex_post('config', [
         ['global_testmode', 'string', '0'],
+        ['global_hide_on_cookie', 'string', '0'],
     ]));
 }
 $formElements = [];
@@ -19,6 +20,13 @@ $formElements[] = [
     'label' => '<label for="testmode">'.$this->i18n('testmode').'</label>',
     'field' => '<input type="checkbox" id="testmode" name="config[global_testmode]"' . (cookie_consent::getGlobalConfig('testmode', '0') == '1' ? ' checked="checked"' : '') . ' value="1" />',
     'note' => $this->i18n('testmode_notice'),
+];
+
+// Hide JS and CSS if Cookie is set
+$formElements[] = [
+    'label' => '<label for="hide_on_cookie">'.$this->i18n('hide_on_cookie').'</label>',
+    'field' => '<input type="checkbox" id="hide_on_cookie" name="config[global_hide_on_cookie]"' . (cookie_consent::getGlobalConfig('hide_on_cookie', '0') == '1' ? ' checked="checked"' : '') . ' value="1" />',
+    'note' => $this->i18n('hide_on_cookie_notice'),
 ];
 
 $fragment = new rex_fragment();
