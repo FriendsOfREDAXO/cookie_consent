@@ -193,6 +193,14 @@ class cookie_consent
         return rex_config::get('cookie_consent', self::getKeyPrefix().'mode', self::MODE_INFO);
     }
 
+    public static function getStatus()
+    {
+        if (isset($_COOKIE[self::COOKIE_NAME])) {
+            return $_COOKIE[self::COOKIE_NAME];
+        }
+        return null;
+    }
+
     /**
      * Extension Point Callback
      * Removes all Cookies if the cookie-consent cookie isn't set by the user.
@@ -209,7 +217,7 @@ class cookie_consent
     public static function removeCookies()
     {
         // If user is logged in, skip
-        if (rex_backend_login::hasSession()) {
+        if (session_id() != '' && rex_backend_login::hasSession()) {
             return;
         }
 

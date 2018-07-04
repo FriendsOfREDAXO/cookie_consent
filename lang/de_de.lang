@@ -39,7 +39,7 @@ cookie_consent_bottom-left = Unten links
 cookie_consent_bottom-right = Unten rechts
 
 cookie_consent_main_message = Text für den Cookie Hinweis
-cookie_consent_button_content = Text für den Button
+cookie_consent_button_content = Text für den Ablehnen/Verwerfen Button
 cookie_consent_privacy_policy_link_settings = Einstellungen für Datenschutzbestimmungen
 cookie_consent_link_content = Text für den Datenschutzbestimmungs-Link
 cookie_consent_link_intern = Interner Link für Datenschutzbestimmungen
@@ -56,6 +56,7 @@ cookie_consent_embed_notice = Fügt die gewählten Optionen vor dem <i></head></
 cookie_consent_output_settings = Ausgabeeinstellungen
 cookie_consent_custom_options = Benutzerdefinierte Optionen
 cookie_consent_custom_options_notice = Hier können zusätzliche Optionen eingetragen werden. Für mögliche Optionen siehe
+cookie_consent_custom_options_template_notice = Beispiele für mögliche Anwendungsfälle sind hier zu finden:
 cookie_consent_json_not_valid = Die gegebenen Optionen liegen nicht im gültigen JSON-Format vor
 cookie_consent_url_not_valid = Die angegebene URL liegt nicht im gültigen URL-Format vor
 
@@ -80,3 +81,6 @@ cookie_consent_hide_on_cookie = Banner CSS und JS nach Bestätigung nicht laden
 cookie_consent_hide_on_cookie_notice = Wenn der Banner-Cookie gesetzt wurde, wird der Banner CSS- und JS-Code im Frontend nicht mehr ausgegeben.
 
 cookie_consent_inherit = Konfiguration erben von
+cookie_consent_config_design = Grafische Einstellungen
+cookie_consent_config_text = Text-Einstellungen
+cookie_consent_templates = Vorlagen

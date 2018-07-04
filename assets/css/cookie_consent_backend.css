@@ -1,3 +1,4 @@
+.rex-form-group:not(.rex-form-group-vertical).cookie_consent_display_none,
 .cookie_consent_display_none {
     display: none;
 }
