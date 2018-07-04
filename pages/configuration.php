@@ -141,6 +141,10 @@ if ($this->getConfig($clang_prefix.'select_link') == 'iLink') {
     $cookie_consent->setConfig($clang_prefix.'eLink', '');
 }
 
+/**
+ * Configuration page.
+ */
+
 $content .= '<fieldset><legend>'.$this->i18n('status').'</legend>';
 
 $formElements = [];
@@ -205,9 +209,53 @@ $n['field'] = $select->get().'<i class="mode_optin_notice">'.$this->i18n('mode_o
 $n['field'] .= '<i class="mode_notice">'.$this->i18n('mode_notice').' <a href="https://cookieconsent.insites.com/documentation/disabling-cookies/">'.$this->i18n('disable_cookies').'</a></i>';
 $formElements[] = $n;
 
+$n = [];
+$n['label'] = '<label for="cookie_consent_position">' . $this->i18n('position') . '</label>';
+$select = new rex_select();
+$select->setId('cookie_consent_position');
+$select->setAttribute('class', 'form-control selectpicker');
+$select->setName('config['.$clang_prefix.'position]');
+$select->addOption($this->i18n('top'), 'top');
+$select->addOption($this->i18n('top_pushdown'), 'top-pushdown');
+$select->addOption($this->i18n('bottom'), 'bottom');
+$select->addOption($this->i18n('bottom-left'), 'bottom-left');
+$select->addOption($this->i18n('bottom-right'), 'bottom-right');
+$select->setSelected($this->getConfig($clang_prefix.'position'));
+$n['field'] = $select->get();
+$formElements[] = $n;
+
 $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);
 $content .= $fragment->parse('core/form/container.php');
+
+$content .= '<legend>' . $this->i18n('config_text') . '</legend>';
+
+$formElements = [];
+$n = [];
+$n['label'] = '<label for="cookie_consent_main_message">' . $this->i18n('main_message') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_main_message" name="config['.$clang_prefix.'main_message]" value="' . $this->getConfig($clang_prefix.'main_message') . '"/>';
+$formElements[] = $n;
+
+$n = [];
+$n['label'] = '<label for="cookie_consent_button_content">' . $this->i18n('button_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_button_content" name="config['.$clang_prefix.'button_content]" value="' . $this->getConfig($clang_prefix.'button_content') . '"/>';
+$formElements[] = $n;
+
+$n = [];
+$n['label'] = '<label class="cookie_consent_deny_content" for="cookie_consent_deny_content">' . $this->i18n('deny_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_deny_content" name="config['.$clang_prefix.'deny_content]" value="' . $this->getConfig($clang_prefix.'deny_content') . '"/>';
+$formElements[] = $n;
+
+$n = [];
+$n['label'] = '<label class="cookie_consent_allow_content" for="cookie_consent_allow_content">' . $this->i18n('allow_content') . '</label>';
+$n['field'] = '<input class="form-control" type="text" id="cookie_consent_allow_content" name="config['.$clang_prefix.'allow_content]" value="' . $this->getConfig($clang_prefix.'allow_content') . '"/>';
+$formElements[] = $n;
+
+$fragment = new rex_fragment();
+$fragment->setVar('elements', $formElements, false);
+$content .= $fragment->parse('core/form/container.php');
+
+$content .= '<legend>' . $this->i18n('config_design') . '</legend>';
 
 $formElements = [];
 $n = [];
@@ -228,11 +276,6 @@ $select->setSelected($this->getConfig($clang_prefix.'color_scheme'));
 $n['field'] = $select->get();
 $formElements[] = $n;
 
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
 $n = [];
 $n['label'] = '<label for="cookie_consent_theme">' . $this->i18n('theme') . '</label>';
 $select = new rex_select();
@@ -247,104 +290,24 @@ $select->setSelected($this->getConfig($clang_prefix.'theme'));
 $n['field'] = $select->get();
 $formElements[] = $n;
 
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
 $n = [];
 $n['label'] = '<label for="cookie_consent_color_background">' . $this->i18n('color_background') . '</label>';
 $n['field'] = '<input class="form-control minicolors" type="text" id="cookie_consent_color_background" name="config['.$clang_prefix.'color_background]" value="' . $this->getConfig($clang_prefix.'color_background') . '"/>';
 $formElements[] = $n;
 
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
 $n = [];
 $n['label'] = '<label for="cookie_consent_color_main_content">' . $this->i18n('color_main_content') . '</label>';
 $n['field'] = '<input class="form-control minicolors" type="text" id="cookie_consent_color_main_content" name="config['.$clang_prefix.'color_main_content]" value="' . $this->getConfig($clang_prefix.'color_main_content') . '"/>';
 $formElements[] = $n;
 
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
-$n = [];
-$n['label'] = '<label for="cookie_consent_main_message">' . $this->i18n('main_message') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookie_consent_main_message" name="config['.$clang_prefix.'main_message]" value="' . $this->getConfig($clang_prefix.'main_message') . '"/>';
-$formElements[] = $n;
-
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
-$n = [];
-$n['label'] = '<label for="cookie_consent_button_content">' . $this->i18n('button_content') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookie_consent_button_content" name="config['.$clang_prefix.'button_content]" value="' . $this->getConfig($clang_prefix.'button_content') . '"/>';
-$formElements[] = $n;
-
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
-$n = [];
-$n['label'] = '<label class="cookie_consent_deny_content" for="cookie_consent_deny_content">' . $this->i18n('deny_content') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookie_consent_deny_content" name="config['.$clang_prefix.'deny_content]" value="' . $this->getConfig($clang_prefix.'deny_content') . '"/>';
-$formElements[] = $n;
-
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
-$n = [];
-$n['label'] = '<label class="cookie_consent_allow_content" for="cookie_consent_allow_content">' . $this->i18n('allow_content') . '</label>';
-$n['field'] = '<input class="form-control" type="text" id="cookie_consent_allow_content" name="config['.$clang_prefix.'allow_content]" value="' . $this->getConfig($clang_prefix.'allow_content') . '"/>';
-$formElements[] = $n;
-
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
 $n = [];
 $n['label'] = '<label for="cookie_consent_color_button_content">' . $this->i18n('color_button_content') . '</label>';
 $n['field'] = '<input class="form-control minicolors" type="text" id="cookie_consent_color_button_content" name="config['.$clang_prefix.'color_button_content]" value="' . $this->getConfig($clang_prefix.'color_button_content') . '"/>';
 $formElements[] = $n;
 
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
 $n = [];
 $n['label'] = '<label for="cookie_consent_color_button_background">' . $this->i18n('color_button_background') . '</label>';
 $n['field'] = '<input class="form-control minicolors" type="text" id="cookie_consent_color_button_background" name="config['.$clang_prefix.'color_button_background]" value="' . $this->getConfig($clang_prefix.'color_button_background') . '"/>';
-$formElements[] = $n;
-
-$fragment = new rex_fragment();
-$fragment->setVar('elements', $formElements, false);
-$content .= $fragment->parse('core/form/container.php');
-
-$formElements = [];
-$n = [];
-$n['label'] = '<label for="cookie_consent_position">' . $this->i18n('position') . '</label>';
-$select = new rex_select();
-$select->setId('cookie_consent_position');
-$select->setAttribute('class', 'form-control selectpicker');
-$select->setName('config['.$clang_prefix.'position]');
-$select->addOption($this->i18n('top'), 'top');
-$select->addOption($this->i18n('top_pushdown'), 'top-pushdown');
-$select->addOption($this->i18n('bottom'), 'bottom');
-$select->addOption($this->i18n('bottom-left'), 'bottom-left');
-$select->addOption($this->i18n('bottom-right'), 'bottom-right');
-$select->setSelected($this->getConfig($clang_prefix.'position'));
-$n['field'] = $select->get();
 $formElements[] = $n;
 
 $fragment = new rex_fragment();
@@ -487,7 +450,8 @@ $n['label'] = '<label for="custom-options">' . $this->i18n('custom_options') . '
 $n['field'] = '<div class="input-group"><div class="input-group-addon">{</div>';
 $n['field'] .= '<textarea class="form-control" id="custom-options" name="config['.$clang_prefix.'custom_options]">' . $this->getConfig($clang_prefix.'custom_options') . '</textarea>';
 $n['field'] .= '<div class="input-group-addon">}</div></div>';
-$n['field'] .= '<i class="custom_options_notice">'.$this->i18n('custom_options_notice').' <a href="https://cookieconsent.insites.com/documentation/javascript-api/" target="_blank">JavaScript API</a></i>';
+$n['field'] .= '<i class="custom_options_notice">'.$this->i18n('custom_options_notice').' <a href="https://cookieconsent.insites.com/documentation/javascript-api/" target="_blank">JavaScript API</a><br>';
+$n['field'] .= $this->i18n('custom_options_template_notice').' <a href="'.rex_url::backendController(['page' => 'cookie_consent/help/templates']).'" target="_blank">'.$this->i18n('templates').'</a></i>';
 $formElements[] = $n;
 $fragment = new rex_fragment();
 $fragment->setVar('elements', $formElements, false);

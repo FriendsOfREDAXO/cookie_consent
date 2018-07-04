@@ -21,7 +21,12 @@ page:
         help:
             title: 'translate:help'
             icon: rex-icon fa-wrench
-        
+            subpages:
+              readme:
+                title: 'translate:help'
+              templates:
+                title: 'translate:templates'
+
 
 requires:
     redaxo: '^5.1'
