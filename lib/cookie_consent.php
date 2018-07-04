@@ -46,7 +46,7 @@ class cookie_consent
             $cssFile = 'css/cookie_consent_insites.css';
         }
         $getFile = rex_url::addonAssets('cookie_consent', $cssFile);
-        $makeCssLink = '<link rel="stylesheet" href="'.$getFile.'" async>';
+        $makeCssLink = '<link rel="stylesheet" href="'.$getFile.'">';
         return $makeCssLink;
     }
 
@@ -182,7 +182,7 @@ class cookie_consent
             $output .= self::getJs().PHP_EOL;
         }
         if (self::getConfig('embed_config') == '1') {
-            $output .= '<script>window.addEventListener("load", function() {'.$jsConfigCode.'});</script>';
+            $output .= '<script async>window.addEventListener("load", function() {'.$jsConfigCode.'});</script>';
         }
 
         return $output;
