@@ -20,7 +20,6 @@ cookie_consent_mode_optin_notice = Det här alternativet tar bort alla inställd
 cookie_consent_mode_notice = Observera att inloggnings- och bortkopplingsmetoderna endast ger återuppringningar för att inte lagra cookies. Du måste själv skriva funktionen och anpassa din webbplats så att inga cookies lagras. Se:
 cookie_consent_disable_cookies = Deaktivera cookien
 
-cookie_consent_color_scheme = Designs
 cookie_consent_custom = anpassad
 
 cookie_consent_theme = Tema

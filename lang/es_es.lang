@@ -20,7 +20,6 @@ cookie_consent_mode_optin_notice = Esta opción elimina todas las cookies del la
 cookie_consent_mode_notice = Tenga en cuenta que los métodos de inclusión y exclusión voluntaria solo proporcionan las devoluciones de llamada para no almacenar las cookies. Debe escribir la función usted mismo y personalizar su sitio web para que no se almacenen cookies. Por favor refiérase a
 cookie_consent_disable_cookies = Desactivar cookies
 
-cookie_consent_color_scheme = diseños
 cookie_consent_custom = personalizado
 
 cookie_consent_theme = Tema
