@@ -38,7 +38,6 @@ cookie_consent_bottom-left = Abajo a la izquierda
 cookie_consent_bottom-right = Abajo a la derecha
 
 cookie_consent_main_message = Texto para la nota de cookie
-cookie_consent_button_content = Texto para el botón
 cookie_consent_link_content = Texto para el enlace de política de privacidad
 cookie_consent_link_intern = Enlace interno para la política de privacidad
 cookie_consent_link_extern = Enlace externo para la política de privacidad

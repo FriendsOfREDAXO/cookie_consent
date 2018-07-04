@@ -38,7 +38,6 @@ cookie_consent_bottom-left = Nere vänster
 cookie_consent_bottom-right = Nere höger
 
 cookie_consent_main_message = Text till cookie-info
-cookie_consent_button_content = Text till knappen
 cookie_consent_link_content = Text till
 cookie_consent_link_intern = Text för länken till integritetspolicyn
 cookie_consent_link_extern = Extern länk för integritetspolicyn
