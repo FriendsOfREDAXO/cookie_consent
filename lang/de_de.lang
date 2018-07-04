@@ -20,7 +20,7 @@ cookie_consent_mode_optin_notice = Bei dieser Option werden serverseitig alle ge
 cookie_consent_mode_notice = Bitte beachte das die Opt-in und Opt-out Methoden nur die Callbacks zum nicht speichern der Cookies liefern. Du musst selbst die Funktion verfassen und deine Webseite anpassen, sodass keine Cookies gespeichert werden. Siehe:
 cookie_consent_disable_cookies = Cookies deaktivieren
 
-cookie_consent_color_scheme = Designs
+cookie_consent_color_scheme = vorgefertigte Designs
 cookie_consent_custom = Benutzerdefiniert
 
 cookie_consent_theme = Theme

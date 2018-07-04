@@ -259,6 +259,20 @@ $content .= '<legend>' . $this->i18n('config_design') . '</legend>';
 
 $formElements = [];
 $n = [];
+$n['label'] = '<label for="cookie_consent_theme">' . $this->i18n('theme') . '</label>';
+$select = new rex_select();
+$select->setId('cookie_consent_theme');
+$select->setAttribute('class', 'form-control selectpicker');
+$select->setName('config['.$clang_prefix.'theme]');
+$select->addOption('Clean', 'clean');
+$select->addOption('Classic', 'classic');
+$select->addOption('Edgeless', 'edgeless');
+$select->addOption('Block', 'block');
+$select->setSelected($this->getConfig($clang_prefix.'theme'));
+$n['field'] = $select->get();
+$formElements[] = $n;
+
+$n = [];
 $n['label'] = '<label for="cookie_consent_color_scheme">' . $this->i18n('color_scheme') . '</label>';
 $select = new rex_select();
 $select->setId('cookie_consent_color_scheme');
@@ -273,20 +287,6 @@ $select->addOption('Polarlights', 'polarlights');
 $select->addOption('Bubblegum', 'bubblegum');
 $select->addOption('Honeybee', 'honeybee');
 $select->setSelected($this->getConfig($clang_prefix.'color_scheme'));
-$n['field'] = $select->get();
-$formElements[] = $n;
-
-$n = [];
-$n['label'] = '<label for="cookie_consent_theme">' . $this->i18n('theme') . '</label>';
-$select = new rex_select();
-$select->setId('cookie_consent_theme');
-$select->setAttribute('class', 'form-control selectpicker');
-$select->setName('config['.$clang_prefix.'theme]');
-$select->addOption('Clean', 'clean');
-$select->addOption('Classic', 'classic');
-$select->addOption('Edgeless', 'edgeless');
-$select->addOption('Block', 'block');
-$select->setSelected($this->getConfig($clang_prefix.'theme'));
 $n['field'] = $select->get();
 $formElements[] = $n;
 

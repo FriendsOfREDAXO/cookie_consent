@@ -78,30 +78,46 @@ $(document).ready(function() {
   $('#cookie_consent_theme').change(function() {
     var theme = document.getElementById('cookie_consent_theme');
     var selTheme = theme.options[theme.selectedIndex].value;
+
+    var $colorBackground = $('#cookie_consent_color_background');
+    var $colorMainContent = $('#cookie_consent_color_main_content');
+    var $colorButtonContent = $('#cookie_consent_color_button_content');
+    var $colorButtonBackground = $('#cookie_consent_color_button_background');
+    var $design = $('#color_scheme');
     if(selTheme == 'clean') {
-      $('#cookie_consent_color_background').attr('disabled', 'disabled');
-      $('#cookie_consent_color_main_content').attr('disabled', 'disabled');
-      $('#cookie_consent_color_button_content').attr('disabled', 'disabled');
-      $('#cookie_consent_color_button_background').attr('disabled', 'disabled');
+      $colorBackground.attr('disabled', 'disabled');
+      $colorMainContent.attr('disabled', 'disabled');
+      $colorButtonContent.attr('disabled', 'disabled');
+      $colorButtonBackground.attr('disabled', 'disabled');
+
+      $colorBackground.parent().parent().addClass('cookie_consent_display_none');
+      $colorMainContent.parent().parent().addClass('cookie_consent_display_none');
+      $colorButtonContent.parent().parent().addClass('cookie_consent_display_none');
+      $colorButtonBackground.parent().parent().addClass('cookie_consent_display_none');
+
+      $('label[for=cookie_consent_color_scheme]').parent().parent().addClass('cookie_consent_display_none');
+      $design.find('option').removeAttr('selected');
+      $design.find('option[value=custom]').attr('selected', true);
+      $design.selectpicker('refresh');
     } else {
-      $('#cookie_consent_color_background').removeAttr('disabled');
-      $('#cookie_consent_color_main_content').removeAttr('disabled');
-      $('#cookie_consent_color_button_content').removeAttr('disabled');
-      $('#cookie_consent_color_button_background').removeAttr('disabled');
+      $colorBackground.removeAttr('disabled');
+      $colorMainContent.removeAttr('disabled');
+      $colorButtonContent.removeAttr('disabled');
+      $colorButtonBackground.removeAttr('disabled');
+
+      $colorBackground.parent().parent().removeClass('cookie_consent_display_none');
+      $colorMainContent.parent().parent().removeClass('cookie_consent_display_none');
+      $colorButtonContent.parent().parent().removeClass('cookie_consent_display_none');
+      $colorButtonBackground.parent().parent().removeClass('cookie_consent_display_none');
+      $('label[for=cookie_consent_color_scheme]').parent().parent().removeClass('cookie_consent_display_none');
     }
   });
   $('#cookie_consent_theme').trigger('change');
-  $('#cookie_consent_color_background').change(function() {
-    $("#color_scheme option[value='0']").prop("selected","selected");
-  });
-  $('#cookie_consent_color_main_content').change(function() {
-    $('#color_scheme').val('custom');
-  });
-  $('#cookie_consent_color_button_background').keyup(function() {
-    $('#color_scheme').val('custom');
-  });
-  $('#cookie_consent_color_button_content').keyup(function() {
-    $('#color_scheme').val('custom');
+  $('#cookie_consent_color_background,#cookie_consent_color_main_content,#cookie_consent_color_button_background,#cookie_consent_color_button_content').change(function() {
+    var $design = $('#color_scheme');
+    $design.find('option').removeAttr('selected');
+    $design.find('option[value=custom]').attr('selected', true);
+    $design.selectpicker('refresh');
   });
 
   var $fieldsetConfig = $('#cookie_consent_fieldset_config');
