@@ -1,0 +1,57 @@
+cookie_consent_configuration = Configuración
+cookie_consent_configuration_test = Prueba de configuración
+cookie_consent_help = Ayuda
+cookie_consent_config_legend = Ajustes
+cookie_consent_config_save = para guardar
+cookie_consent_config_lang_domain = Configuración para <b>{0}</b> @ <b>{1}</b>
+cookie_consent_config_lang = Configuración para <b>{0}</b>
+cookie_consent_activate_for_lang_domain = Para el idioma <b>{0}</b>, active el dominio <b>{1}</b>
+cookie_consent_activate_for_lang = Activar para el lenguaje <b>{0}</b>
+cookie_consent_config_saved_cookie = La configuración se ha guardado
+cookie_consent_settings_for = Configuración para
+cookie_consent_select_language = Idioma
+cookie_consent_select_domain = Dominio
+
+cookie_consent_mode = Modo
+cookie_consent_info = Informar a los usuarios que las cookies se almacenan
+cookie_consent_opt-in = Método de inclusión
+cookie_consent_opt-out = Método de exclusión
+cookie_consent_mode_optin_notice = Esta opción elimina todas las cookies del lado del servidor. Esto asegura que las cookies se obtuvieron del usuario. <b>Sin embargo, esto no impide que Javascripts establezca cookies, p. Ej. Google Analytics.</b>
+cookie_consent_mode_notice = Tenga en cuenta que los métodos de inclusión y exclusión voluntaria solo proporcionan las devoluciones de llamada para no almacenar las cookies. Debe escribir la función usted mismo y personalizar su sitio web para que no se almacenen cookies. Por favor refiérase a
+cookie_consent_disable_cookies = Desactivar cookies
+
+cookie_consent_color_scheme = diseños
+cookie_consent_custom = personalizado
+
+cookie_consent_theme = Tema
+cookie_consent_color_background = Color de fondo
+cookie_consent_color_main_content = Color de fuente de la nota
+cookie_consent_color_button_background = Botón de color de fondo
+cookie_consent_color_button_content = Color de fuente en el botón
+cookie_consent_deny_content = Denegar texto de botón (exclusión)
+cookie_consent_allow_content = Aceptar el texto del botón (Opt-In)
+
+cookie_consent_position = posición
+cookie_consent_top = Por encima
+cookie_consent_bottom = Por debajo
+cookie_consent_bottom-left = Abajo a la izquierda
+cookie_consent_bottom-right = Abajo a la derecha
+
+cookie_consent_main_message = Texto para la nota de cookie
+cookie_consent_link_content = Texto para el enlace de política de privacidad
+cookie_consent_link_intern = Enlace interno para la política de privacidad
+cookie_consent_link_extern = Enlace externo para la política de privacidad
+cookie_consent_select_link = Tipo de enlace
+cookie_consent_eLink = Enlace externo
+cookie_consent_iLink = Enlace interno
+cookie_consent_custom_options = Opciones personalizadas
+cookie_consent_custom_options_notice = Aquí se pueden ingresar opciones adicionales. Para ver posibles opciones, vea
+cookie_consent_json_not_valid = Las opciones dadas no están disponibles en el formato JSON válido
+cookie_consent_url_not_valid = La URL especificada no está en formato URL válido
+
+cookie_consent_targetSelf = misma pestaña o página (_self)
+cookie_consent_targetBlank = Nueva pestaña o ventana (_blank)
+cookie_consent_targetParent = Ventana principal (_parent)
+cookie_consent_targetTop = ventana completa (_top)
+
+cookie_consent_link_target_type = Base de ventana de destino

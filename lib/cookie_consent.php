@@ -16,6 +16,8 @@ class cookie_consent
 
     const YREWRITE_VERSION_MIN = '2.3';
 
+    private static $overridePrefix;
+
     public function checkUrl($url)
     {
         if ($url) {
@@ -34,9 +36,9 @@ class cookie_consent
         }
     }
 
-    protected function cookie_consent_get_css()
+    public static function getCss()
     {
-        $theme = rex_config::get('cookie_consent', 'theme');
+        $theme = self::getConfig('theme');
 
         if ($theme == 'clean') {
             $cssFile = 'css/cookie_consent_insites_clean.css';
@@ -48,7 +50,7 @@ class cookie_consent
         return $makeCssLink;
     }
 
-    protected function cookie_consent_get_js()
+    public static function getJs()
     {
         $getFile = rex_url::base('assets/addons/cookie_consent/js/cookie_consent_insites.js');
         $makeJsLink = '<script type="text/javascript" src="'.$getFile.'" async></script>';
@@ -70,9 +72,11 @@ class cookie_consent
     public static function ep_call($rex_ep)
     {
         $subject = $rex_ep->getSubject();
-        $s = self::cookie_consent_output();
-
-        $subject = str_replace('</head>', $s.PHP_EOL.'</head>', $subject);
+        $output = self::cookie_consent_output();
+        if ($output === '') {
+            return;
+        }
+        $subject = str_replace('</head>', $output.PHP_EOL.'</head>', $subject);
         $rex_ep->setSubject($subject);
     }
 
@@ -82,26 +86,29 @@ class cookie_consent
             rex_yrewrite::init();
         }
 
-        $clang_prefix = self::getKeyPrefix();
+        $inherit = self::getConfig('inherit');
+        if ($inherit != '') {
+            self::$overridePrefix = $inherit;
+        }
 
-        $status = rex_config::get('cookie_consent', $clang_prefix. 'status');
-        if ($status != '1') {
+        $status = self::getConfig('status');
+        if ($status != '1' || (self::getGlobalConfig('hide_on_cookie') === '1' && isset($_COOKIE[self::COOKIE_NAME]) && !$codepreview)) {
             return '';
         }
 
-        $theme = rex_config::get('cookie_consent', $clang_prefix.'theme');
-        $color_background = rex_config::get('cookie_consent', $clang_prefix.'color_background');
-        $color_main_content = rex_config::get('cookie_consent', $clang_prefix.'color_main_content');
-        $color_button_background = rex_config::get('cookie_consent', $clang_prefix.'color_button_background');
-        $color_button_content = rex_config::get('cookie_consent', $clang_prefix.'color_button_content');
-        $position = rex_config::get('cookie_consent', $clang_prefix.'position');
-        $main_message = rex_config::get('cookie_consent', $clang_prefix.'main_message');
-        $button_content = rex_config::get('cookie_consent', $clang_prefix.'button_content');
-        $link_content = rex_config::get('cookie_consent', $clang_prefix.'link_content');
-        $link = rex_config::get('cookie_consent', $clang_prefix.'iLink');
-        $link_target_type = rex_config::get('cookie_consent', $clang_prefix.'link_target_type');
+        $theme = self::getConfig('theme');
+        $color_background = self::getConfig('color_background');
+        $color_main_content = self::getConfig('color_main_content');
+        $color_button_background = self::getConfig('color_button_background');
+        $color_button_content = self::getConfig('color_button_content');
+        $position = self::getConfig('position');
+        $main_message = self::getConfig('main_message');
+        $button_content = self::getConfig('button_content');
+        $link_content = self::getConfig('link_content');
+        $link = self::getConfig('iLink');
+        $link_target_type = self::getConfig('link_target_type');
 
-        $select_link = rex_config::get('cookie_consent', $clang_prefix.'select_link');
+        $select_link = self::getConfig('select_link');
 
         if ($link_target_type == '') {
             $link_target_type = '_blank';
@@ -111,14 +118,10 @@ class cookie_consent
         if ($link != '') {
             $interner_link = rex_getUrl($link);
         }
-        $externer_link = rex_config::get('cookie_consent', $clang_prefix.'eLink');
-        $mode = rex_config::get('cookie_consent', $clang_prefix.'mode');
-        $deny_content = rex_config::get('cookie_consent', $clang_prefix.'deny_content');
-        $allow_content = rex_config::get('cookie_consent', $clang_prefix.'allow_content');
-
-        $cookie = new self();
-        $cookie_consent_css = $cookie->cookie_consent_get_css();
-        $cookie_consent_js = $cookie->cookie_consent_get_js();
+        $externer_link = self::getConfig('eLink');
+        $mode = self::getConfig('mode');
+        $deny_content = self::getConfig('deny_content');
+        $allow_content = self::getConfig('allow_content');
 
         $object = [
             'theme' => $theme,
@@ -137,6 +140,11 @@ class cookie_consent
             ],
         ];
 
+        if (($pos = strpos($position, '-pushdown')) !== false) {
+            $object['position'] = substr($position, 0, $pos);
+            $object['static'] = true;
+        }
+
         if ($theme != 'clean') {
             $object['palette'] = [
                 'popup' => [
@@ -149,25 +157,48 @@ class cookie_consent
                 ],
             ];
         }
+        $jsonConfig = json_encode($object, JSON_PRETTY_PRINT);
 
-        $custom_options = rex_config::get('cookie_consent', $clang_prefix.'custom_options');
-        $custom_options = json_decode($custom_options);
-        if ($custom_options) {
-            $object += (array) $custom_options;
+        $custom_options = self::getConfig('custom_options');
+        if ($custom_options && $custom_options != '') {
+            $jsonConfig = substr($jsonConfig, 0, strlen($jsonConfig) - 2) . ','.PHP_EOL.$custom_options.PHP_EOL . '}';
         }
 
-        $code = ($codepreview == true ? '<pre><code>' : $cookie_consent_css. '' . $cookie_consent_js .'<script>').'
-            window.addEventListener("load", function() {
-            window.cookieconsent.initialise('.json_encode($object, JSON_PRETTY_PRINT).');
-		});		
-		'.($codepreview == true ? '</code></pre>' : '</script>');
+        if (self::getGlobalConfig('testmode') === '1') {
+            $jsConfigCode = 'window.cookieconsent.initialise('.$jsonConfig.', function(idx) {idx.clearStatus();idx.open();});';
+        } else {
+            $jsConfigCode = 'window.cookieconsent.initialise('.$jsonConfig.');';
+        }
 
-        return $code;
+        if ($codepreview === true) {
+            return $jsConfigCode;
+        }
+
+        $output = '';
+        if (self::getConfig('embed_css') == '1') {
+            $output .= self::getCss().PHP_EOL;
+        }
+        if (self::getConfig('embed_js') == '1') {
+            $output .= self::getJs().PHP_EOL;
+        }
+        if (self::getConfig('embed_config') == '1') {
+            $output .= '<script>window.addEventListener("load", function() {'.$jsConfigCode.'});</script>';
+        }
+
+        return $output;
     }
 
     public static function getMode()
     {
         return rex_config::get('cookie_consent', self::getKeyPrefix().'mode', self::MODE_INFO);
+    }
+
+    public static function getStatus()
+    {
+        if (isset($_COOKIE[self::COOKIE_NAME])) {
+            return $_COOKIE[self::COOKIE_NAME];
+        }
+        return null;
     }
 
     /**
@@ -186,7 +217,7 @@ class cookie_consent
     public static function removeCookies()
     {
         // If user is logged in, skip
-        if (!is_object(rex::getUser())) {
+        if (session_id() != '' && rex_backend_login::hasSession()) {
             return;
         }
 
@@ -220,10 +251,18 @@ class cookie_consent
 
     public static function getKeyPrefix()
     {
+        if (self::$overridePrefix) {
+            return self::$overridePrefix;
+        }
+
         $prefix = rex_clang::getCurrent()->getCode().'_';
         if (self::checkYrewrite()) {
             rex_yrewrite::init();
-            $domain = rex_yrewrite::getCurrentDomain();
+            if (rex_article::getCurrent()) {
+                $domain = rex_yrewrite::getCurrentDomain();
+            } else {
+                $domain = null;
+            }
             if (!$domain) {
                 $domain = rex_yrewrite::getDefaultDomain();
             }
@@ -233,9 +272,24 @@ class cookie_consent
         return $prefix;
     }
 
+    public static function getConfig($key, $default = null)
+    {
+        $prefix = self::getKeyPrefix();
+        return rex_config::get('cookie_consent', $prefix.$key, $default);
+    }
+
+    public static function getGlobalConfig($key, $default = null)
+    {
+        return rex_config::get('cookie_consent', 'global_'.$key, $default);
+    }
+
     public static function checkYrewrite()
     {
         $yrewrite = rex_addon::get('yrewrite');
-        return rex_addon::exists('yrewrite') && $yrewrite->isInstalled() && rex_string::versionCompare($yrewrite->getVersion(), self::YREWRITE_VERSION_MIN, '>=');
+        return
+            rex_addon::exists('yrewrite') &&
+            rex_string::versionCompare($yrewrite->getVersion(), self::YREWRITE_VERSION_MIN, '>=') &&
+            $yrewrite->isInstalled() &&
+            $yrewrite->isAvailable();
     }
 }

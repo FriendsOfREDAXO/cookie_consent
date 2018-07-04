@@ -1,12 +1,16 @@
-	.cookie_consent_display_none {
-		display: none;
-	}
-	.cookie_consent_display {
-		display: inline-block;
-	}
-	.mode_notice {
-		display: none;
-	}
-	.mode_optin_notice {
-		display: none;
-	}
+.rex-form-group:not(.rex-form-group-vertical).cookie_consent_display_none,
+.cookie_consent_display_none {
+    display: none;
+}
+.cookie_consent_display {
+    display: inline-block;
+}
+.mode_notice {
+    display: none;
+}
+.mode_optin_notice {
+    display: none;
+}
+label[for=embed_auto] {
+    margin-top: 20px;
+}
