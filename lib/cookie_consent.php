@@ -53,7 +53,7 @@ class cookie_consent
     public static function getJs()
     {
         $getFile = rex_url::base('assets/addons/cookie_consent/js/cookie_consent_insites.js');
-        $makeJsLink = '<script type="text/javascript" src="'.$getFile.'"></script>';
+        $makeJsLink = '<script type="text/javascript" src="'.$getFile.'" async></script>';
         return $makeJsLink;
     }
 
@@ -182,7 +182,7 @@ class cookie_consent
             $output .= self::getJs().PHP_EOL;
         }
         if (self::getConfig('embed_config') == '1') {
-            $output .= '<script>window.addEventListener("load", function() {'.$jsConfigCode.'});</script>';
+            $output .= '<script async>window.addEventListener("load", function() {'.$jsConfigCode.'});</script>';
         }
 
         return $output;
