@@ -183,7 +183,8 @@ echo $fragment->parse('core/page/section.php');
 
 // ----------------- EMBED SECTION
 
-$frontendPathProvider = new rex_path_default_provider($REX['HTDOCS_PATH'], $REX['BACKEND_FOLDER'], false);
+// Sorgt dafür, dass die Assetpfade korrekt angezeigt werden
+$frontendPathProvider = new rex_path_default_provider(null, null, false);
 $cssFileUrl = $frontendPathProvider->addonAssets($this->getName(), $cssFile);
 $jsFileUrl = $frontendPathProvider->addonAssets($this->getName(), $jsFile);
 
