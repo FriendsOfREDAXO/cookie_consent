@@ -2,52 +2,7 @@
 /**
  * @var $this rex_addon
  */
-?>
-<style>
-	
-	#cookiedingsbums_wrapper {
-		height: auto;
-		width: auto;
-	}
-	.cookiedingsbums_content {
-		height: 50px;
-		font-size: 1.1em;
-	}
-	.cookiedingsbums_text {
-		display: inline-block;
-		margin: 17px 10px;
-	}
-	.cookiedingsbums_form {
-		display: inline-block;
-		float: right;
-		margin-right: 2%;
-		margin-top: 6px;
-				
-	}
-	.cookiedingsbums_link {
-		margin-left: 15px;
-	}
-	.cookiedingsbums_button {
-		display: inline-block;
-		border-color: transparent;
-		font: inherit;
-		color: #FFF;
-		width: auto;
-		padding: 0px 25px;
-		line-height: 35px;
-		overflow: hidden;
-		cursor: pointer;
-		border-radius: 10px;
-	}
-	a {
-		background: none;
-	}
 
-</style>
-
-
-
-<?php
 $context = new rex_context();
 $context->setParam('page', rex_request('page', 'string', null));
 $context->setParam('clang', rex_request('clang', 'string', null));

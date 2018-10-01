@@ -217,7 +217,7 @@ class cookie_consent
     public static function removeCookies()
     {
         // If user is logged in, skip
-        if (session_id() != '' && rex_backend_login::hasSession()) {
+        if (session_name() != '' && rex_backend_login::hasSession()) {
             return;
         }
 
