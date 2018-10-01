@@ -39,7 +39,7 @@ cookie_consent_bottom-left = Unten links
 cookie_consent_bottom-right = Unten rechts
 
 cookie_consent_main_message = Text für den Cookie Hinweis
-cookie_consent_button_content = Text für den Ablehnen/Verwerfen Button
+cookie_consent_button_content = Text für den Annehmen/Akzeptieren Button
 cookie_consent_privacy_policy_link_settings = Einstellungen für Datenschutzbestimmungen
 cookie_consent_link_content = Text für den Datenschutzbestimmungs-Link
 cookie_consent_link_intern = Interner Link für Datenschutzbestimmungen
