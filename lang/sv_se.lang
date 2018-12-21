@@ -20,6 +20,7 @@ cookie_consent_mode_optin_notice = Det här alternativet tar bort alla inställd
 cookie_consent_mode_notice = Observera att inloggnings- och bortkopplingsmetoderna endast ger återuppringningar för att inte lagra cookies. Du måste själv skriva funktionen och anpassa din webbplats så att inga cookies lagras. Se:
 cookie_consent_disable_cookies = Deaktivera cookien
 
+cookie_consent_color_scheme = färdiga designs
 cookie_consent_custom = anpassad
 
 cookie_consent_theme = Tema
@@ -32,19 +33,30 @@ cookie_consent_allow_content = Godkänn-knappens  (Opt-In)
 
 cookie_consent_position = Position
 cookie_consent_top = Top
+cookie_consent_top_pushdown = Kör in från toppen (pushdown)
 cookie_consent_bottom = Nere
 cookie_consent_bottom-left = Nere vänster
 cookie_consent_bottom-right = Nere höger
 
 cookie_consent_main_message = Text till cookie-info
+cookie_consent_button_content = Text för Avvisa / Förkasta-knappen
+cookie_consent_privacy_policy_link_settings = Sekretesspolicy inställningar
 cookie_consent_link_content = Text till
 cookie_consent_link_intern = Text för länken till integritetspolicyn
 cookie_consent_link_extern = Extern länk för integritetspolicyn
 cookie_consent_select_link = Länkens art
 cookie_consent_eLink = Extern länk
 cookie_consent_iLink = Intern länk
+cookie_consent_output_options = output alternativ
+cookie_consent_embed_auto = Integrera automatiskt
+cookie_consent_embed_config = Inkludera konfiguration av Cookies consent
+cookie_consent_embed_js = Bädda in javascript
+cookie_consent_embed_css = Bädda in CSS
+cookie_consent_embed_notice = Fügt die gewählten Optionen vor dem <i></head></i> Tag im Frontend ein.
+cookie_consent_output_settings = Utgångsinställningar
 cookie_consent_custom_options = Anpassade alternativ
 cookie_consent_custom_options_notice = Här kan du lägga till ytterligare alternativ. För möjliga alternativ se
+cookie_consent_custom_options_template_notice = Exempel på möjliga användningsfall finns här:
 cookie_consent_json_not_valid = De angivna alternativen är inte tillgängliga i det giltiga JSON-formatet
 cookie_consent_url_not_valid = Den angivna webbadressen är inte i giltigt webbadressformat
 
@@ -54,3 +66,21 @@ cookie_consent_targetParent = Överordnad fönster (_parent)
 cookie_consent_targetTop = hela fönstret (_top)
 
 cookie_consent_link_target_type = Målfönstrets bas
+
+cookie_consent_preview_for = Förhandsvisning till
+cookie_consent_preview_section = Förhandsvisning
+cookie_consent_preview = Visa förhandsvisning
+cookie_consent_config_code = Konfiguration
+cookie_consent_test_preview_notice = Med den här knappen kan konfigurationen testas. Det bör noteras att utsikten i backenden kan skilja sig från den i frontendan. Av denna anledning rekommenderas att testa konfigurationen i fronten.
+cookie_consent_test_embed_notice = Följande kod kan användas för att manuellt integrera konfigurationen. Dessutom ska CSS- och JS-filen ingå. Alternativt kan dessa filer också ingå i anpassade JS / CSS-arbetsflöden.
+
+cookie_consent_global_configuration = Globala inställningar
+cookie_consent_testmode = Aktivera testläget
+cookie_consent_testmode_notice = Om testläget är aktivt anger cookiebannern inte en cookie. Detta möjliggör enklare provning av banderollen i fronten.
+cookie_consent_hide_on_cookie = Ladda inte banner CSS och JS efter bekräftelse
+cookie_consent_hide_on_cookie_notice = Om bannerkakan har ställts in visas inte bannerns CSS och JS-kod längre i frontend.
+
+cookie_consent_inherit = Ärva konfiguration från
+cookie_consent_config_design = Grafiska inställningar
+cookie_consent_config_text = Text inställningar
+cookie_consent_templates = Förlagor
