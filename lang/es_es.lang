@@ -14,13 +14,14 @@ cookie_consent_select_domain = Dominio
 
 cookie_consent_mode = Modo
 cookie_consent_info = Informar a los usuarios que las cookies se almacenan
-cookie_consent_opt-in = Método de inclusión
+cookie_consent_opt-in =  Método de inclusión
 cookie_consent_opt-out = Método de exclusión
 cookie_consent_mode_optin_notice = Esta opción elimina todas las cookies del lado del servidor. Esto asegura que las cookies se obtuvieron del usuario. <b>Sin embargo, esto no impide que Javascripts establezca cookies, p. Ej. Google Analytics.</b>
 cookie_consent_mode_notice = Tenga en cuenta que los métodos de inclusión y exclusión voluntaria solo proporcionan las devoluciones de llamada para no almacenar las cookies. Debe escribir la función usted mismo y personalizar su sitio web para que no se almacenen cookies. Por favor refiérase a
 cookie_consent_disable_cookies = Desactivar cookies
 
-cookie_consent_custom = personalizado
+cookie_consent_color_scheme = Diseños listos
+cookie_consent_custom = Personalizado
 
 cookie_consent_theme = Tema
 cookie_consent_color_background = Color de fondo
@@ -32,19 +33,30 @@ cookie_consent_allow_content = Aceptar el texto del botón (Opt-In)
 
 cookie_consent_position = posición
 cookie_consent_top = Por encima
+cookie_consent_top_pushdown = Presione hacia abajo
 cookie_consent_bottom = Por debajo
 cookie_consent_bottom-left = Abajo a la izquierda
 cookie_consent_bottom-right = Abajo a la derecha
 
 cookie_consent_main_message = Texto para la nota de cookie
+cookie_consent_button_content = Texto para el botón Rechazar/Descartar
+cookie_consent_privacy_policy_link_settings = Configuración de la política de privacidad
 cookie_consent_link_content = Texto para el enlace de política de privacidad
 cookie_consent_link_intern = Enlace interno para la política de privacidad
 cookie_consent_link_extern = Enlace externo para la política de privacidad
 cookie_consent_select_link = Tipo de enlace
 cookie_consent_eLink = Enlace externo
 cookie_consent_iLink = Enlace interno
+cookie_consent_output_options = Opciones de salida
+cookie_consent_embed_auto = Integrar automáticamente
+cookie_consent_embed_config = Incluir la configuración de consentimiento de cookies
+cookie_consent_embed_js = Integrar javascript
+cookie_consent_embed_css = Integrar CSS
+cookie_consent_embed_notice = Inserta las opciones seleccionadas antes de la etiqueta <i></head></i> en la interfaz.
+cookie_consent_output_settings = Configuración de salida
 cookie_consent_custom_options = Opciones personalizadas
 cookie_consent_custom_options_notice = Aquí se pueden ingresar opciones adicionales. Para ver posibles opciones, vea
+cookie_consent_custom_options_template_notice = Ejemplos de posibles casos de uso se pueden encontrar aquí:
 cookie_consent_json_not_valid = Las opciones dadas no están disponibles en el formato JSON válido
 cookie_consent_url_not_valid = La URL especificada no está en formato URL válido
 
@@ -54,3 +66,21 @@ cookie_consent_targetParent = Ventana principal (_parent)
 cookie_consent_targetTop = ventana completa (_top)
 
 cookie_consent_link_target_type = Base de ventana de destino
+
+cookie_consent_preview_for = Vista previa para
+cookie_consent_preview_section = Vista previa
+cookie_consent_preview = Mostrar vista previa
+cookie_consent_config_code = Ajustes
+cookie_consent_test_preview_notice = Con este botón la configuración puede ser probada. Cabe señalar que la vista en el backend puede diferir de la de la interfaz. Por esta razón, se recomienda probar la configuración en la interfaz.
+cookie_consent_test_embed_notice = El siguiente código se puede usar para integrar manualmente la configuración. Además, el archivo CSS y JS debe ser incluido. Alternativamente, estos archivos también se pueden incluir en flujos de trabajo personalizados de JS/CSS.
+
+cookie_consent_global_configuration = Configuración global
+cookie_consent_testmode = Activar el modo de prueba
+cookie_consent_testmode_notice = Si el modo de prueba está activo, el banner de la cookie no establece una cookie. Esto permite una prueba más fácil del banner en la interfaz.
+cookie_consent_hide_on_cookie = Banner CSS und JS nach Bestätigung nicht laden
+cookie_consent_hide_on_cookie_notice = Si se ha establecido la cookie de banner, el banner CSS y el código JS ya no se mostrarán en la interfaz
+
+cookie_consent_inherit = Heredar configuración de
+cookie_consent_config_design = Configuraciones gráficas
+cookie_consent_config_text = Ajustes de texto
+cookie_consent_templates = Plantillas
