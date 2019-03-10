@@ -30,3 +30,8 @@ page:
 
 requires:
     redaxo: '^5.1'
+
+installer_ignore:
+    - .gitignore
+    - .php_cs.dist
+    - .travis.yml
