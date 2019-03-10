@@ -216,11 +216,6 @@ class cookie_consent
             return false;
         }
 
-        // If user is logged in, skip
-        if (session_name() != '' && rex_backend_login::hasSession()) {
-            return;
-        }
-
         // unset new/updated cookies
         header_remove('Set-Cookie');
 
@@ -290,5 +285,29 @@ class cookie_consent
             rex_string::versionCompare($yrewrite->getVersion(), self::YREWRITE_VERSION_MIN, '>=') &&
             $yrewrite->isInstalled() &&
             $yrewrite->isAvailable();
+    }
+
+    public static function hasUserSession()
+    {
+        if (rex::getUser() instanceof rex_user) {
+            return true;
+        }
+
+        // If user is logged in, skip
+        if (session_name() != '' && rex_backend_login::hasSession()) {
+            return true;
+        }
+
+        $ycom = rex_addon::get('ycom');
+        if (!$ycom instanceof rex_null_package && $ycom->isAvailable()) {
+            return null !== rex_ycom_auth::getUser() || in_array(rex_article::getCurrentId(), [
+                $ycom->getConfig('article_id_jump_denied'),
+                $ycom->getConfig('article_id_jump_logout'),
+                $ycom->getConfig('article_id_jump_not_ok'),
+                $ycom->getConfig('article_id_jump_ok'),
+            ], true);
+        }
+
+        return false;
     }
 }
