@@ -181,7 +181,7 @@ class cookie_consent
             $output .= '<script async>window.addEventListener("load", function() {'.$jsConfigCode.'});</script>';
         }
 
-        return $output;
+        return rex_extension::registerPoint(new rex_extension_point('COOKIE_CONTENT_OUTPUT', $output));
     }
 
     public static function getMode()
@@ -212,6 +212,10 @@ class cookie_consent
 
     public static function removeCookies()
     {
+        if (false === rex_extension::registerPoint(new rex_extension_point('COOKIE_CONSENT_COOKIE_REMOVE', true))) {
+            return false;
+        }
+
         // unset new/updated cookies
         header_remove('Set-Cookie');
 
