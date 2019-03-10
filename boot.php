@@ -1,7 +1,5 @@
 <?php
 
-$this->setProperty('author', 'Friends Of REDAXO');
-
 if (rex::isBackend() && is_object(rex::getUser())) {
     rex_perm::register('cookie_consent[]');
 }
