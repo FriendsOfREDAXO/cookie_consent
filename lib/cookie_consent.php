@@ -82,10 +82,6 @@ class cookie_consent
 
     public static function cookie_consent_output($codepreview = false)
     {
-        if (self::checkYrewrite()) {
-            rex_yrewrite::init();
-        }
-
         $inherit = self::getConfig('inherit');
         if ($inherit != '') {
             self::$overridePrefix = $inherit;
@@ -257,7 +253,6 @@ class cookie_consent
 
         $prefix = rex_clang::getCurrent()->getCode().'_';
         if (self::checkYrewrite()) {
-            rex_yrewrite::init();
             if (rex_article::getCurrent()) {
                 $domain = rex_yrewrite::getCurrentDomain();
             } else {
