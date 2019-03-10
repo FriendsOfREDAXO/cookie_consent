@@ -15,7 +15,7 @@ if (!rex::isBackend()) {
             rex_extension::register('OUTPUT_FILTER', 'cookie_consent::ep_call', rex_extension::LATE);
         }
 
-        rex_extension::register(['FE_OUTPUT', 'OUTPUT_FILTER'], function() {
+        rex_extension::register(['FE_OUTPUT', 'OUTPUT_FILTER'], function () {
             if (cookie_consent::getMode() === cookie_consent::MODE_OPT_IN && !cookie_consent::hasUserSession()) {
                 rex_extension::register('OUTPUT_FILTER', 'cookie_consent::ep_optin', rex_extension::LATE);
             }
