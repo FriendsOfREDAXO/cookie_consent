@@ -20,6 +20,7 @@ cookie_consent_mode_optin_notice = Removes all existing and new cookies on the s
 cookie_consent_mode_notice = Please note that the opt-in and opt-out methods only provide callbacks for not storing cookies. You must write your own function and customize your website so that no cookies are stored. See:
 cookie_consent_disable_cookies = Disable Cookies
 
+cookie_consent_color_scheme = Pre-built designs
 cookie_consent_custom = custom
 
 cookie_consent_theme = Theme
@@ -32,19 +33,30 @@ cookie_consent_allow_content = Allow-Button-Text (Opt-In)
 
 cookie_consent_position = Position
 cookie_consent_top = top
+cookie_consent_top_pushdown = Slide down from top (pushdown)
 cookie_consent_bottom = bottom
 cookie_consent_bottom-left = bottom left
 cookie_consent_bottom-right = bottom right
 
 cookie_consent_main_message = Text for the cookie note
+cookie_consent_button_content = Text for the accept button
+cookie_consent_privacy_policy_link_settings = Settings for privacy policy
 cookie_consent_link_content = Text for the privacy policy link
 cookie_consent_link_intern = Internal link for privacy policy
 cookie_consent_link_extern = External link for privacy policy
 cookie_consent_select_link = Type of link
 cookie_consent_eLink = External Link
 cookie_consent_iLink = Internal Link
+cookie_consent_output_options = Output options
+cookie_consent_embed_auto = Embed automatically
+cookie_consent_embed_config = Embed Cookie Consent config automatically
+cookie_consent_embed_js = Embed Javascript
+cookie_consent_embed_css = Embed CSS
+cookie_consent_embed_notice = Embeds the selected options before the <i></head></i> tag in the frontend
+cookie_consent_output_settings = Output settings
 cookie_consent_custom_options = Custom Options
 cookie_consent_custom_options_notice = You can specify additional Options. For possible Options see
+cookie_consent_custom_options_template_notice = Examples for possible application usages can be found here:
 cookie_consent_json_not_valid = The given options aren't valid JSON
 cookie_consent_url_not_valid = The given URL is not a valid URL format
 
@@ -54,3 +66,21 @@ cookie_consent_targetParent = parent window (_parent)
 cookie_consent_targetTop = complete window (_top)
 
 cookie_consent_link_target_type = target
+
+cookie_consent_preview_for = Preview for
+cookie_consent_preview_section = Preview
+cookie_consent_preview = Show preview
+cookie_consent_config_code = Configuration
+cookie_consent_test_preview_notice = Use this button to thest the configuration. Note that the backend appearance can differ slightly from the appearance in the frontend. It is advisable to test frontend appearance when done.
+cookie_consent_test_embed_notice = The following code can be used to manually embed the configuration. CSS and JS files should be embedded also. Alternatively the CSS and JS files can be embedded in custom workflows.
+
+cookie_consent_global_configuration = Global settings
+cookie_consent_testmode = Activate test mode
+cookie_consent_testmode_notice = When test mode is activated, no cookies will be set. This simplifies testing in the frontend.
+cookie_consent_hide_on_cookie = Prevent loading CSS and JS resources after accepting.
+cookie_consent_hide_on_cookie_notice = Once cookies have been accepted, the CSS and JS files will not be loaded in the frontend.
+
+cookie_consent_inherit = Inherit configuration from
+cookie_consent_config_design = Visual settings
+cookie_consent_config_text = Text settings
+cookie_consent_templates = Templates
