@@ -7,7 +7,7 @@
 
 $prefix = rex_clang::getCurrent()->getCode().'_';
 $yrewrite = rex_addon::get('yrewrite');
-if (rex_addon::exists('yrewrite') && $yrewrite->isInstalled() && rex_string::versionCompare($yrewrite->getVersion(), '2.3', '>=')) {
+if ($yrewrite->isInstalled() && rex_string::versionCompare($yrewrite->getVersion(), '2.3', '>=')) {
     rex_yrewrite::init();
     $domain = rex_yrewrite::getCurrentDomain();
     if (!$domain) {
