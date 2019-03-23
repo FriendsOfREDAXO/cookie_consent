@@ -281,9 +281,7 @@ class cookie_consent
     {
         $yrewrite = rex_addon::get('yrewrite');
         return
-            rex_addon::exists('yrewrite') &&
             rex_string::versionCompare($yrewrite->getVersion(), self::YREWRITE_VERSION_MIN, '>=') &&
-            $yrewrite->isInstalled() &&
             $yrewrite->isAvailable();
     }
 
