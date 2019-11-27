@@ -1,3 +1,5 @@
+⚠️ Entwicklung eingestellt: Eine Alternative mit mehr Funktionen bietet das FOR-AddOn [Cookie-Gedöns (iwcc)](https://github.com/FriendsOfREDAXO/iwcc).
+
 # Cookie Consent
 
 Das AddOn stellt das "Cookie Consent"-Script von [Insites](https://cookieconsent.insites.com) zur Verfügung und generiert einen Code um die EU Cookie-Richtlinie zu erfüllen.
